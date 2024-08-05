@@ -357,6 +357,7 @@ header .logoContainer {
 .about {
   font-size: var(--large-font-size);
   line-height: var(--large-line-height);
+  padding: 10px;
 }
 .contact {
   position: relative;
@@ -680,9 +681,9 @@ header .logoContainer {
 }
 
 .backButton {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  position: fixed;
+  top: 90px;
+  left: 20px;
   font-size: 18px;
   width: auto;
   height: 40px;
