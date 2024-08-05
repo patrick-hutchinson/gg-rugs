@@ -27,7 +27,7 @@ export default function Contact(props) {
       <main className="pageContainer">
         <div className="videoContainer">
           {videoSource && (
-            <video autoPlay muted loop>
+            <video autoPlay muted loop playsInline>
               <source src={videoSource} type="video/mp4" />
             </video>
           )}
