@@ -6,7 +6,7 @@ export default function Commissions(props) {
   let [data, setData] = React.useState();
 
   React.useEffect(() => {
-    fetch(`${props.strapiBaseURL}/api/commissions?populate=*`)
+    fetch(`${props.strapiBaseURL}/api/commission?populate=*`)
       .then((res) => res.json())
       .then((dataArray) => {
         setData(dataArray.data);
