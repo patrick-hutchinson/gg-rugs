@@ -888,8 +888,10 @@ header .logoContainer {
     transform: translate(-50%, -60%);
   }
   .backButton {
-    bottom: 20px;
-    left: 8px;
+    top: unset;
+    bottom: 20px !important;
+    left: 8px !important;
+    display: none;
   }
   .commissions h1,
   .carpetContainer h1 {
@@ -912,5 +914,16 @@ header .logoContainer {
   .socials {
     font-size: 17vw;
     line-height: 14vw;
+  }
+  .rugForm {
+    height: auto;
+    height: calc(100% + 30px);
+    margin-top: 20px;
+  }
+  .pageContainer {
+    height: auto;
+  }
+  .imageGallery {
+    overflow: unset;
   }
 }
