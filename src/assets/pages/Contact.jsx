@@ -27,9 +27,8 @@ export default function Contact(props) {
       <main className="pageContainer">
         <div className="videoContainer">
           <video>
-            <source src=""></source>
+            <source src={gifSource}></source>
           </video>
-          <img src={gifSource}></img>
         </div>
         <div className="contact">
           <div className="contacts-specific">

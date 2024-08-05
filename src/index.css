@@ -362,6 +362,7 @@ header .logoContainer {
   font-size: var(--large-font-size);
   line-height: var(--large-line-height);
   padding: 10px;
+  overflow-y: scroll;
 }
 .contact {
   position: relative;
@@ -860,13 +861,56 @@ header .logoContainer {
     top: 15px;
     transform-origin: top left;
   }
+  .pageContainer {
+    height: auto;
+  }
 }
 
 @media only screen and (max-width: 600px) {
   .catalogue .catalogueImage {
-    max-width: 400px;
+    max-width: 90%;
     max-height: 200px;
     width: auto;
     height: auto;
+  }
+  .pageContainer {
+    height: auto;
+  }
+  .header > li img {
+    height: 35px;
+  }
+  .mobileMenu img,
+  .closeMenu {
+    height: 45px;
+    margin: 4px;
+  }
+  .mobileMenu ul {
+    transform: translate(-50%, -60%);
+  }
+  .backButton {
+    bottom: 20px;
+    left: 8px;
+  }
+  .commissions h1,
+  .carpetContainer h1 {
+    font-size: 17vw;
+    line-height: 14vw;
+  }
+  .carpetInfo {
+    height: auto;
+  }
+  .carpetInfo .description {
+    font-size: 0.8em;
+    line-height: 0.9em;
+  }
+  .carpetContainer {
+    margin-bottom: 50px;
+  }
+  .waterPistol {
+    font-size: 120px;
+  }
+  .socials {
+    font-size: 17vw;
+    line-height: 14vw;
   }
 }

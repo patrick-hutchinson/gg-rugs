@@ -77,7 +77,6 @@ export default function Carpet(props) {
             </button>
           </div>
         </div>
-        ;
       </div>
     </AnimatedPage>
   );
