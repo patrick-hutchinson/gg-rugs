@@ -15,9 +15,9 @@ export default function Layout(props) {
     cursorImage.style.top = e.clientY + "px";
 
     if (e.clientX < lastMousePosition) {
-      document.querySelector(".cursorImage img").setAttribute("src", "./src/assets/mat/img/cursor/eyes_reg.png");
+      document.querySelector(".cursorImage img").setAttribute("src", "assets/img/eyes_reg.png");
     } else if (e.clientX > lastMousePosition) {
-      document.querySelector(".cursorImage img").setAttribute("src", "./src/assets/mat/img/cursor/eyes_right.png");
+      document.querySelector(".cursorImage img").setAttribute("src", "assets/img/eyes_right.png");
     }
 
     lastMousePosition = e.clientX;
@@ -29,15 +29,15 @@ export default function Layout(props) {
     // Handle the CursorImage
     var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
     if (currentScroll > lastScrollTop) {
-      document.querySelector(".cursorImage img").setAttribute("src", "./src/assets/mat/img/cursor/eyes_down.png");
+      document.querySelector(".cursorImage img").setAttribute("src", "assets/img/eyes_down.png");
     } else if (currentScroll < lastScrollTop) {
-      document.querySelector(".cursorImage img").setAttribute("src", "./src/assets/mat/img/cursor/eyes_up.png");
+      document.querySelector(".cursorImage img").setAttribute("src", "assets/img/eyes_up.png");
     }
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
   });
 
   window.addEventListener("scrollend", (e) => {
-    document.querySelector(".cursorImage img").setAttribute("src", "./src/assets/mat/img/cursor/eyes_reg.png");
+    document.querySelector(".cursorImage img").setAttribute("src", "assets/img/eyes_reg.png");
   });
 
   React.useEffect(() => {
@@ -61,7 +61,7 @@ export default function Layout(props) {
 
       <div className="copyrightNotice">2024 © Copyright. All rights Reserved</div>
       <div className="cursorImage">
-        <img src="./src/assets/mat/img/cursor/eyes_reg.png" />
+        <img src="assets/img/eyes_reg.png" />
       </div>
     </>
   );

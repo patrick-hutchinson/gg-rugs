@@ -28,7 +28,7 @@ export default function Header(props) {
   let mobileHeader = (
     <ul className="header">
       <li>
-        <img onMouseDown={handleOpenMenu} src="./src/assets/mat/svg/menu/menu.svg" />
+        <img onMouseDown={handleOpenMenu} src="assets/img/menu.svg" />
       </li>
     </ul>
   );
@@ -36,27 +36,27 @@ export default function Header(props) {
   let mobileMenu = (
     <div className="mobileMenu">
       <span className="closeMenu">
-        <img onMouseDown={handleMenuClick} src="./src/assets/mat/svg/menu/close.svg" />
+        <img onMouseDown={handleMenuClick} src="assets/img/close.svg" />
       </span>
       <ul>
         <li>
           <Link to="/">
-            <img onMouseDown={handleMenuClick} src="./src/assets/mat/svg/menu/home.svg" />
+            <img onMouseDown={handleMenuClick} src="assets/img/home.svg" />
           </Link>
         </li>
         <li>
           <Link to="/about">
-            <img onMouseDown={handleMenuClick} src="./src/assets/mat/svg/menu/about.svg" />
+            <img onMouseDown={handleMenuClick} src="assets/img/about.svg" />
           </Link>
         </li>
         <li>
           <Link to="/commissions">
-            <img onMouseDown={handleMenuClick} src="./src/assets/mat/svg/menu/commission.svg" />
+            <img onMouseDown={handleMenuClick} src="assets/img/commission.svg" />
           </Link>
         </li>
         <li>
           <Link to="/contact">
-            <img onMouseDown={handleMenuClick} src="./src/assets/mat/svg/menu/contact.svg" />
+            <img onMouseDown={handleMenuClick} src="assets/img/contact.svg" />
           </Link>
         </li>
       </ul>
@@ -68,23 +68,23 @@ export default function Header(props) {
       <ul className="header">
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <Link to="/">
-            <img src="./src/assets/mat/svg/menu/home.svg" />
+            <img src="assets/img/home.svg" />
           </Link>
         </li>
 
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <Link to="/about">
-            <img src="./src/assets/mat/svg/menu/about.svg" />
+            <img src="assets/img/about.svg" />
           </Link>
         </li>
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <Link to="/commissions">
-            <img src="./src/assets/mat/svg/menu/commission.svg" />
+            <img src="assets/img/commission.svg" />
           </Link>
         </li>
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <Link to="/contact">
-            <img src="./src/assets/mat/svg/menu/contact.svg" />
+            <img src="assets/img/contact.svg" />
           </Link>
         </li>
       </ul>

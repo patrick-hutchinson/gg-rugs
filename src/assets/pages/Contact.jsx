@@ -18,7 +18,7 @@ export default function Contact(props) {
 
   React.useEffect(() => {
     if (data) {
-      setGifSource(`${props.strapiBaseURL}${data.BackgroundMedia.data.attributes.url}`);
+      setGifSource(`${data.BackgroundMedia.data.attributes.url}`);
     }
   }, [data]);
 

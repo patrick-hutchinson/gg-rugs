@@ -61,7 +61,7 @@ export default function Home(props) {
                 <img
                   onMouseEnter={handleSeeMoreMouseEnter}
                   onMouseLeave={handleSeeMoreMouseLeave}
-                  src="./src/assets/mat/svg/take-a-look.svg"
+                  src="/assets/img/take-a-look.svg"
                 />
               </Link>
             </div>

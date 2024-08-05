@@ -20,7 +20,7 @@ export default function Carpet(props) {
   let imageCatalogue = <div className="errorText">Sorry, no images have been added yet — Check back soon!</div>;
   if (carpet.attributes.ExtraImages && carpet.attributes.ExtraImages.data) {
     imageCatalogue = carpet.attributes.otherImages.data.map((carpetImage) => {
-      return <img src={`${props.strapiBaseURL}${carpetImage.attributes.url}`} key={carpetImage.id} alt="" />;
+      return <img src={`${carpetImage.attributes.url}`} key={carpetImage.id} alt="" />;
     });
   }
 
