@@ -950,4 +950,13 @@ header .logoContainer {
     height: 100%;
     width: auto;
   }
+  .contactPage {
+    height: calc(100% - 10vh);
+  }
+  .socials {
+    display: flex;
+  }
+  .instagram {
+    align-self: flex-end;
+  }
 }
