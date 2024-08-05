@@ -16,16 +16,12 @@ export default function Commissions(props) {
       });
   }, []);
 
-  React.useEffect(() => {
-    if (data) {
-      let imageCatalogue = <div className="errorText">No preview Images available at the moment, sorry!</div>;
-      if (data.commissionImages && data.commissionImages.data) {
-        imageCatalogue = data.commissionImages.data.map((image) => {
-          return <img src={`${image.attributes.url}`} key={image.id} alt="" />;
-        });
-      }
-    }
-  }, [data]);
+  let imageCatalogue = <div className="errorText">No preview Images available at the moment, sorry!</div>;
+  if (data.commissionImages && data.commissionImages.data) {
+    imageCatalogue = data.commissionImages.data.map((image) => {
+      return <img src={`${image.attributes.url}`} key={image.id} alt="" />;
+    });
+  }
 
   const [formData, setFormData] = useState({
     size: "",
