@@ -8,21 +8,21 @@ export default function OpeningPage(props) {
   React.useEffect(() => {
     if (props.closeOpeningPage && props.isDesktop) {
       document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-50%, 0%) scale(0.4)";
-      document.querySelector(`.${CSS.logoContainer}`).style.top = "15px";
+      document.querySelector(`.${CSS.logoContainer}`).style.top = "18px";
 
       setTimeout(() => {
         document.querySelector(`.${CSS.logoContainer}`).style.transformOrigin = "top left";
         document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-0%, 0%) scale(0.4)";
-        document.querySelector(`.${CSS.logoContainer}`).style.left = "20px";
+        document.querySelector(`.${CSS.logoContainer}`).style.left = "15px";
       }, 300);
     } else if (props.closeOpeningPage && !props.isDesktop) {
       document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-50%, 0%) scale(0.2)";
-      document.querySelector(`.${CSS.logoContainer}`).style.top = "15px";
+      document.querySelector(`.${CSS.logoContainer}`).style.top = "18px";
 
       setTimeout(() => {
         document.querySelector(`.${CSS.logoContainer}`).style.transformOrigin = "top left";
         document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-0%, 0%) scale(0.2)";
-        document.querySelector(`.${CSS.logoContainer}`).style.left = "20px";
+        document.querySelector(`.${CSS.logoContainer}`).style.left = "15px";
       }, 300);
     }
   }, [props.closeOpeningPage]);

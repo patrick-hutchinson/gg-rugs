@@ -72,7 +72,6 @@ export default function Home(props) {
               style={{
                 animationDelay: `${index * 0.3}s`,
               }}
-              onMouseMove={handleMouseMove}
             />
           </div>
         ) : (
@@ -84,7 +83,6 @@ export default function Home(props) {
               style={{
                 animationDelay: `${index * 0.3}s`,
               }}
-              onMouseMove={handleMouseMove}
             />
           </Link>
         );
@@ -108,17 +106,29 @@ export default function Home(props) {
 
     textContainer.classList.remove("visible");
   }
-  function handleSeeMoreMouseEnter() {
-    document.querySelector(".cursorImage > img").classList.add("scaleCursor");
-  }
-  function handleSeeMoreMouseLeave() {
-    setTimeout(() => {
-      document.querySelector(".cursorImage > img").classList.remove("scaleCursor");
-    }, 700);
+  function handleSeeMoreMouseEnter(e) {
+    e.currentTarget.src = "/assets/img/take-a-look_focus.svg";
+    const cursorImage = document.querySelector(".cursorImage > img");
+    cursorImage.classList.remove("pulseCursor");
+    cursorImage.classList.add("pulseCursor");
+
+    const handleAnimationEnd = () => {
+      cursorImage.classList.remove("pulseCursor");
+      cursorImage.removeEventListener("animationend", handleAnimationEnd);
+    };
+
+    cursorImage.addEventListener("animationend", handleAnimationEnd);
   }
 
-  function handleMouseMove(e) {
-    let computedStyle = window.getComputedStyle(e.target);
+  function handleSeeMoreMouseLeave(e) {
+    e.currentTarget.src = "/assets/img/take-a-look.svg";
+    const cursorImage = document.querySelector(".cursorImage > img");
+    const handleAnimationEnd = () => {
+      cursorImage.classList.remove("pulseCursor");
+      cursorImage.removeEventListener("animationend", handleAnimationEnd);
+    };
+
+    cursorImage.addEventListener("animationend", handleAnimationEnd);
   }
 
   return (

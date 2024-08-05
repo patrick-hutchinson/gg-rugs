@@ -128,10 +128,10 @@ input:focus {
   animation-iteration-count: 2;
   animation-fill-mode: forwards;
 }
-.cursorImage > img.scaleCursor {
-  animation-name: scaleCursor;
+.cursorImage > img.pulseCursor {
+  animation-name: pulseCursor;
 }
-@keyframes scaleCursor {
+@keyframes pulseCursor {
   0% {
     transform: translate(-50%, -50%) scale(1);
   }
@@ -231,8 +231,8 @@ header {
   z-index: 15;
   text-align: left;
   justify-content: space-between;
-
-  display: flex;
+  column-gap: 20px;
+  /* display: flex; */
   align-items: center;
   white-space: nowrap;
 }
@@ -251,8 +251,12 @@ header {
   -o-user-select: none;
   user-select: none;
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+}
 .header > li img {
-  height: 45px;
+  height: 42px;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -268,8 +272,8 @@ header .logoContainer {
   text-align: left;
   position: fixed;
   transform: translate(0%, 0%), scale(0.4);
-  left: 20px;
-  top: 15px;
+  left: 15px;
+  top: 18px;
   transform-origin: top left;
 }
 
@@ -460,7 +464,7 @@ header .logoContainer {
 .contact {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 0px;
+  column-gap: 10px;
   width: 100%;
   height: inherit;
   position: relative;
@@ -470,6 +474,7 @@ header .logoContainer {
   display: grid;
   grid-template-rows: auto 1fr;
   width: 90%;
+  height: calc(100% - 30px);
 }
 
 .commissions form {
@@ -557,6 +562,7 @@ header .logoContainer {
 .imageGallery {
   overflow: scroll;
   height: calc(100vh - 10vh - 30px);
+  border-radius: 10px;
 }
 .imageGallery > img {
   width: 100%;
@@ -618,7 +624,7 @@ header .logoContainer {
   animation-name: wiggle;
 } */
 .carpetWrapper .carpetLink > img {
-  height: 45px;
+  height: 42px;
   width: auto;
   /* animation-name: none;
   animation-iteration-count: 3;
@@ -663,7 +669,7 @@ header .logoContainer {
 }
 .carpetInfo {
   display: grid;
-  grid-template-rows: 33% 1fr auto;
+  grid-template-rows: auto auto auto;
   row-gap: 20px;
   font-size: var(--large-font-size);
   line-height: var(--large-line-height);
@@ -671,7 +677,18 @@ header .logoContainer {
   width: 90%;
   text-align: left;
   position: relative;
+  height: calc(100% - 20px);
 }
+.carpetInfo .description {
+  overflow-y: scroll;
+}
+.carpetSpecifications {
+  display: flex;
+}
+.carpetSpecifications > ul {
+  align-self: flex-end;
+}
+
 .carpetInfo .category {
   display: inline-block;
   color: #999998;

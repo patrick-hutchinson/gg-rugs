@@ -25,7 +25,12 @@ export default function Carpet(props) {
   }
 
   function handleBuyClick() {
-    window.location.href = "mailto:?subject=I%20need%20it!";
+    const subject = encodeURIComponent("I NEED IT!");
+    const body = encodeURIComponent(`THE ${carpet.attributes.name} CARPET NEEDS TO BE MINE!`);
+
+    const mailtoLink = `mailto:ciao@gg-office.com?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
   }
 
   function handleMouseEnter(e) {
@@ -53,18 +58,20 @@ export default function Carpet(props) {
             <h1>{carpet.attributes.name}</h1>
             <p className="description">{carpet.attributes.description}</p>
 
-            <ul className="carpetSpecifications">
-              <li>
-                <span className="category">SIZE:</span>
-                {carpet.attributes.dimensions}
-              </li>
-              <li>
-                <span className="category">YEAR:</span> {carpet.attributes.year}
-              </li>
-              <li>
-                <span className="category">PRICE:</span> {carpet.attributes.price} Euro
-              </li>
-            </ul>
+            <div className="carpetSpecifications">
+              <ul>
+                <li>
+                  <span className="category">SIZE:</span>
+                  {carpet.attributes.dimensions}
+                </li>
+                <li>
+                  <span className="category">YEAR:</span> {carpet.attributes.year}
+                </li>
+                <li>
+                  <span className="category">PRICE:</span> {carpet.attributes.price} Euro
+                </li>
+              </ul>
+            </div>
             <button className="buyButton" onClick={handleBuyClick}>
               <img src="/assets/img/buy.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
             </button>
