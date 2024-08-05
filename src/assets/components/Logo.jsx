@@ -350,32 +350,32 @@ export default function Logo() {
       {/* <Link to="/"> */}
       <div className="letterContainer letterContainer_G">
         <div className="letter">
-          <img src="./src/assets/mat/svg/00-GG-Rugs_G.svg" />
+          <img src="/assets/img/00-GG-Rugs_G.svg" />
         </div>
       </div>
       <div className="letterContainer letterContainer_G">
         <div className="letter">
-          <img src="./src/assets/mat/svg/00-GG-Rugs_G.svg" />
+          <img src="/assets/img/00-GG-Rugs_G.svg" />
         </div>
       </div>
       <div className="letterContainer letterContainer_R">
         <div className="letter">
-          <img src="./src/assets/mat/svg/01-GG-Rugs_R.svg" />
+          <img src="/assets/img/01-GG-Rugs_R.svg" />
         </div>
       </div>
       <div className="letterContainer letterContainer_U">
         <div className="letter">
-          <img src="./src/assets/mat/svg/02-GG-Rugs_U.svg" />
+          <img src="/assets/img/02-GG-Rugs_U.svg" />
         </div>
       </div>
       <div className="letterContainer letterContainer_G">
         <div className="letter">
-          <img src="./src/assets/mat/svg/00-GG-Rugs_G.svg" />
+          <img src="/assets/img/00-GG-Rugs_G.svg" />
         </div>
       </div>
       <div className="letterContainer letterContainer_S">
         <div className="letter">
-          <img src="./src/assets/mat/svg/03-GG-Rugs_S.svg" />
+          <img src="/assets/img/03-GG-Rugs_S.svg" />
         </div>
       </div>
       <span className="trademark">®</span>
