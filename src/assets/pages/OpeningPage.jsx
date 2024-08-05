@@ -409,7 +409,7 @@ export default function OpeningPage(props) {
         </div>
         <div className={`${CSS.letterContainer} ${CSS.letterContainer_R}`}>
           <div className={CSS.letter}>
-            <img src="/assets/img/svg/01-GG-Rugs_R.svg" />
+            <img src="/assets/img/01-GG-Rugs_R.svg" />
           </div>
         </div>
         <div className={`${CSS.letterContainer} ${CSS.letterContainer_U}`}>

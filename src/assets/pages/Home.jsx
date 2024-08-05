@@ -46,7 +46,7 @@ export default function Home(props) {
     if (props.data) {
       let images = props.data.flatMap((carpet, index) => {
         let carpetLink = carpet.attributes.name.toLowerCase().replace(/ /g, "-");
-        let carpetUrl = `${props.strapiBaseURL}${carpet.attributes.titleImage.data.attributes.url}`;
+        let carpetUrl = `${carpet.attributes.titleImage.data.attributes.url}`;
 
         return props.isDesktop ? (
           <div
