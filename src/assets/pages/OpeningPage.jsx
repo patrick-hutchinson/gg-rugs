@@ -155,7 +155,7 @@ export default function OpeningPage(props) {
     "/assets/img/send.svg",
     "/assets/img/send_focus.svg",
     "/assets/img/take-a-look.svg",
-    "https://enduring-agreement-73590bea84.media.strapiapp.com/TERMINATOR_2e7d6fae36.mp4",
+    // "https://enduring-agreement-73590bea84.media.strapiapp.com/TERMINATOR_2e7d6fae36.mp4",
   ];
 
   const [isLoading, setIsLoading] = React.useState(true);
@@ -169,7 +169,6 @@ export default function OpeningPage(props) {
 
       const handleLoad = () => {
         loadedCount += 1;
-        console.log(loadedCount);
         if (loadedCount === imageUrls.length) {
           setIsLoading(false);
           console.log("loaded all!");

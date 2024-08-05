@@ -958,5 +958,9 @@ header .logoContainer {
   }
   .instagram {
     align-self: flex-end;
+    bottom: 0;
+  }
+  .contact {
+    height: 100%;
   }
 }
