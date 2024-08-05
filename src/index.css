@@ -893,6 +893,10 @@ header .logoContainer {
     left: 8px !important;
     display: none;
   }
+  .buyButton {
+    position: fixed;
+    bottom: 10px;
+  }
   .commissions h1,
   .carpetContainer h1 {
     font-size: 17vw;
@@ -917,7 +921,7 @@ header .logoContainer {
   }
   .rugForm {
     height: auto;
-    height: calc(100% + 30px);
+
     margin-top: 20px;
   }
   .pageContainer {
@@ -925,5 +929,21 @@ header .logoContainer {
   }
   .imageGallery {
     overflow: unset;
+  }
+
+  .checkBoxContainer {
+    margin-top: 20px;
+    padding: 10px 0px;
+    width: auto;
+    display: inline-block;
+    transform: translateY(50%);
+  }
+  .submitButton {
+    width: auto;
+    display: inline-block;
+    transform: translateY(50%);
+  }
+  .commissions input {
+    border-radius: 0px;
   }
 }

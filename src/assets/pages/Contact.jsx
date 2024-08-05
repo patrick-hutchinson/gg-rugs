@@ -3,7 +3,7 @@ import AnimatedPage from "../AnimatedPage";
 
 export default function Contact(props) {
   let [data, setData] = React.useState();
-  let [gifSource, setGifSource] = React.useState();
+  let [videoSource, setVideoSource] = React.useState();
 
   React.useEffect(() => {
     fetch(`${props.strapiBaseURL}/api/contact?populate=*`)
@@ -18,7 +18,7 @@ export default function Contact(props) {
 
   React.useEffect(() => {
     if (data) {
-      setGifSource(`${data.backgroundVideo.data.attributes.url}`);
+      setVideoSource(`${data.backgroundVideo.data.attributes.url}`);
     }
   }, [data]);
 
@@ -26,31 +26,14 @@ export default function Contact(props) {
     <AnimatedPage>
       <main className="pageContainer">
         <div className="videoContainer">
-          <video>
-            <source src={gifSource}></source>
-          </video>
+          {videoSource && (
+            <video autoPlay muted loop>
+              <source src={videoSource} type="video/mp4" />
+            </video>
+          )}
         </div>
         <div className="contact">
-          <div className="contacts-specific">
-            {/* <p>ciao@gg—office.com</p>
-          <br />
-          <p>
-            CORSO-UMBERTO-I-N°5 <br />
-            97015 MODICA (RG)
-          </p>
-          <br />
-          <p>
-            ENRICO GISANA <br />
-            CREATIVE DIRECTOR <br />
-            +39-392-2678491
-          </p>
-          <br />
-          <p>
-            FRANCESCA GIAMPICCOLO <br />
-            CLIENT DIRECTOR <br />
-            +39-329-1557393
-          </p> */}
-          </div>
+          <div className="contacts-specific"></div>
           <div className="socials">
             <div>
               <a href="mailto:ciao@gg-office.com" target="blank">
