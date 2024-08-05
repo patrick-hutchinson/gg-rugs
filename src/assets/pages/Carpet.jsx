@@ -56,7 +56,7 @@ export default function Carpet(props) {
             <ul className="carpetSpecifications">
               <li>
                 <span className="category">SIZE:</span>
-                {carpet.attributes.size}
+                {carpet.attributes.dimensions}
               </li>
               <li>
                 <span className="category">YEAR:</span> {carpet.attributes.year}
