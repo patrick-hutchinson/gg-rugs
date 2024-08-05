@@ -4,10 +4,6 @@ import CSS from "../components/css/logo.module.css";
 import letters from "../components/letters";
 
 export default function OpeningPage(props) {
-  // Declare global variables
-  let hoverInRadius = 40;
-  let hoverOutRadius = 50;
-
   // Animation to Close the Opening Page
   React.useEffect(() => {
     if (props.closeOpeningPage && props.isDesktop) {
@@ -78,6 +74,9 @@ export default function OpeningPage(props) {
   }, []);
 
   // Mouse Interaction
+
+  let hoverInRadius = 40;
+  let hoverOutRadius = 50;
   window.addEventListener("mousemove", (e) => {
     // Add Point Interaction
     document.querySelectorAll(`.${CSS.letter_point}`).forEach((letterPoint) => {
@@ -156,30 +155,40 @@ export default function OpeningPage(props) {
     "/assets/img/send.svg",
     "/assets/img/send_focus.svg",
     "/assets/img/take-a-look.svg",
+    "https://enduring-agreement-73590bea84.media.strapiapp.com/TERMINATOR_2e7d6fae36.mp4",
   ];
 
-  const ImagePreloader = () => {
-    const [isLoading, setIsLoading] = React.useState(true);
-    const [loadedImages, setLoadedImages] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
+  const ImagePreloader = () => {
     React.useEffect(() => {
       let loadedCount = 0;
       const images = [];
+      const videoUrls = imageUrls.filter((url) => url.endsWith(".mp4"));
+      const imageUrlsOnly = imageUrls.filter((url) => !url.endsWith(".mp4"));
 
-      const handleImageLoad = () => {
+      const handleLoad = () => {
         loadedCount += 1;
+        console.log(loadedCount);
         if (loadedCount === imageUrls.length) {
           setIsLoading(false);
-          setLoadedImages(images);
+          console.log("loaded all!");
         }
       };
 
-      imageUrls.forEach((url) => {
+      imageUrlsOnly.forEach((url) => {
         const img = new Image();
         img.src = url;
-        img.onload = handleImageLoad;
-        img.onerror = handleImageLoad; // Handle error case to avoid infinite loading
+        img.onload = handleLoad;
+        img.onerror = handleLoad; // Handle error case to avoid infinite loading
         images.push(img);
+      });
+
+      videoUrls.forEach((url) => {
+        const video = document.createElement("video");
+        video.src = url;
+        video.onloadeddata = handleLoad;
+        video.onerror = handleLoad;
       });
     }, []);
 
@@ -199,7 +208,6 @@ export default function OpeningPage(props) {
       <ImagePreloader />
 
       <div className={CSS.logoContainer}>
-        {/* <Link to="/"> */}
         <div className={`${CSS.letterContainer} ${CSS.letterContainer_G}`}>
           <div className={CSS.letter}>
             <img src="/assets/img/00-GG-Rugs_G.svg" />

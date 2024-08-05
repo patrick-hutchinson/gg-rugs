@@ -18,7 +18,7 @@ export default function Contact(props) {
 
   React.useEffect(() => {
     if (data) {
-      setGifSource(`${data.BackgroundVideo.data.attributes.url}`);
+      setGifSource(`${data.backgroundVideo.data.attributes.url}`);
     }
   }, [data]);
 
