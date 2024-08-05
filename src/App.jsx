@@ -25,6 +25,7 @@ export default function App() {
       setIsDesktop(false);
     }
   }, []);
+
   window.addEventListener(
     "resize",
     () => {

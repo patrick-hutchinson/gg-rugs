@@ -393,8 +393,67 @@ export default function OpeningPage(props) {
     document.querySelector(`.${CSS.logoContainer}`).style.transform = `translate(-50%, -50%) scale(${scaleFactor}) `;
   }
 
+  const imageUrls = [
+    "/assets/img/00-GG-Rugs_G.svg",
+    "/assets/img/01-GG-Rugs_R.svg",
+    "/assets/img/02-GG-Rugs_U.svg",
+    "/assets/img/03-GG-Rugs_S.svg",
+    "/assets/img/about.svg",
+    "/assets/img/about_focus.svg",
+    "/assets/img/backarrow.svg",
+    "/assets/img/backarrow_focus.svg",
+    "/assets/img/buy.svg",
+    "/assets/img/buy_focus.svg",
+    "/assets/img/cart.svg",
+    "/assets/img/close.svg",
+    "/assets/img/commission.svg",
+    "/assets/img/commission_focus.svg",
+    "/assets/img/contact.svg",
+    "/assets/img/contact_focus.svg",
+    "/assets/img/eyes_reg.png",
+    "/assets/img/eyes_down.png",
+    "/assets/img/eyes_right.png",
+    "/assets/img/eyes_up.png",
+    "/assets/img/home.svg",
+    "/assets/img/home_focus.svg",
+    "/assets/img/menu.svg",
+    "/assets/img/send.svg",
+    "/assets/img/send_focus.svg",
+    "/assets/img/take-a-look.svg",
+    // Add more image URLs here
+  ];
+
+  const ImagePreloader = () => {
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [loadedImages, setLoadedImages] = React.useState([]);
+
+    React.useEffect(() => {
+      let loadedCount = 0;
+      const images = [];
+
+      const handleImageLoad = () => {
+        loadedCount += 1;
+        if (loadedCount === imageUrls.length) {
+          setIsLoading(false);
+          setLoadedImages(images);
+        }
+      };
+
+      imageUrls.forEach((url) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = handleImageLoad;
+        img.onerror = handleImageLoad; // Handle error case to avoid infinite loading
+        images.push(img);
+      });
+    }, []);
+
+    return <div>{isLoading ? <div id="loading">Loading...</div> : null}</div>;
+  };
+
   return (
     <div className="openingPage">
+      <ImagePreloader />
       <div className={CSS.logoContainer}>
         {/* <Link to="/"> */}
         <div className={`${CSS.letterContainer} ${CSS.letterContainer_G}`}>
