@@ -777,10 +777,19 @@ header .logoContainer {
   top: 0;
   left: 0;
   background: red;
-  color: #fff;
+  color: #000;
   width: 100vw;
   height: 100vh;
   z-index: 100;
+  text-align: center;
+}
+
+#loading > span {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media only screen and (max-width: 1180px) {
