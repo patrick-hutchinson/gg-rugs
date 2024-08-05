@@ -61,7 +61,7 @@ export default function Layout(props) {
 
       <div className="copyrightNotice">2024 © Copyright. All rights Reserved</div>
       <div className="cursorImage">
-        <img src="assets/img/eyes_reg.png" />
+        <img src="/assets/img/eyes_reg.png" />
       </div>
     </>
   );

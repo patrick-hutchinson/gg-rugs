@@ -45,11 +45,7 @@ export default function Carpet(props) {
     <AnimatedPage>
       <div className="pageContainer">
         <Link to="/" className="backButton">
-          <img
-            src="./src/assets/mat/svg/menu/backarrow.svg"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          ></img>
+          <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
         <div className="carpetContainer">
           <div className="imageGallery">{imageCatalogue}</div>
@@ -70,11 +66,7 @@ export default function Carpet(props) {
               </li>
             </ul>
             <button className="buyButton" onClick={handleBuyClick}>
-              <img
-                src="./src/assets/mat/svg/menu/buy.svg"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              ></img>
+              <img src="/assets/img/buy.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
             </button>
           </div>
         </div>

@@ -6,7 +6,7 @@ export default function Commissions(props) {
   let [data, setData] = React.useState();
 
   React.useEffect(() => {
-    fetch(`${props.strapiBaseURL}/api/commission?populate=*`)
+    fetch(`${props.strapiBaseURL}/api/commissions?populate=*`)
       .then((res) => res.json())
       .then((dataArray) => {
         setData(dataArray.data);
@@ -15,6 +15,17 @@ export default function Commissions(props) {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+  React.useEffect(() => {
+    if (data) {
+      let imageCatalogue = <div className="errorText">No preview Images available at the moment, sorry!</div>;
+      if (data.commissionImages && data.commissionImages.data) {
+        imageCatalogue = data.commissionImages.data.map((image) => {
+          return <img src={`${image.attributes.url}`} key={image.id} alt="" />;
+        });
+      }
+    }
+  }, [data]);
 
   const [formData, setFormData] = useState({
     size: "",
@@ -59,17 +70,10 @@ export default function Commissions(props) {
     <AnimatedPage>
       <main className="pageContainer">
         <Link to="/" className="backButton">
-          <img
-            src="./src/assets/mat/svg/menu/backarrow.svg"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          ></img>
+          <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
         <div className="commissions">
-          <div className="imageGallery">
-            <img src="./src/assets/mat/img/01.png" alt="Rug design 1" />
-            <img src="./src/assets/mat/img/02.png" alt="Rug design 2" />
-          </div>
+          <div className="imageGallery">{imageCatalogue}</div>
           <div className="rugForm">
             <h1>CREATE YOUR GGRUG</h1>
             <form onSubmit={handleSubmit}>
@@ -94,11 +98,7 @@ export default function Commissions(props) {
               </div>
 
               <button className="submitButton" type="submit">
-                <img
-                  src="./src/assets/mat/svg/menu/send.svg"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                />
+                <img src="/assets/img/send.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
               </button>
             </form>
           </div>
