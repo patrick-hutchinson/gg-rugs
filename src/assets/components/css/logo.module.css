@@ -1,0 +1,91 @@
+.logoContainer {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+
+  /* transform-origin: center top; */
+
+  white-space: nowrap;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transform-origin: top;
+  transition: 0.3s;
+}
+
+.trademark {
+  font-size: 140px;
+  line-height: 0%;
+  position: relative;
+  top: -55px;
+  left: -10px;
+  font-family: Founders;
+}
+
+.letterContainer {
+  position: relative;
+  transform-origin: top left;
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.letter > img {
+  position: relative;
+  height: 130px;
+}
+
+.letterContainer {
+  margin-right: 10px;
+}
+
+.letter_point {
+  position: absolute;
+  background: #000;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+
+  animation-name: "";
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  transform-origin: center;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+/* Kerning */
+.letterContainer:nth-child(1) {
+  left: 0px;
+  top: 0px;
+}
+.letterContainer:nth-child(2) {
+  left: 0px;
+  top: 0px;
+}
+.letterContainer:nth-child(3) {
+  left: 4px;
+  top: 0px;
+}
+.letterContainer:nth-child(4) {
+  left: 2px;
+  top: 2px;
+}
+.letterContainer:nth-child(5) {
+  left: 0px;
+  top: 0px;
+}
+.letterContainer:nth-child(6) {
+  left: 0px;
+  top: 0px;
+}
+
+.letterContainer_G {
+}
+.letterContainer_R {
+}
+.letterContainer_U {
+}
+.letterContainer_S {
+}
