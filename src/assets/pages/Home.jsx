@@ -45,7 +45,7 @@ export default function Home(props) {
   useEffect(() => {
     if (props.data) {
       let images = props.data.flatMap((carpet, index) => {
-        let carpetLink = carpet.attributes.Title.toLowerCase().replace(/ /g, "-");
+        let carpetLink = carpet.attributes.name.toLowerCase().replace(/ /g, "-");
         let carpetUrl = `${props.strapiBaseURL}${carpet.attributes.titleImage.data.attributes.url}`;
 
         return props.isDesktop ? (
@@ -56,7 +56,7 @@ export default function Home(props) {
             key={`${index}`}
           >
             <div className="carpetTextContainer">
-              <div className="carpetTitle">{carpet.attributes.Title}</div>
+              <div className="carpetTitle">{carpet.attributes.name}</div>
               <Link className="carpetLink" to={`/${carpetLink}`}>
                 <img
                   onMouseEnter={handleSeeMoreMouseEnter}
@@ -68,7 +68,7 @@ export default function Home(props) {
             <img
               className="catalogueImage"
               src={carpetUrl}
-              alt={carpet.attributes.Title}
+              alt={carpet.attributes.name}
               style={{
                 animationDelay: `${index * 0.3}s`,
               }}
@@ -80,7 +80,7 @@ export default function Home(props) {
             <img
               className="catalogueImage"
               src={carpetUrl}
-              alt={carpet.attributes.Title}
+              alt={carpet.attributes.name}
               style={{
                 animationDelay: `${index * 0.3}s`,
               }}
