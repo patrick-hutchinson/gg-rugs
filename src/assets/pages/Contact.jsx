@@ -24,7 +24,7 @@ export default function Contact(props) {
 
   return (
     <AnimatedPage>
-      <main className="pageContainer">
+      <main className="pageContainer contactPage">
         <div className="videoContainer">
           {videoSource && (
             <video autoPlay muted loop playsInline>
