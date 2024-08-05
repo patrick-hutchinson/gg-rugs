@@ -10,7 +10,7 @@ export default function Carpet(props) {
   const { id } = useParams();
 
   // Find the carpet object that matches the ID
-  const carpet = data?.find((carpet) => carpet.attributes.Title.toLowerCase().replace(/ /g, "-") === id);
+  const carpet = data?.find((carpet) => carpet.attributes.name.toLowerCase().replace(/ /g, "-") === id);
 
   if (!carpet) {
     return <NotFound />;
@@ -18,7 +18,7 @@ export default function Carpet(props) {
 
   // console.log();
   let imageCatalogue = <div className="errorText">Sorry, no images have been added yet — Check back soon!</div>;
-  if (carpet.attributes.ExtraImages && carpet.attributes.ExtraImages.data) {
+  if (carpet.attributes.otherImages && carpet.attributes.otherImages.data) {
     imageCatalogue = carpet.attributes.otherImages.data.map((carpetImage) => {
       return <img src={`${carpetImage.attributes.url}`} key={carpetImage.id} alt="" />;
     });
@@ -54,19 +54,19 @@ export default function Carpet(props) {
         <div className="carpetContainer">
           <div className="imageGallery">{imageCatalogue}</div>
           <div className="carpetInfo">
-            <h1>{carpet.attributes.Title}</h1>
-            <p className="description">{carpet.attributes.Description}</p>
+            <h1>{carpet.attributes.name}</h1>
+            <p className="description">{carpet.attributes.description}</p>
 
             <ul className="carpetSpecifications">
               <li>
                 <span className="category">SIZE:</span>
-                {carpet.attributes.Size}
+                {carpet.attributes.size}
               </li>
               <li>
-                <span className="category">YEAR:</span> {carpet.attributes.Year}
+                <span className="category">YEAR:</span> {carpet.attributes.year}
               </li>
               <li>
-                <span className="category">PRICE:</span> {carpet.attributes.Price} Euro
+                <span className="category">PRICE:</span> {carpet.attributes.price} Euro
               </li>
             </ul>
             <button className="buyButton" onClick={handleBuyClick}>
