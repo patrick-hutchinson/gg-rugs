@@ -268,7 +268,7 @@ header .logoContainer {
   text-align: left;
   position: fixed;
   transform: translate(0%, 0%), scale(0.4);
-  left: 15px;
+  left: 20px;
   top: 15px;
   transform-origin: top left;
 }

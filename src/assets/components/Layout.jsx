@@ -44,7 +44,7 @@ export default function Layout(props) {
     //Handle the Copyright Notice
     let copyrightNotice = document.querySelector(".copyrightNotice");
 
-    copyrightNotice.style.width = copyrightNotice.getBoundingClientRect().height + "px";
+    copyrightNotice.style.width = copyrightNotice.getBoundingClientRect().height + 1 + "px";
     copyrightNotice.style.height = copyrightNotice.getBoundingClientRect().height + "px";
 
     let catalogueImages = document.querySelectorAll(".catalogueImage");

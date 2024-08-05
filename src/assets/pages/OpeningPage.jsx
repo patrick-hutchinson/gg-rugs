@@ -273,7 +273,7 @@ export default function OpeningPage(props) {
   React.useEffect(() => {
     if (props.closeOpeningPage && props.isDesktop) {
       document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-50%, 0%) scale(0.4)";
-      document.querySelector(`.${CSS.logoContainer}`).style.top = "20px";
+      document.querySelector(`.${CSS.logoContainer}`).style.top = "15px";
 
       setTimeout(() => {
         document.querySelector(`.${CSS.logoContainer}`).style.transformOrigin = "top left";
@@ -282,7 +282,7 @@ export default function OpeningPage(props) {
       }, 300);
     } else if (props.closeOpeningPage && !props.isDesktop) {
       document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-50%, 0%) scale(0.2)";
-      document.querySelector(`.${CSS.logoContainer}`).style.top = "20px";
+      document.querySelector(`.${CSS.logoContainer}`).style.top = "15px";
 
       setTimeout(() => {
         document.querySelector(`.${CSS.logoContainer}`).style.transformOrigin = "top left";
