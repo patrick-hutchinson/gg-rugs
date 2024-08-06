@@ -793,7 +793,7 @@ header .logoContainer {
   position: absolute;
   top: 0;
   left: 0;
-  background: red;
+  background: #fd2e00;
   color: #000;
   width: 100vw;
   height: 100vh;
@@ -981,7 +981,6 @@ header .logoContainer {
   header {
     top: 0px;
     padding-top: 16px;
-    /* background: #fff; */
     z-index: 10;
   }
   .pistolContainer {

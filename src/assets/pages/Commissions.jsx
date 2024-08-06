@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AnimatedPage from "../AnimatedPage";
 
 export default function Commissions(props) {
   let [data, setData] = React.useState();
 
+  let pageContainerRef = React.useRef(null);
+
+  useEffect(() => {
+    if (pageContainerRef.current) {
+      pageContainerRef.current.scrollTo({ top: 0, left: 0 });
+      window.scrollTo({ top: 0, left: 0 });
+    }
+  }, []);
   React.useEffect(() => {
     fetch(`${props.strapiBaseURL}/api/commission?populate=*`)
       .then((res) => res.json())
@@ -18,17 +26,11 @@ export default function Commissions(props) {
 
   let imageCatalogue = <div className="errorText">No preview Images available at the moment, sorry!</div>;
 
-  if (data) {
-    console.log("there is data");
-    console.log(data.attributes.commissionImages);
-  }
-  // React.useEffect(() => {
   if (data && data.attributes.commissionImages && data.attributes.commissionImages.data) {
     imageCatalogue = data.attributes.commissionImages.data.map((image) => {
       return <img src={`${image.attributes.url}`} key={image.id} alt="" />;
     });
   }
-  // }, [data]);
 
   const [formData, setFormData] = useState({
     size: "",
@@ -71,7 +73,7 @@ export default function Commissions(props) {
 
   return (
     <AnimatedPage>
-      <main className="pageContainer">
+      <main className="pageContainer" ref={pageContainerRef}>
         <Link to="/" className="backButton">
           <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
