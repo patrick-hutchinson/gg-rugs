@@ -89,20 +89,21 @@ export default function Commissions(props) {
                 value={formData.theme}
                 onChange={handleChange}
               />
-              <div className="checkBoxContainer">
-                <input
-                  className="checkbox"
-                  type="checkbox"
-                  name="designOwnRug"
-                  checked={formData.designOwnRug}
-                  onChange={handleChange}
-                />
-                <label>I DESIGN MY RUG</label>
+              <div>
+                <div className="checkBoxContainer">
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    name="designOwnRug"
+                    checked={formData.designOwnRug}
+                    onChange={handleChange}
+                  />
+                  <label>I DESIGN MY RUG</label>
+                </div>
+                <button className="submitButton" type="submit">
+                  <img src="/assets/img/send.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+                </button>
               </div>
-
-              <button className="submitButton" type="submit">
-                <img src="/assets/img/send.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
-              </button>
             </form>
           </div>
         </div>

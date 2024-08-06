@@ -8,38 +8,42 @@ export default function Home(props) {
   let [closeOpeningPage, setCloseOpeningPage] = useState(false);
 
   useEffect(() => {
-    let closeOpeningScreen = () => {
-      let openingPage = document.querySelector(".openingPage");
+    if (props.isFirstLoad) {
+      let closeOpeningScreen = () => {
+        let openingPage = document.querySelector(".openingPage");
 
-      if (openingPage) {
-        setTimeout(() => {
+        if (openingPage && props.isDesktop) {
+          setTimeout(() => {
+            openingPage.classList.add("hidden");
+          }, 600);
+
+          setTimeout(() => {
+            props.toggleIsFirstLoad(false);
+          }, 1000);
+        } else {
           openingPage.classList.add("hidden");
-        }, 600);
 
-        setTimeout(() => {
-          props.toggleIsFirstLoad(false);
-        }, 1000);
-      }
-    };
+          setTimeout(() => {
+            props.toggleIsFirstLoad(false);
+          }, 400);
+        }
+      };
 
-    let handleScroll = () => {
-      closeOpeningScreen();
-      setCloseOpeningPage(true);
-    };
+      let handleScroll = () => {
+        closeOpeningScreen();
+        setCloseOpeningPage(true);
+      };
 
-    let handleClick = () => {
-      closeOpeningScreen();
-      setCloseOpeningPage(true);
-    };
+      let handleClick = () => {
+        closeOpeningScreen();
+        setCloseOpeningPage(true);
+        console.log("clicked");
+      };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("click", handleClick);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("click", handleClick);
-    };
-  }, [props.toggleIsFirstLoad]);
+      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("click", handleClick);
+    }
+  }, [props.isFirstLoad]);
 
   // Generate each Carpet
   useEffect(() => {

@@ -14,7 +14,8 @@ export default function App() {
   let [isDesktop, setIsDesktop] = React.useState(window.innerWidth > 980);
 
   let [data, setData] = React.useState(null);
-  let [isFirstLoad, setIsFirstLoad] = React.useState(true);
+
+  let [isFirstLoad, setIsFirstload] = React.useState(true);
 
   let [strapiBaseURL, setStrapiBaseURL] = React.useState("https://enduring-agreement-73590bea84.strapiapp.com");
 
@@ -39,7 +40,7 @@ export default function App() {
   );
 
   function toggleIsFirstLoad(newState) {
-    setIsFirstLoad(newState);
+    setIsFirstload(newState);
   }
 
   // Fetch the Data
@@ -54,6 +55,10 @@ export default function App() {
       });
   }, []);
 
+  React.useEffect(() => {
+    console.log(isFirstLoad, "isFirstLoad");
+  }, [isFirstLoad]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -63,10 +68,10 @@ export default function App() {
             element={
               <Home
                 data={data}
-                isFirstLoad={isFirstLoad} // Pass isFirstLoad here
-                toggleIsFirstLoad={toggleIsFirstLoad}
                 strapiBaseURL={strapiBaseURL}
                 isDesktop={isDesktop}
+                isFirstLoad={isFirstLoad}
+                toggleIsFirstLoad={toggleIsFirstLoad}
               />
             }
           />

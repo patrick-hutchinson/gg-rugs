@@ -6,22 +6,13 @@ import letters from "../components/letters";
 export default function OpeningPage(props) {
   // Animation to Close the Opening Page
   React.useEffect(() => {
-    if (props.closeOpeningPage && props.isDesktop) {
+    console.log(props.isFirstLoad, "isFirstLoad");
+    if (props.closeOpeningPage && props.isDesktop && props.isFirstLoad) {
       document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-50%, 0%) scale(0.4)";
       document.querySelector(`.${CSS.logoContainer}`).style.top = "18px";
-
       setTimeout(() => {
         document.querySelector(`.${CSS.logoContainer}`).style.transformOrigin = "top left";
         document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-0%, 0%) scale(0.4)";
-        document.querySelector(`.${CSS.logoContainer}`).style.left = "15px";
-      }, 300);
-    } else if (props.closeOpeningPage && !props.isDesktop) {
-      document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-50%, 0%) scale(0.2)";
-      document.querySelector(`.${CSS.logoContainer}`).style.top = "18px";
-
-      setTimeout(() => {
-        document.querySelector(`.${CSS.logoContainer}`).style.transformOrigin = "top left";
-        document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-0%, 0%) scale(0.2)";
         document.querySelector(`.${CSS.logoContainer}`).style.left = "15px";
       }, 300);
     }

@@ -498,10 +498,11 @@ header .logoContainer {
 .carpetContainer h1 {
   font-size: 90px;
 
-  line-height: 70px;
+  line-height: 77px;
   padding: 0;
   margin: 0;
   letter-spacing: -2px;
+  font-family: Founders;
 }
 
 .checkBoxContainer {
@@ -551,6 +552,16 @@ header .logoContainer {
   animation-name: wiggle;
 }
 .buyButton:hover {
+  animation-name: wiggle;
+}
+.carpetLink > img {
+  animation-name: none;
+  animation-iteration-count: 3;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+  position: relative;
+}
+.carpetLink > img:hover {
   animation-name: wiggle;
 }
 
@@ -621,38 +632,26 @@ header .logoContainer {
   opacity: 1;
 }
 
-/* .carpetWrapper .carpetLink > img:hover {
-  animation-name: wiggle;
-} */
 .carpetWrapper .carpetLink > img {
   height: 42px;
   width: auto;
-  /* animation-name: none;
-  animation-iteration-count: 3;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-in-out; */
 }
 
 @keyframes float {
   0% {
     top: 0px;
-    /* transform: rotate(0deg); */
   }
   25% {
     top: 5px;
-    /* transform: rotate(-1deg); */
   }
   50% {
     top: 10px;
-    /* transform: rotate(0deg); */
   }
   75% {
     top: 5px;
-    /* transform: rotate(1deg); */
   }
   100% {
     top: 0px;
-    /* transform: rotate(0deg); */
   }
 }
 
@@ -680,9 +679,9 @@ header .logoContainer {
   position: relative;
   height: calc(100% - 20px);
 }
-.carpetInfo .description {
+/* .carpetInfo .description {
   overflow-y: scroll;
-}
+} */
 .carpetSpecifications {
   display: flex;
 }
@@ -864,6 +863,9 @@ header .logoContainer {
   .pageContainer {
     height: auto;
   }
+  header .logoContainer {
+    pointer-events: none;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -909,8 +911,12 @@ header .logoContainer {
     font-size: 0.8em;
     line-height: 0.9em;
   }
+  .carpetSpecifications {
+    font-size: 0.8em;
+    line-height: 0.9em;
+  }
   .carpetContainer {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
   .waterPistol {
     font-size: 120px;
@@ -933,7 +939,7 @@ header .logoContainer {
 
   .checkBoxContainer {
     margin-top: 20px;
-    padding: 10px 0px;
+    padding: 10px;
     width: auto;
     display: inline-block;
     transform: translateY(50%);
@@ -962,5 +968,23 @@ header .logoContainer {
   }
   .contact {
     height: 100%;
+  }
+  .commissions form {
+    height: 100%;
+  }
+  .pageContainer {
+    overflow: unset;
+  }
+  .carpetInfo {
+    margin-top: 20px;
+  }
+  header {
+    top: 0px;
+    padding-top: 16px;
+    /* background: #fff; */
+    z-index: 10;
+  }
+  .pistolContainer {
+    z-index: 11;
   }
 }

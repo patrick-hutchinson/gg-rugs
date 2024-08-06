@@ -42,7 +42,7 @@ export default function About(props) {
       pistolInterval = 200;
     }
     if (window.innerWidth < 1000) {
-      pistolInterval = 500;
+      pistolInterval = 400;
     }
     const intervalId = setInterval(addWaterPistol, pistolInterval);
 

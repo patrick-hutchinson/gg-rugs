@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
@@ -6,7 +6,14 @@ import AnimatedPage from "../AnimatedPage";
 
 export default function Carpet(props) {
   let data = props.data;
+  let pageContainerRef = React.useRef(null);
 
+  useEffect(() => {
+    if (pageContainerRef.current) {
+      pageContainerRef.current.scrollTo({ top: 0, left: 0 });
+      window.scrollTo({ top: 0, left: 0 });
+    }
+  }, []);
   const { id } = useParams();
 
   // Find the carpet object that matches the ID
@@ -48,7 +55,7 @@ export default function Carpet(props) {
 
   return (
     <AnimatedPage>
-      <div className="pageContainer">
+      <div className="pageContainer" ref={pageContainerRef}>
         <Link to="/" className="backButton">
           <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
