@@ -73,7 +73,7 @@ export default function App() {
           <Route path="/about" element={<About strapiBaseURL={strapiBaseURL} />} />
           <Route path="/commissions" element={<Commissions strapiBaseURL={strapiBaseURL} />} />
           <Route path="/contact" element={<Contact strapiBaseURL={strapiBaseURL} />} />
-          <Route path="/:id" element={<Carpet data={data} strapiBaseURL={strapiBaseURL} />} />
+          <Route path="/:id" element={<Carpet data={data} strapiBaseURL={strapiBaseURL} isDesktop={isDesktop} />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

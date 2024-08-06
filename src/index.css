@@ -181,7 +181,7 @@ input:focus {
   position: fixed;
   bottom: 10px;
 
-  z-index: 25;
+  z-index: 19;
   font-size: var(--small-font-size);
   line-height: var(--small-line-height);
 }
@@ -335,7 +335,7 @@ header .logoContainer {
 
 .waterPistol {
   position: absolute;
-  font-size: 200px;
+  font-size: 230px;
   animation-name: none;
   animation-iteration-count: 1;
   animation-duration: 3s;
@@ -354,7 +354,7 @@ header .logoContainer {
 
 @keyframes floatUp {
   0% {
-    top: 100vh;
+    top: 110vh;
     transform: rotate(0deg);
   }
   100% {
@@ -790,6 +790,7 @@ header .logoContainer {
   z-index: 30;
   text-align: center;
   text-transform: uppercase;
+  opacity: 1;
 }
 
 #loading > span {

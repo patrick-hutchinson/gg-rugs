@@ -94,7 +94,9 @@ export default function Header(props) {
   return (
     <header>
       <Link to="/">
-        <Logo />
+        <div className="logoContainer">
+          <Logo />
+        </div>
       </Link>
       {isDesktop ? desktopHeader : mobileHeader}
       {mobileMenu}

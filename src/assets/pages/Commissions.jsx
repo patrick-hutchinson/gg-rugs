@@ -3,18 +3,14 @@ import { Link } from "react-router-dom";
 import AnimatedPage from "../AnimatedPage";
 
 export default function Commissions(props) {
+  //Declarations
   let [data, setData] = React.useState();
   let pageContainerRef = React.useRef(null);
 
   let galleryRef = React.useRef(null);
-  const scrollIntervalId = React.useRef(null);
+  let scrollIntervalId = React.useRef(null);
 
-  useEffect(() => {
-    if (pageContainerRef.current) {
-      pageContainerRef.current.scrollTo({ top: 0, left: 0 });
-      window.scrollTo({ top: 0, left: 0 });
-    }
-  }, []);
+  // Fetch Data
   React.useEffect(() => {
     fetch(`${props.strapiBaseURL}/api/commission?populate=*`)
       .then((res) => res.json())
@@ -26,6 +22,15 @@ export default function Commissions(props) {
       });
   }, []);
 
+  // Scroll window to top on load
+  useEffect(() => {
+    if (pageContainerRef.current) {
+      pageContainerRef.current.scrollTo({ top: 0, left: 0 });
+      window.scrollTo({ top: 0, left: 0 });
+    }
+  }, []);
+
+  // Polulate Image Gallery
   const [imageCatalogue, setImageCatalogue] = useState(
     <div className="errorText">No preview Images available at the moment, sorry!</div>
   );
@@ -39,6 +44,7 @@ export default function Commissions(props) {
     }
   }, [data]);
 
+  // Auto-scroll ImageGallery (on Desktop)
   useEffect(() => {
     const galleryElement = galleryRef.current;
 
@@ -59,7 +65,6 @@ export default function Commissions(props) {
 
     startAutoScroll();
 
-    // Clean up interval on component unmount
     return () => stopAutoScroll();
   }, [imageCatalogue]);
 
@@ -69,7 +74,7 @@ export default function Commissions(props) {
     }
   };
 
-  const continueGalleryScroll = () => {
+  const resumeGalleryScroll = () => {
     const galleryElement = galleryRef.current;
     if (galleryElement) {
       const scrollSpeed = 1; // Adjust this value to control the scroll speed
@@ -79,6 +84,7 @@ export default function Commissions(props) {
     }
   };
 
+  // Initialize formData
   const [formData, setFormData] = useState({
     size: "",
     colors: "",
@@ -86,6 +92,7 @@ export default function Commissions(props) {
     designOwnRug: false,
   });
 
+  // updateFormData on change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -94,6 +101,7 @@ export default function Commissions(props) {
     }));
   };
 
+  // Compose Email on Button Click
   const handleSubmit = (e) => {
     e.preventDefault();
     const { size, colors, theme, designOwnRug } = formData;
@@ -105,6 +113,7 @@ export default function Commissions(props) {
     window.location.href = mailtoLink;
   };
 
+  // Alternate between Button SVG's
   function handleMouseEnter(e) {
     let currentSource = e.target.getAttribute("src");
     let splicedSource = currentSource.slice(0, -4) + "_focus.svg";
@@ -129,7 +138,7 @@ export default function Commissions(props) {
             className="imageGallery"
             ref={galleryRef}
             onMouseEnter={pauseGalleryScroll}
-            onMouseLeave={continueGalleryScroll}
+            onMouseLeave={resumeGalleryScroll}
           >
             {imageCatalogue}
           </div>

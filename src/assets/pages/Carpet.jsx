@@ -6,8 +6,68 @@ import AnimatedPage from "../AnimatedPage";
 
 export default function Carpet(props) {
   let data = props.data;
-  let pageContainerRef = React.useRef(null);
+  let pageContainerRef = useRef(null);
 
+  let galleryRef = React.useRef(null);
+  const scrollIntervalId = React.useRef(null);
+
+  const [imageCatalogue, setImageCatalogue] = useState(
+    <div className="errorText">No preview Images available at the moment, sorry!</div>
+  );
+
+  useEffect(() => {
+    if (carpet && carpet.attributes.otherImages && carpet.attributes.otherImages.data) {
+      const images = carpet.attributes.otherImages.data.map((image) => (
+        <img src={`${image.attributes.url}`} key={image.id} alt="" />
+      ));
+      setImageCatalogue(images);
+    }
+  }, [data]);
+
+  // AutoScroll ImageGallery
+  useEffect(() => {
+    if (props.isDesktop) {
+      const galleryElement = galleryRef.current;
+
+      const startAutoScroll = () => {
+        if (galleryElement) {
+          const scrollSpeed = 1; // Adjust this value to control the scroll speed
+          scrollIntervalId.current = setInterval(() => {
+            galleryElement.scrollBy({ top: scrollSpeed, behavior: "smooth" });
+          }, 50); // Adjust the interval time to control the smoothness
+        }
+      };
+
+      const stopAutoScroll = () => {
+        if (scrollIntervalId.current) {
+          clearInterval(scrollIntervalId.current);
+        }
+      };
+
+      startAutoScroll();
+
+      // Clean up interval on component unmount
+      return () => stopAutoScroll();
+    }
+  }, [imageCatalogue]);
+
+  const pauseGalleryScroll = () => {
+    if (scrollIntervalId.current && props.isDesktop) {
+      clearInterval(scrollIntervalId.current);
+    }
+  };
+
+  const resumeGalleryScroll = () => {
+    const galleryElement = galleryRef.current;
+    if (galleryElement && props.isDesktop) {
+      const scrollSpeed = 1; // Adjust this value to control the scroll speed
+      scrollIntervalId.current = setInterval(() => {
+        galleryElement.scrollBy({ top: scrollSpeed, behavior: "smooth" });
+      }, 50); // Adjust the interval time to control the smoothness
+    }
+  };
+
+  // Scroll window to top on Load
   useEffect(() => {
     if (pageContainerRef.current) {
       pageContainerRef.current.scrollTo({ top: 0, left: 0 });
@@ -23,13 +83,7 @@ export default function Carpet(props) {
     return <NotFound />;
   }
 
-  let imageCatalogue = <div className="errorText">Sorry, no images have been added yet — Check back soon!</div>;
-  if (carpet.attributes.otherImages && carpet.attributes.otherImages.data) {
-    imageCatalogue = carpet.attributes.otherImages.data.map((carpetImage) => {
-      return <img src={`${carpetImage.attributes.url}`} key={carpetImage.id} alt="" />;
-    });
-  }
-
+  // Compose Email when the user clicks "Buy"
   function handleBuyClick() {
     const subject = encodeURIComponent("I NEED IT!");
     const body = encodeURIComponent(`THE ${carpet.attributes.name} CARPET NEEDS TO BE MINE!`);
@@ -59,7 +113,14 @@ export default function Carpet(props) {
           <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
         <div className="carpetContainer">
-          <div className="imageGallery">{imageCatalogue}</div>
+          <div
+            className="imageGallery"
+            ref={galleryRef}
+            onMouseEnter={pauseGalleryScroll}
+            onMouseLeave={resumeGalleryScroll}
+          >
+            {imageCatalogue}
+          </div>
           <div className="carpetInfo">
             <h1>{carpet.attributes.name}</h1>
             <p className="description">{carpet.attributes.description}</p>

@@ -67,7 +67,6 @@ export default function OpeningPage(props) {
 
       <div className={CSS.logoContainer}>
         <Logo />
-        <span className={CSS.trademark}>®</span>
       </div>
     </div>
   );
