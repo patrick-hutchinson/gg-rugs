@@ -1,10 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-// The Layout component takes care of all of the repetitive Components on a Page
 import Header from "./Header";
 
 export default function Layout(props) {
+  let copyrightNoticeRef = React.useRef(null);
+
   let isDesktop = props.isDesktop;
   let lastMousePosition = 0;
 
@@ -24,7 +25,6 @@ export default function Layout(props) {
   });
 
   let lastScrollTop = 0;
-
   window.addEventListener("scroll", (e) => {
     // Handle the CursorImage
     var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -41,11 +41,8 @@ export default function Layout(props) {
   });
 
   React.useEffect(() => {
-    //Handle the Copyright Notice
-    let copyrightNotice = document.querySelector(".copyrightNotice");
-
-    copyrightNotice.style.width = copyrightNotice.getBoundingClientRect().height + 1 + "px";
-    copyrightNotice.style.height = copyrightNotice.getBoundingClientRect().height + "px";
+    console.log(copyrightNoticeRef.current.getBoundingClientRect().height);
+    copyrightNoticeRef.current.style.right = `-${copyrightNoticeRef.current.getBoundingClientRect().height / 2 - 25}px`;
 
     let catalogueImages = document.querySelectorAll(".catalogueImage");
     catalogueImages.forEach((catalogueImage, index) => {
@@ -56,10 +53,11 @@ export default function Layout(props) {
     <>
       <Header isDesktop={isDesktop} />
 
-      {/* Outlet Renders all of the Components and subComponents that should be found at the matching "/" url */}
       <Outlet />
 
-      <div className="copyrightNotice">2024 © Copyright. All rights Reserved</div>
+      <div className="copyrightNotice" ref={copyrightNoticeRef}>
+        2024 © Copyright. All rights Reserved
+      </div>
       <div className="cursorImage">
         <img src="/assets/img/eyes_reg.png" />
       </div>

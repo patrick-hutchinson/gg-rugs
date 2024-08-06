@@ -66,16 +66,14 @@ export default function Carpet(props) {
 
             <div className="carpetSpecifications">
               <ul>
-                <li>
-                  <span className="category">SIZE:</span>
-                  {carpet.attributes.dimensions}
-                </li>
-                <li>
-                  <span className="category">YEAR:</span> {carpet.attributes.year}
-                </li>
-                <li>
-                  <span className="category">PRICE:</span> {carpet.attributes.price} Euro
-                </li>
+                <li>SIZE</li>
+                <li>YEAR</li>
+                <li>PRICE</li>
+              </ul>
+              <ul>
+                <li>{carpet.attributes.dimensions}</li>
+                <li>{carpet.attributes.year}</li>
+                <li>{carpet.attributes.price}</li>
               </ul>
             </div>
             <button className="buyButton" onClick={handleBuyClick}>

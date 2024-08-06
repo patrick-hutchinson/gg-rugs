@@ -4,8 +4,10 @@ import AnimatedPage from "../AnimatedPage";
 
 export default function Commissions(props) {
   let [data, setData] = React.useState();
-
   let pageContainerRef = React.useRef(null);
+
+  let galleryRef = React.useRef(null);
+  const scrollIntervalId = React.useRef(null);
 
   useEffect(() => {
     if (pageContainerRef.current) {
@@ -24,13 +26,58 @@ export default function Commissions(props) {
       });
   }, []);
 
-  let imageCatalogue = <div className="errorText">No preview Images available at the moment, sorry!</div>;
+  const [imageCatalogue, setImageCatalogue] = useState(
+    <div className="errorText">No preview Images available at the moment, sorry!</div>
+  );
 
-  if (data && data.attributes.commissionImages && data.attributes.commissionImages.data) {
-    imageCatalogue = data.attributes.commissionImages.data.map((image) => {
-      return <img src={`${image.attributes.url}`} key={image.id} alt="" />;
-    });
-  }
+  useEffect(() => {
+    if (data && data.attributes.commissionImages && data.attributes.commissionImages.data) {
+      const images = data.attributes.commissionImages.data.map((image) => (
+        <img src={`${image.attributes.url}`} key={image.id} alt="" />
+      ));
+      setImageCatalogue(images);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    const galleryElement = galleryRef.current;
+
+    const startAutoScroll = () => {
+      if (galleryElement) {
+        const scrollSpeed = 1; // Adjust this value to control the scroll speed
+        scrollIntervalId.current = setInterval(() => {
+          galleryElement.scrollBy({ top: scrollSpeed, behavior: "smooth" });
+        }, 50); // Adjust the interval time to control the smoothness
+      }
+    };
+
+    const stopAutoScroll = () => {
+      if (scrollIntervalId.current) {
+        clearInterval(scrollIntervalId.current);
+      }
+    };
+
+    startAutoScroll();
+
+    // Clean up interval on component unmount
+    return () => stopAutoScroll();
+  }, [imageCatalogue]);
+
+  const pauseGalleryScroll = () => {
+    if (scrollIntervalId.current) {
+      clearInterval(scrollIntervalId.current);
+    }
+  };
+
+  const continueGalleryScroll = () => {
+    const galleryElement = galleryRef.current;
+    if (galleryElement) {
+      const scrollSpeed = 1; // Adjust this value to control the scroll speed
+      scrollIntervalId.current = setInterval(() => {
+        galleryElement.scrollBy({ top: scrollSpeed, behavior: "smooth" });
+      }, 50); // Adjust the interval time to control the smoothness
+    }
+  };
 
   const [formData, setFormData] = useState({
     size: "",
@@ -78,7 +125,14 @@ export default function Commissions(props) {
           <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
         <div className="commissions">
-          <div className="imageGallery">{imageCatalogue}</div>
+          <div
+            className="imageGallery"
+            ref={galleryRef}
+            onMouseEnter={pauseGalleryScroll}
+            onMouseLeave={continueGalleryScroll}
+          >
+            {imageCatalogue}
+          </div>
           <div className="rugForm">
             <h1>CREATE YOUR GGRUG</h1>
             <form onSubmit={handleSubmit}>
@@ -93,6 +147,7 @@ export default function Commissions(props) {
               />
               <div>
                 <div className="checkBoxContainer">
+                  <label>I DESIGN MY RUG</label>
                   <input
                     className="checkbox"
                     type="checkbox"
@@ -100,7 +155,6 @@ export default function Commissions(props) {
                     checked={formData.designOwnRug}
                     onChange={handleChange}
                   />
-                  <label>I DESIGN MY RUG</label>
                 </div>
                 <button className="submitButton" type="submit">
                   <img src="/assets/img/send.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
