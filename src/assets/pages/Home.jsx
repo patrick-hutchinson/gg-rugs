@@ -37,7 +37,6 @@ export default function Home(props) {
       let handleClick = () => {
         closeOpeningScreen();
         setCloseOpeningPage(true);
-        console.log("clicked");
       };
 
       window.addEventListener("scroll", handleScroll);

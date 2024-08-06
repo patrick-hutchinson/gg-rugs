@@ -55,10 +55,6 @@ export default function App() {
       });
   }, []);
 
-  React.useEffect(() => {
-    console.log(isFirstLoad, "isFirstLoad");
-  }, [isFirstLoad]);
-
   return (
     <BrowserRouter>
       <Routes>

@@ -23,7 +23,6 @@ export default function Carpet(props) {
     return <NotFound />;
   }
 
-  // console.log();
   let imageCatalogue = <div className="errorText">Sorry, no images have been added yet — Check back soon!</div>;
   if (carpet.attributes.otherImages && carpet.attributes.otherImages.data) {
     imageCatalogue = carpet.attributes.otherImages.data.map((carpetImage) => {

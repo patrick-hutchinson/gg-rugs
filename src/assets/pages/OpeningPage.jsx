@@ -6,7 +6,6 @@ import letters from "../components/letters";
 export default function OpeningPage(props) {
   // Animation to Close the Opening Page
   React.useEffect(() => {
-    console.log(props.isFirstLoad, "isFirstLoad");
     if (props.closeOpeningPage && props.isDesktop && props.isFirstLoad) {
       document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-50%, 0%) scale(0.4)";
       document.querySelector(`.${CSS.logoContainer}`).style.top = "18px";
