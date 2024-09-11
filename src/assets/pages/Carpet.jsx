@@ -9,63 +9,19 @@ export default function Carpet(props) {
   let pageContainerRef = useRef(null);
 
   let galleryRef = React.useRef(null);
-  const scrollIntervalId = React.useRef(null);
 
   const [imageCatalogue, setImageCatalogue] = useState(
     <div className="errorText">No preview Images available at the moment, sorry!</div>
   );
 
   useEffect(() => {
-    if (carpet && carpet.attributes.otherImages && carpet.attributes.otherImages.data) {
-      const images = carpet.attributes.otherImages.data.map((image) => (
+    if (carpet && carpet.attributes.images && carpet.attributes.images.data) {
+      const images = carpet.attributes.images.data.map((image) => (
         <img src={`${image.attributes.url}`} key={image.id} alt="" />
       ));
       setImageCatalogue(images);
     }
   }, [data]);
-
-  // AutoScroll ImageGallery
-  useEffect(() => {
-    if (props.isDesktop) {
-      const galleryElement = galleryRef.current;
-
-      const startAutoScroll = () => {
-        if (galleryElement) {
-          const scrollSpeed = 1; // Adjust this value to control the scroll speed
-          scrollIntervalId.current = setInterval(() => {
-            galleryElement.scrollBy({ top: scrollSpeed, behavior: "smooth" });
-          }, 50); // Adjust the interval time to control the smoothness
-        }
-      };
-
-      const stopAutoScroll = () => {
-        if (scrollIntervalId.current) {
-          clearInterval(scrollIntervalId.current);
-        }
-      };
-
-      startAutoScroll();
-
-      // Clean up interval on component unmount
-      return () => stopAutoScroll();
-    }
-  }, [imageCatalogue]);
-
-  const pauseGalleryScroll = () => {
-    if (scrollIntervalId.current && props.isDesktop) {
-      clearInterval(scrollIntervalId.current);
-    }
-  };
-
-  const resumeGalleryScroll = () => {
-    const galleryElement = galleryRef.current;
-    if (galleryElement && props.isDesktop) {
-      const scrollSpeed = 1; // Adjust this value to control the scroll speed
-      scrollIntervalId.current = setInterval(() => {
-        galleryElement.scrollBy({ top: scrollSpeed, behavior: "smooth" });
-      }, 50); // Adjust the interval time to control the smoothness
-    }
-  };
 
   // Scroll window to top on Load
   useEffect(() => {
@@ -77,7 +33,7 @@ export default function Carpet(props) {
   const { id } = useParams();
 
   // Find the carpet object that matches the ID
-  const carpet = data?.find((carpet) => carpet.attributes.name.toLowerCase().replace(/ /g, "-") === id);
+  const carpet = data?.find((carpet) => carpet.attributes.title.toLowerCase().replace(/ /g, "-") === id);
 
   if (!carpet) {
     return <NotFound />;
@@ -86,7 +42,7 @@ export default function Carpet(props) {
   // Compose Email when the user clicks "Buy"
   function handleBuyClick() {
     const subject = encodeURIComponent("I NEED IT!");
-    const body = encodeURIComponent(`THE ${carpet.attributes.name} CARPET NEEDS TO BE MINE!`);
+    const body = encodeURIComponent(`THE ${carpet.attributes.title} CARPET NEEDS TO BE MINE!`);
 
     const mailtoLink = `mailto:ciao@gg-office.com?subject=${subject}&body=${body}`;
 
@@ -109,20 +65,15 @@ export default function Carpet(props) {
   return (
     <AnimatedPage>
       <div className="pageContainer" ref={pageContainerRef}>
-        <Link to="/" className="backButton">
+        <Link to="/home" className="backButton">
           <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
         <div className="carpetContainer">
-          <div
-            className="imageGallery"
-            ref={galleryRef}
-            onMouseEnter={pauseGalleryScroll}
-            onMouseLeave={resumeGalleryScroll}
-          >
+          <div className="imageGallery" ref={galleryRef}>
             {imageCatalogue}
           </div>
           <div className="carpetInfo">
-            <h1>{carpet.attributes.name}</h1>
+            <h1>{carpet.attributes.title}</h1>
             <p className="description">{carpet.attributes.description}</p>
 
             <div className="carpetSpecifications">

@@ -1,20 +1,13 @@
 import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import CSS from "../components/css/logo.module.css";
 
 import Logo from "../components/Logo";
 
 export default function OpeningPage(props) {
-  React.useEffect(() => {
-    if (props.closeOpeningPage && props.isDesktop && props.isFirstLoad) {
-      document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-50%, 0%) scale(0.4)";
-      document.querySelector(`.${CSS.logoContainer}`).style.top = "18px";
-      setTimeout(() => {
-        document.querySelector(`.${CSS.logoContainer}`).style.transformOrigin = "top left";
-        document.querySelector(`.${CSS.logoContainer}`).style.transform = "translate(-0%, 0%) scale(0.4)";
-        document.querySelector(`.${CSS.logoContainer}`).style.left = "15px";
-      }, 300);
-    }
-  }, [props.closeOpeningPage]);
+  const location = useLocation();
+  let navigate = useNavigate();
 
   window.addEventListener("resize", () => {
     scaleLogo();
@@ -63,8 +56,6 @@ export default function OpeningPage(props) {
 
   return (
     <div className="openingPage">
-      <LoadingScreen />
-
       <div className={CSS.logoContainer}>
         <Logo />
       </div>

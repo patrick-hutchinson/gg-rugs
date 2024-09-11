@@ -6,31 +6,36 @@ export default function Logo() {
   const letterPointsRef = useRef([]);
 
   useEffect(() => {
-    // Cache the points elements
-    letterPointsRef.current = document.querySelectorAll(`.${CSS.letter_point}`);
-
-    // Add points to each letter
+    // Get the height css height of any letter SVG for reference, here the first is chosen
     const element = document.querySelector(`.${CSS.letter} > img`);
     const elementHeight = parseInt(window.getComputedStyle(element).getPropertyValue("height"));
 
-    // Calculate the distance between the highest and lowest point of a letter
+    // Calculate the distance between the highest and lowest point of a letter and determine scale
     const smallestTop = Math.min(...letters.letterS.letterPoints.map((points) => points.top));
     const largestTop = Math.max(...letters.letterS.letterPoints.map((points) => points.top));
     const pointHeight = largestTop - smallestTop;
     const pointScale = elementHeight / pointHeight;
 
+    // Collect all letter point elements after they are created
+    const letterPointElements = [];
+
+    // Work with the data gotten from letters.js
     Object.values(letters).forEach((letter) => {
       const leftValues = letter.letterPoints.map((points) => points.left);
       const topValues = letter.letterPoints.map((points) => points.top);
       const smallestLeft = Math.min(...leftValues);
       const smallestTop = Math.min(...topValues);
+
+      //Translation adjustments to make the letters fit onto the image
       const translateX = smallestLeft * (pointScale * 1.2);
       const translateY = smallestTop * (pointScale * 1.2);
 
-      letter.letterPoints.forEach((point, i) => {
+      letter.letterPoints.forEach((point) => {
+        //Select the correct lettercontainer to add the points into
         const className = `letterContainer_${letter.character}`;
         const classToSelect = CSS[className];
 
+        // For each lettercontainer, create and append the points
         document.querySelectorAll(`.${classToSelect}`).forEach((letterContainer) => {
           const letterPoint = document.createElement("div");
           letterPoint.classList.add(CSS.letter_point);
@@ -39,9 +44,13 @@ export default function Logo() {
           letterPoint.style.top = point.top * pointScale - translateY + "px";
 
           letterContainer.append(letterPoint);
+          letterPointElements.push(letterPoint); // Collect the created elements
         });
       });
     });
+
+    // Update the ref after elements are created
+    letterPointsRef.current = letterPointElements;
 
     // Mouse Interaction
     const hoverInRadius = 40;
@@ -53,7 +62,6 @@ export default function Logo() {
           const rect = letterPoint.getBoundingClientRect();
           const distanceLeft = e.clientX - rect.left;
           const distanceTop = e.clientY - rect.top;
-
           if (
             distanceLeft > -hoverInRadius &&
             distanceLeft < hoverInRadius &&
@@ -75,7 +83,17 @@ export default function Logo() {
       });
     };
 
+    const handleClick = () => {
+      requestAnimationFrame(() => {
+        letterPointsRef.current.forEach((letterPoint) => {
+          letterPoint.style.animationName = "minimize";
+        });
+      });
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+
+    window.addEventListener("click", handleClick);
 
     // Cleanup on unmount
     return () => {

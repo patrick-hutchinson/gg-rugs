@@ -18,7 +18,7 @@ export default function Contact(props) {
 
   React.useEffect(() => {
     if (data) {
-      setVideoSource(`${data.backgroundVideo.data.attributes.url}`);
+      setVideoSource(`${data.video.data.attributes.url}`);
     }
   }, [data]);
 

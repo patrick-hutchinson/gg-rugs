@@ -3,6 +3,7 @@ import AnimatedPage from "../AnimatedPage";
 
 export default function About(props) {
   let [data, setData] = React.useState();
+
   React.useEffect(() => {
     fetch(`${props.strapiBaseURL}/api/about`)
       .then((res) => res.json())
@@ -20,7 +21,7 @@ export default function About(props) {
     const addWaterPistol = () => {
       let waterPistol = document.createElement("div");
       waterPistol.classList.add("waterPistol");
-      waterPistol.textContent = `${data ? data.attributes.Emoji : null}`;
+      waterPistol.textContent = `${data ? data.attributes.emoji : null}`;
 
       // Set random left position
       let randomLeft = Math.floor(Math.random() * window.innerWidth);
@@ -55,7 +56,7 @@ export default function About(props) {
       <main className="pageContainer">
         <div className="pistolContainer"></div>
         <div className="about">
-          <p>{data ? data.attributes.Bio : null}</p>
+          <p>{data ? data.attributes.about : null}</p>
         </div>
       </main>
     </AnimatedPage>

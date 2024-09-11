@@ -8,7 +8,6 @@ export default function Commissions(props) {
   let pageContainerRef = React.useRef(null);
 
   let galleryRef = React.useRef(null);
-  let scrollIntervalId = React.useRef(null);
 
   // Fetch Data
   React.useEffect(() => {
@@ -36,53 +35,13 @@ export default function Commissions(props) {
   );
 
   useEffect(() => {
-    if (data && data.attributes.commissionImages && data.attributes.commissionImages.data) {
-      const images = data.attributes.commissionImages.data.map((image) => (
+    if (data && data.attributes.images && data.attributes.images.data) {
+      const images = data.attributes.images.data.map((image) => (
         <img src={`${image.attributes.url}`} key={image.id} alt="" />
       ));
       setImageCatalogue(images);
     }
   }, [data]);
-
-  // Auto-scroll ImageGallery (on Desktop)
-  useEffect(() => {
-    const galleryElement = galleryRef.current;
-
-    const startAutoScroll = () => {
-      if (galleryElement) {
-        const scrollSpeed = 1; // Adjust this value to control the scroll speed
-        scrollIntervalId.current = setInterval(() => {
-          galleryElement.scrollBy({ top: scrollSpeed, behavior: "smooth" });
-        }, 50); // Adjust the interval time to control the smoothness
-      }
-    };
-
-    const stopAutoScroll = () => {
-      if (scrollIntervalId.current) {
-        clearInterval(scrollIntervalId.current);
-      }
-    };
-
-    startAutoScroll();
-
-    return () => stopAutoScroll();
-  }, [imageCatalogue]);
-
-  const pauseGalleryScroll = () => {
-    if (scrollIntervalId.current) {
-      clearInterval(scrollIntervalId.current);
-    }
-  };
-
-  const resumeGalleryScroll = () => {
-    const galleryElement = galleryRef.current;
-    if (galleryElement) {
-      const scrollSpeed = 1; // Adjust this value to control the scroll speed
-      scrollIntervalId.current = setInterval(() => {
-        galleryElement.scrollBy({ top: scrollSpeed, behavior: "smooth" });
-      }, 50); // Adjust the interval time to control the smoothness
-    }
-  };
 
   // Initialize formData
   const [formData, setFormData] = useState({
@@ -137,8 +96,8 @@ export default function Commissions(props) {
           <div
             className="imageGallery"
             ref={galleryRef}
-            onMouseEnter={pauseGalleryScroll}
-            onMouseLeave={resumeGalleryScroll}
+            // onMouseEnter={pauseGalleryScroll}
+            // onMouseLeave={resumeGalleryScroll}
           >
             {imageCatalogue}
           </div>

@@ -1,12 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-import Header from "./Header";
-
 export default function Layout(props) {
-  let copyrightNoticeRef = React.useRef(null);
-
-  let isDesktop = props.isDesktop;
   let lastMousePosition = 0;
 
   window.addEventListener("mousemove", (e) => {
@@ -40,24 +35,10 @@ export default function Layout(props) {
     document.querySelector(".cursorImage img").setAttribute("src", "assets/img/eyes_reg.png");
   });
 
-  React.useEffect(() => {
-    console.log(copyrightNoticeRef.current.getBoundingClientRect().height);
-    copyrightNoticeRef.current.style.right = `-${copyrightNoticeRef.current.getBoundingClientRect().height / 2 - 25}px`;
-
-    let catalogueImages = document.querySelectorAll(".catalogueImage");
-    catalogueImages.forEach((catalogueImage, index) => {
-      catalogueImage.style.animationDelay = `${index * 0.1}s`;
-    });
-  }, []);
   return (
     <>
-      <Header isDesktop={isDesktop} />
-
       <Outlet />
 
-      <div className="copyrightNotice" ref={copyrightNoticeRef}>
-        2024 © Copyright. All rights Reserved
-      </div>
       <div className="cursorImage">
         <img src="/assets/img/eyes_reg.png" />
       </div>

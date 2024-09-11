@@ -5,51 +5,13 @@ import AnimatedPage from "../AnimatedPage";
 
 export default function Home(props) {
   let [catalogueImages, setCatalogueImages] = useState([]);
-  let [closeOpeningPage, setCloseOpeningPage] = useState(false);
-
-  useEffect(() => {
-    if (props.isFirstLoad) {
-      let closeOpeningScreen = () => {
-        let openingPage = document.querySelector(".openingPage");
-
-        if (openingPage && props.isDesktop) {
-          setTimeout(() => {
-            openingPage.classList.add("hidden");
-          }, 600);
-
-          setTimeout(() => {
-            props.toggleIsFirstLoad(false);
-          }, 1000);
-        } else {
-          openingPage.classList.add("hidden");
-
-          setTimeout(() => {
-            props.toggleIsFirstLoad(false);
-          }, 400);
-        }
-      };
-
-      let handleScroll = () => {
-        closeOpeningScreen();
-        setCloseOpeningPage(true);
-      };
-
-      let handleClick = () => {
-        closeOpeningScreen();
-        setCloseOpeningPage(true);
-      };
-
-      window.addEventListener("scroll", handleScroll);
-      window.addEventListener("click", handleClick);
-    }
-  }, [props.isFirstLoad]);
 
   // Generate each Carpet
   useEffect(() => {
     if (props.data) {
       let images = props.data.flatMap((carpet, index) => {
-        let carpetLink = carpet.attributes.name.toLowerCase().replace(/ /g, "-");
-        let carpetUrl = `${carpet.attributes.titleImage.data.attributes.url}`;
+        let carpetLink = carpet.attributes.title.toLowerCase().replace(/ /g, "-");
+        let carpetUrl = `${carpet.attributes.thumbnail.data.attributes.url}`;
 
         return props.isDesktop ? (
           <div
@@ -59,7 +21,7 @@ export default function Home(props) {
             key={`${index}`}
           >
             <div className="carpetTextContainer">
-              <div className="carpetTitle">{carpet.attributes.name}</div>
+              <div className="carpetTitle">{carpet.attributes.title}</div>
               <Link className="carpetLink" to={`/${carpetLink}`}>
                 <img
                   onMouseEnter={handleSeeMoreMouseEnter}
@@ -71,7 +33,7 @@ export default function Home(props) {
             <img
               className="catalogueImage"
               src={carpetUrl}
-              alt={carpet.attributes.name}
+              alt={carpet.attributes.title}
               style={{
                 animationDelay: `${index * 0.3}s`,
               }}
@@ -82,7 +44,7 @@ export default function Home(props) {
             <img
               className="catalogueImage"
               src={carpetUrl}
-              alt={carpet.attributes.name}
+              alt={carpet.attributes.title}
               style={{
                 animationDelay: `${index * 0.3}s`,
               }}
