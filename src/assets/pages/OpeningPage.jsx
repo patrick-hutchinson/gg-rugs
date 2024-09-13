@@ -8,7 +8,7 @@ import "../css/OpeningPage.css";
 export default function OpeningPage({ isDesktop }) {
   let navigate = useNavigate();
 
-  window.addEventListener("click", () => {
+  window.addEventListener("scroll", () => {
     navigate("/home");
   });
 

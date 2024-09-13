@@ -68,14 +68,14 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<CursorLayout />}>
-          <Route path="/" element={<OpeningPage isDesktop={isDesktop} />} />
+          <Route index element={<OpeningPage isDesktop={isDesktop} />} />
           <Route element={<HeaderLayout isDesktop={isDesktop} />}>
-            <Route path="/home" element={<Home isDesktop={isDesktop} data={data.carpets} />} />
-            <Route path="/about" element={<About data={data.about} />} />
-            <Route path="/commissions" element={<Commissions data={data.commissions} />} />
-            <Route path="/contact" element={<Contact data={data.contact} />} />
+            <Route path="home" element={<Home isDesktop={isDesktop} data={data.carpets} />} />
+            <Route path="about" element={<About data={data.about} />} />
+            <Route path="commissions" element={<Commissions data={data.commissions} />} />
+            <Route path="contact" element={<Contact data={data.contact} />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/:id" element={<Carpet data={data.carpets} isDesktop={isDesktop} />} />
+            <Route path=":id" element={<Carpet data={data.carpets} isDesktop={isDesktop} />} />
           </Route>
         </Route>
       </Routes>
