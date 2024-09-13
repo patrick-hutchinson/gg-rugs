@@ -14,21 +14,35 @@ import OpeningPage from "./assets/pages/OpeningPage";
 export default function App() {
   let [isDesktop, setIsDesktop] = React.useState(window.innerWidth > 980);
 
-  let [data, setData] = React.useState(null);
+  const [data, setData] = React.useState({
+    carpets: null,
+    about: null,
+    commissions: null,
+    contact: null,
+  });
+  const [strapiBaseURL] = React.useState("https://strapi-production-7b09.up.railway.app");
 
-  let [strapiBaseURL, setStrapiBaseURL] = React.useState("https://strapi-production-7b09.up.railway.app");
-
-  // Fetch the Data
   React.useEffect(() => {
-    fetch(`${strapiBaseURL}/api/carpets?populate=*`)
-      .then((res) => res.json())
-      .then((dataArray) => {
-        setData(dataArray.data);
+    const endpoints = [
+      { key: "carpets", url: `${strapiBaseURL}/api/carpets?populate=*` },
+      { key: "about", url: `${strapiBaseURL}/api/about?populate=*` },
+      { key: "commissions", url: `${strapiBaseURL}/api/commission?populate=*` },
+      { key: "contact", url: `${strapiBaseURL}/api/contact?populate=*` },
+    ];
+
+    Promise.all(endpoints.map((endpoint) => fetch(endpoint.url).then((res) => res.json())))
+      .then((results) => {
+        const newData = {};
+        results.forEach((result, index) => {
+          const key = endpoints[index].key;
+          newData[key] = result.data;
+        });
+        setData(newData);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [strapiBaseURL]);
 
   React.useEffect(() => {
     if (window.innerWidth > 1180) {
@@ -53,14 +67,23 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<CursorLayout isDesktop={isDesktop} />}>
+        <Route element={<CursorLayout />}>
           <Route path="/" element={<OpeningPage isDesktop={isDesktop} />} />
           <Route element={<HeaderLayout isDesktop={isDesktop} />}>
-            <Route path="/home" element={<Home strapiBaseURL={strapiBaseURL} isDesktop={isDesktop} data={data} />} />
-            <Route path="/about" element={<About strapiBaseURL={strapiBaseURL} />} />
-            <Route path="/commissions" element={<Commissions strapiBaseURL={strapiBaseURL} />} />
-            <Route path="/contact" element={<Contact strapiBaseURL={strapiBaseURL} />} />
-            <Route path="/:id" element={<Carpet data={data} strapiBaseURL={strapiBaseURL} isDesktop={isDesktop} />} />
+            <Route
+              path="/home"
+              element={<Home strapiBaseURL={strapiBaseURL} isDesktop={isDesktop} data={data.carpets} />}
+            />
+            <Route path="/about" element={<About strapiBaseURL={strapiBaseURL} data={data.about} />} />
+            <Route
+              path="/commissions"
+              element={<Commissions strapiBaseURL={strapiBaseURL} data={data.commissions} />}
+            />
+            <Route path="/contact" element={<Contact strapiBaseURL={strapiBaseURL} data={data.contact} />} />
+            <Route
+              path="/:id"
+              element={<Carpet data={data.carpets} strapiBaseURL={strapiBaseURL} isDesktop={isDesktop} />}
+            />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Route>

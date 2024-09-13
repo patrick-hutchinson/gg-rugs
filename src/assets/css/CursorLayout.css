@@ -1,0 +1,30 @@
+.cursorImage > img {
+  position: fixed;
+  height: 40px;
+  width: auto;
+
+  transform: translate(-50%, -50%);
+  z-index: 30;
+  pointer-events: none;
+  transform-origin: center middle;
+
+  animation-duration: 0.4s;
+  animation-iteration-count: 2;
+  animation-fill-mode: forwards;
+}
+
+.cursorImage > img.pulseCursor {
+  animation-name: pulseCursor;
+}
+
+@keyframes pulseCursor {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.8);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

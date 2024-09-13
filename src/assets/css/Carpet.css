@@ -1,0 +1,84 @@
+.carpetContainer {
+  position: relative;
+}
+
+.carpetInfo {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: 20px;
+  width: 90%;
+  text-align: left;
+  position: relative;
+  height: 100%;
+  max-height: calc(100vh - 100px);
+}
+
+.carpetSpecifications {
+  position: relative;
+  display: flex;
+  align-self: flex-end;
+  grid-template-columns: 2;
+  column-gap: 20px;
+  bottom: -12px;
+}
+.carpetSpecifications > ul:first-child {
+  color: #000;
+}
+.carpetSpecifications > ul:first-child {
+  color: #999;
+}
+
+.backButton {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+
+  width: auto;
+  height: 40px;
+  z-index: 14;
+  margin: 10px;
+  animation-name: none;
+  animation-iteration-count: 3;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+  pointer-events: all;
+}
+.backButton:hover {
+  animation-name: wiggle;
+}
+.backButton > img {
+  position: fixed;
+  height: inherit;
+  width: auto;
+}
+
+.buyButton:hover {
+  animation-name: wiggle;
+}
+
+.description {
+  overflow-y: scroll;
+}
+
+@media only screen and (max-width: 1180px) {
+  .carpetInfo {
+    max-height: unset;
+    grid-template-rows: auto auto auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .backButton {
+    bottom: 20px !important;
+    left: 8px !important;
+    display: none;
+  }
+
+  .buyButton {
+    position: fixed;
+    bottom: 10px;
+  }
+  .carpetContainer {
+    margin-bottom: 10px;
+  }
+}

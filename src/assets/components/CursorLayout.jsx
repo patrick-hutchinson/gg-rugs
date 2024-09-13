@@ -1,7 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-export default function Layout(props) {
+import "../css/CursorLayout.css";
+
+export default function Layout() {
   let lastMousePosition = 0;
 
   window.addEventListener("mousemove", (e) => {

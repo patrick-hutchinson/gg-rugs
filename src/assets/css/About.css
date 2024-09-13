@@ -1,0 +1,38 @@
+.waterPistol {
+  position: absolute;
+  font-size: 230px;
+  animation-name: none;
+  animation-iteration-count: 1;
+  animation-duration: 3s;
+  bottom: -30px;
+  animation-fill-mode: forwards;
+  transform-origin: center;
+
+  display: inline;
+  height: fit-content;
+}
+
+.about {
+  padding-top: 10px;
+  overflow-y: scroll;
+}
+
+@keyframes floatUp {
+  0% {
+    top: 110vh;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: -30vh;
+    transform: rotate(359deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .waterPistol {
+    font-size: 200px;
+  }
+  .pistolContainer {
+    z-index: 9;
+  }
+}

@@ -1,20 +1,9 @@
 import React from "react";
 import AnimatedPage from "../AnimatedPage";
 
-export default function About(props) {
-  let [data, setData] = React.useState();
+import "../css/About.css";
 
-  React.useEffect(() => {
-    fetch(`${props.strapiBaseURL}/api/about`)
-      .then((res) => res.json())
-      .then((dataArray) => {
-        setData(dataArray.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-
+export default function About({ data }) {
   React.useEffect(() => {
     const container = document.querySelector(".pistolContainer");
 

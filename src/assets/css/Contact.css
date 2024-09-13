@@ -1,0 +1,67 @@
+.contact {
+  position: relative;
+  z-index: 5;
+  pointer-events: all !important;
+}
+
+.socials {
+  font-size: var(--large-font-size);
+  line-height: var(--large-line-height);
+  width: 90%;
+  position: relative;
+  color: #fff;
+  height: 100%;
+  font-family: FoundersMedium;
+}
+.socials a {
+  color: #fff;
+}
+.socials a:visited {
+  color: #fff;
+}
+
+.socials .instagram {
+  position: absolute;
+  bottom: 0px;
+}
+
+@media only screen and (max-width: 1180px) {
+  .socials {
+    display: flex;
+  }
+  /* .contactPage {
+    height: calc(100% - 10vh) !important;
+  } */
+
+  .contact {
+    height: 100%;
+  }
+  .instagram {
+    bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .socials {
+    display: flex;
+  }
+  .instagram {
+    align-self: flex-end;
+  }
+  .rugForm {
+    height: auto;
+    margin-top: 20px;
+  }
+  .videoContainer video {
+    height: 100%;
+    width: auto;
+  }
+
+  .contactPage {
+    height: 100% !important;
+  }
+
+  .contact {
+    height: 100%;
+  }
+}

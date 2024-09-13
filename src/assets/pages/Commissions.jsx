@@ -2,24 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AnimatedPage from "../AnimatedPage";
 
-export default function Commissions(props) {
+import "../css/Commissions.css";
+import ImageGallery from "../components/ImageGallery";
+
+export default function Commissions({ data }) {
   //Declarations
-  let [data, setData] = React.useState();
   let pageContainerRef = React.useRef(null);
-
-  let galleryRef = React.useRef(null);
-
-  // Fetch Data
-  React.useEffect(() => {
-    fetch(`${props.strapiBaseURL}/api/commission?populate=*`)
-      .then((res) => res.json())
-      .then((dataArray) => {
-        setData(dataArray.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
 
   // Scroll window to top on load
   useEffect(() => {
@@ -29,17 +17,10 @@ export default function Commissions(props) {
     }
   }, []);
 
-  // Polulate Image Gallery
-  const [imageCatalogue, setImageCatalogue] = useState(
-    <div className="errorText">No preview Images available at the moment, sorry!</div>
-  );
-
+  const [imageData, setImageData] = useState();
   useEffect(() => {
-    if (data && data.attributes.images && data.attributes.images.data) {
-      const images = data.attributes.images.data.map((image) => (
-        <img src={`${image.attributes.url}`} key={image.id} alt="" />
-      ));
-      setImageCatalogue(images);
+    if (data) {
+      setImageData(data.attributes.images.data);
     }
   }, [data]);
 
@@ -89,18 +70,8 @@ export default function Commissions(props) {
   return (
     <AnimatedPage>
       <main className="pageContainer" ref={pageContainerRef}>
-        <Link to="/" className="backButton">
-          <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
-        </Link>
         <div className="commissions">
-          <div
-            className="imageGallery"
-            ref={galleryRef}
-            // onMouseEnter={pauseGalleryScroll}
-            // onMouseLeave={resumeGalleryScroll}
-          >
-            {imageCatalogue}
-          </div>
+          <ImageGallery imageData={imageData} />
           <div className="rugForm">
             <h1>CREATE YOUR GGRUG</h1>
             <form onSubmit={handleSubmit}>

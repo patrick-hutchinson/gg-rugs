@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import letters from "../components/letters";
-import CSS from "./css/logo.module.css";
+import CSS from "../css/logo.module.css";
 
 export default function Logo() {
   const letterPointsRef = useRef([]);
@@ -83,17 +83,7 @@ export default function Logo() {
       });
     };
 
-    const handleClick = () => {
-      requestAnimationFrame(() => {
-        letterPointsRef.current.forEach((letterPoint) => {
-          letterPoint.style.animationName = "minimize";
-        });
-      });
-    };
-
     window.addEventListener("mousemove", handleMouseMove);
-
-    window.addEventListener("click", handleClick);
 
     // Cleanup on unmount
     return () => {

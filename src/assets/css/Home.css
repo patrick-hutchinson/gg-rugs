@@ -1,0 +1,103 @@
+.catalogue {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  width: 95%;
+}
+
+.catalogue .catalogueImage {
+  max-width: 500px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  flex: 1 1 calc(33.333% - 20px);
+
+  position: relative;
+  margin: 10px;
+  transform: translateY(0) scale(1);
+  transition: transform 0.25s ease-in-out;
+  opacity: 1;
+}
+
+.catalogue .catalogueImage.hide {
+  animation: unset;
+  transform: translateY(0) scale(0);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.carpetWrapper {
+  position: relative;
+  animation: float 5s infinite ease-in-out;
+}
+
+.carpetWrapper .carpetTextContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  text-transform: uppercase;
+  transition: 0.2s;
+  opacity: 0;
+  transition-delay: 0.1s;
+}
+
+.carpetWrapper .carpetTextContainer.visible {
+  opacity: 1;
+}
+
+.carpetTitle {
+  font-family: FoundersMedium;
+  white-space: nowrap;
+}
+
+.carpetWrapper .carpetLink > img {
+  height: 42px;
+  width: auto;
+}
+
+.carpetLink {
+  position: relative;
+  top: 5px;
+}
+.carpetLink > img {
+  animation-name: none;
+  animation-iteration-count: 3;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  user-select: none !important;
+}
+
+@media only screen and (max-width: 1180px) {
+  .catalogue .catalogueImage {
+    max-height: 200px;
+    max-width: 400px;
+    transform: translateX(-50%) !important;
+    position: relative;
+    left: 50%;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .catalogue .catalogueImage {
+    max-width: 90%;
+    max-height: 200px;
+  }
+}

@@ -1,24 +1,14 @@
 import React from "react";
 import AnimatedPage from "../AnimatedPage";
 
-export default function Contact(props) {
-  let [data, setData] = React.useState();
+import "../css/Contact.css";
+
+export default function Contact({ data }) {
   let [videoSource, setVideoSource] = React.useState();
 
   React.useEffect(() => {
-    fetch(`${props.strapiBaseURL}/api/contact?populate=*`)
-      .then((res) => res.json())
-      .then((dataArray) => {
-        setData(dataArray.data.attributes);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-
-  React.useEffect(() => {
     if (data) {
-      setVideoSource(`${data.video.data.attributes.url}`);
+      setVideoSource(`${data.attributes.video.data.attributes.url}`);
     }
   }, [data]);
 

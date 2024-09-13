@@ -1,0 +1,134 @@
+.videoContainer {
+  z-index: 0;
+}
+.videoContainer {
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.videoContainer video {
+  min-width: 100%;
+  min-height: 100%;
+
+  width: auto;
+  height: auto;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.rugForm {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: 90%;
+  height: 100%;
+}
+
+.commissions form {
+  padding: 5px;
+  margin-top: 30px;
+  padding-bottom: 0px;
+  position: relative;
+  height: auto;
+}
+.commissions input {
+  border-bottom: 1.5px solid #000;
+  font-size: var(--medium-font-size);
+  font-size: var(--medium-line-height);
+  text-transform: uppercase;
+  line-height: 32px;
+  width: 100%;
+
+  background: transparent;
+  color: #999998;
+}
+
+.checkBoxContainer {
+  position: absolute;
+  bottom: -0.3em;
+  left: 0;
+}
+
+.checkbox {
+  font-size: var(--medium-font-size);
+  line-height: var(--medium-line-height);
+  width: 25px !important;
+  height: 25px !important;
+  border: 2px solid #000 !important;
+  margin-left: 10px;
+  appearance: none;
+  background-color: #fff;
+  position: relative;
+}
+
+.checkbox:checked {
+  border: 2px solid #000;
+}
+
+.checkbox:checked::after {
+  content: "🧶";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 30px;
+  text-align: center;
+  transform: translate(-28%, -10%);
+  color: #fff;
+  text-align: center;
+  line-height: 25px;
+}
+
+.submitButton,
+.buyButton {
+  position: absolute;
+  bottom: -10px;
+  right: 0px;
+
+  background: transparent;
+  border: 0;
+
+  animation-name: none;
+  animation-iteration-count: 3;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+}
+.submitButton:hover {
+  animation-name: wiggle;
+}
+
+@media only screen and (max-width: 1180px) {
+  .rugForm {
+    height: 250px;
+  }
+
+  .checkBoxContainer,
+  .submitButton {
+    padding: 10px;
+  }
+
+  .checkBoxContainer,
+  .submitButton {
+    width: auto;
+    display: inline-block;
+    transform: translateY(50%);
+    padding: 10px;
+  }
+
+  .commissions input {
+    border-radius: 0;
+  }
+
+  .videoContainer {
+    pointer-events: all;
+  }
+
+  .commissions form {
+    height: 100%;
+  }
+}

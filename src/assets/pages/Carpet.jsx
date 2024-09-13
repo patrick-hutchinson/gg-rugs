@@ -4,26 +4,15 @@ import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
 import AnimatedPage from "../AnimatedPage";
 
-export default function Carpet(props) {
-  let data = props.data;
+import "../css/Carpet.css";
+import ImageGallery from "../components/ImageGallery";
+
+export default function Carpet({ data }) {
   let pageContainerRef = useRef(null);
 
-  let galleryRef = React.useRef(null);
+  const [imageData, setImageData] = useState();
 
-  const [imageCatalogue, setImageCatalogue] = useState(
-    <div className="errorText">No preview Images available at the moment, sorry!</div>
-  );
-
-  useEffect(() => {
-    if (carpet && carpet.attributes.images && carpet.attributes.images.data) {
-      const images = carpet.attributes.images.data.map((image) => (
-        <img src={`${image.attributes.url}`} key={image.id} alt="" />
-      ));
-      setImageCatalogue(images);
-    }
-  }, [data]);
-
-  // Scroll window to top on Load
+  // Scroll window to top on load
   useEffect(() => {
     if (pageContainerRef.current) {
       pageContainerRef.current.scrollTo({ top: 0, left: 0 });
@@ -35,18 +24,15 @@ export default function Carpet(props) {
   // Find the carpet object that matches the ID
   const carpet = data?.find((carpet) => carpet.attributes.title.toLowerCase().replace(/ /g, "-") === id);
 
+  // Handle setting the image data inside a useEffect
+  useEffect(() => {
+    if (carpet) {
+      setImageData(carpet.attributes.images.data);
+    }
+  }, [carpet]);
+
   if (!carpet) {
     return <NotFound />;
-  }
-
-  // Compose Email when the user clicks "Buy"
-  function handleBuyClick() {
-    const subject = encodeURIComponent("I NEED IT!");
-    const body = encodeURIComponent(`THE ${carpet.attributes.title} CARPET NEEDS TO BE MINE!`);
-
-    const mailtoLink = `mailto:ciao@gg-office.com?subject=${subject}&body=${body}`;
-
-    window.location.href = mailtoLink;
   }
 
   function handleMouseEnter(e) {
@@ -62,6 +48,16 @@ export default function Carpet(props) {
     e.target.setAttribute("src", splicedSource);
   }
 
+  // Compose Email when the user clicks "Buy"
+  function handleBuyClick() {
+    const subject = encodeURIComponent("I NEED IT!");
+    const body = encodeURIComponent(`THE ${carpet.attributes.title} CARPET NEEDS TO BE MINE!`);
+
+    const mailtoLink = `mailto:ciao@gg-office.com?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
+  }
+
   return (
     <AnimatedPage>
       <div className="pageContainer" ref={pageContainerRef}>
@@ -69,9 +65,7 @@ export default function Carpet(props) {
           <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
         <div className="carpetContainer">
-          <div className="imageGallery" ref={galleryRef}>
-            {imageCatalogue}
-          </div>
+          <ImageGallery imageData={imageData} />
           <div className="carpetInfo">
             <h1>{carpet.attributes.title}</h1>
             <p className="description">{carpet.attributes.description}</p>
@@ -88,7 +82,7 @@ export default function Carpet(props) {
                 <li>{carpet.attributes.price}</li>
               </ul>
             </div>
-            <button className="buyButton" onClick={handleBuyClick}>
+            <button className="buyButton customButton" onClick={handleBuyClick}>
               <img src="/assets/img/buy.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
             </button>
           </div>

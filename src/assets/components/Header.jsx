@@ -2,8 +2,9 @@ import React from "react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 
-export default function Header(props) {
-  let isDesktop = props.isDesktop;
+import "../css/Header.css";
+
+export default function Header({ isDesktop }) {
   function handleMouseEnter(e) {
     let currentSource = e.currentTarget.querySelector("img").getAttribute("src");
     let splicedSource = currentSource.slice(0, -4) + "_focus.svg";
@@ -27,7 +28,7 @@ export default function Header(props) {
 
   let mobileHeader = (
     <ul className="header">
-      <li>
+      <li className="customButton">
         <img onMouseDown={handleOpenMenu} src="/assets/img/menu.svg" />
       </li>
     </ul>
@@ -35,26 +36,26 @@ export default function Header(props) {
 
   let mobileMenu = (
     <div className="mobileMenu">
-      <span className="closeMenu">
+      <span className="closeMenu customButton">
         <img onMouseDown={handleMenuClick} src="/assets/img/close.svg" />
       </span>
       <ul>
-        <li>
-          <Link to="/">
+        <li className="customButton">
+          <Link to="/home">
             <img onMouseDown={handleMenuClick} src="/assets/img/home.svg" />
           </Link>
         </li>
-        <li>
+        <li className="customButton">
           <Link to="/about">
             <img onMouseDown={handleMenuClick} src="/assets/img/about.svg" />
           </Link>
         </li>
-        <li>
+        <li className="customButton">
           <Link to="/commissions">
             <img onMouseDown={handleMenuClick} src="/assets/img/commission.svg" />
           </Link>
         </li>
-        <li>
+        <li className="customButton">
           <Link to="/contact">
             <img onMouseDown={handleMenuClick} src="/assets/img/contact.svg" />
           </Link>
@@ -66,23 +67,23 @@ export default function Header(props) {
   let desktopHeader = (
     <>
       <ul className="header">
-        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <Link to="/">
+        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
+          <Link to="/home">
             <img src="assets/img/home.svg" />
           </Link>
         </li>
 
-        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
           <Link to="/about">
             <img src="assets/img/about.svg" />
           </Link>
         </li>
-        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
           <Link to="/commissions">
             <img src="assets/img/commission.svg" />
           </Link>
         </li>
-        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
           <Link to="/contact">
             <img src="assets/img/contact.svg" />
           </Link>
@@ -93,7 +94,7 @@ export default function Header(props) {
 
   return (
     <header>
-      <Link to="/">
+      <Link to="/home">
         <div className="logoContainer">
           <Logo />
         </div>

@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import OpeningPage from "./OpeningPage";
+
 import AnimatedPage from "../AnimatedPage";
 
-export default function Home(props) {
-  let [catalogueImages, setCatalogueImages] = useState([]);
+import "../css/Home.css";
+
+export default function Home({ data, isDesktop }) {
+  let [carpetThumbnails, setCarpetThumbnails] = useState([]);
 
   // Generate each Carpet
   useEffect(() => {
-    if (props.data) {
-      let images = props.data.flatMap((carpet, index) => {
+    if (data) {
+      let thumbnails = data.flatMap((carpet, index) => {
         let carpetLink = carpet.attributes.title.toLowerCase().replace(/ /g, "-");
         let carpetUrl = `${carpet.attributes.thumbnail.data.attributes.url}`;
 
-        return props.isDesktop ? (
+        let randomNumber = Math.floor(Math.random() * 10) + 1; // Between 1 and 10
+
+        return isDesktop ? (
           <div
             className="carpetWrapper"
             onMouseEnter={handleCarpetMouseEnter}
@@ -22,7 +26,7 @@ export default function Home(props) {
           >
             <div className="carpetTextContainer">
               <div className="carpetTitle">{carpet.attributes.title}</div>
-              <Link className="carpetLink" to={`/${carpetLink}`}>
+              <Link className="carpetLink customButton" to={`/${carpetLink}`}>
                 <img
                   onMouseEnter={handleSeeMoreMouseEnter}
                   onMouseLeave={handleSeeMoreMouseLeave}
@@ -35,7 +39,7 @@ export default function Home(props) {
               src={carpetUrl}
               alt={carpet.attributes.title}
               style={{
-                animationDelay: `${index * 0.3}s`,
+                animationDelay: `${randomNumber * 0.3}s`,
               }}
             />
           </div>
@@ -46,15 +50,15 @@ export default function Home(props) {
               src={carpetUrl}
               alt={carpet.attributes.title}
               style={{
-                animationDelay: `${index * 0.3}s`,
+                animationDelay: `${randomNumber * 0.3}s`,
               }}
             />
           </Link>
         );
       });
-      setCatalogueImages(images);
+      setCarpetThumbnails(thumbnails);
     }
-  }, [props.data]);
+  }, [data]);
 
   function handleCarpetMouseEnter(e) {
     const catalogueImage = e.currentTarget.querySelector(".catalogueImage");
@@ -63,14 +67,15 @@ export default function Home(props) {
     let textContainer = e.currentTarget.querySelector(".carpetTextContainer");
     textContainer.classList.add("visible");
   }
+
   function handleCarpetMouseLeave(e) {
     const catalogueImage = e.currentTarget.querySelector(".catalogueImage");
     catalogueImage.classList.remove("hide");
 
     let textContainer = e.currentTarget.querySelector(".carpetTextContainer");
-
     textContainer.classList.remove("visible");
   }
+
   function handleSeeMoreMouseEnter(e) {
     e.currentTarget.src = "/assets/img/take-a-look_focus.svg";
     const cursorImage = document.querySelector(".cursorImage > img");
@@ -88,6 +93,7 @@ export default function Home(props) {
   function handleSeeMoreMouseLeave(e) {
     e.currentTarget.src = "/assets/img/take-a-look.svg";
     const cursorImage = document.querySelector(".cursorImage > img");
+
     const handleAnimationEnd = () => {
       cursorImage.classList.remove("pulseCursor");
       cursorImage.removeEventListener("animationend", handleAnimationEnd);
@@ -98,12 +104,9 @@ export default function Home(props) {
 
   return (
     <>
-      {props.isFirstLoad && (
-        <OpeningPage closeOpeningPage={closeOpeningPage} isDesktop={props.isDesktop} isFirstLoad={props.isFirstLoad} />
-      )}
       <AnimatedPage>
         <main className="pageContainer">
-          <div className="catalogue">{catalogueImages}</div>
+          <div className="catalogue">{carpetThumbnails}</div>
         </main>
       </AnimatedPage>
     </>
