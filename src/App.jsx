@@ -70,19 +70,12 @@ export default function App() {
         <Route element={<CursorLayout />}>
           <Route index element={<OpeningPage isDesktop={isDesktop} />} />
           <Route element={<HeaderLayout isDesktop={isDesktop} />}>
-            <Route
-              path="home"
-              element={<Home strapiBaseURL={strapiBaseURL} isDesktop={isDesktop} data={data.carpets} />}
-            />
-            <Route path="about" element={<About strapiBaseURL={strapiBaseURL} data={data.about} />} />
-            <Route path="commissions" element={<Commissions strapiBaseURL={strapiBaseURL} data={data.commissions} />} />
-            <Route path="contact" element={<Contact strapiBaseURL={strapiBaseURL} data={data.contact} />} />
+            <Route path="home" element={<Home isDesktop={isDesktop} data={data.carpets} />} />
+            <Route path="about" element={<About data={data.about} />} />
+            <Route path="commissions" element={<Commissions data={data.commissions} />} />
+            <Route path="contact" element={<Contact data={data.contact} />} />
             <Route path="*" element={<NotFound />} />
-            {/* Dynamic route moved below */}
-            <Route
-              path=":id"
-              element={<Carpet data={data.carpets} strapiBaseURL={strapiBaseURL} isDesktop={isDesktop} />}
-            />
+            <Route path=":id" element={<Carpet data={data.carpets} isDesktop={isDesktop} />} />
           </Route>
         </Route>
       </Routes>
