@@ -53,6 +53,9 @@
   .imageGallery {
     height: auto;
   }
+  .imageContainer {
+    overflow: unset;
+  }
 }
 
 @media only screen and (max-width: 600px) {
