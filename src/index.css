@@ -21,13 +21,6 @@
   font-style: normal;
   font-display: block;
 }
-@font-face {
-  font-family: "FoundersBold";
-  src: url("/assets/fonts/Founders-Grotesk-Bold.otf");
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
 
 * {
   scrollbar-width: none;
@@ -116,6 +109,11 @@ input {
 input:focus {
   border: 0;
   outline: none;
+}
+
+button {
+  background: transparent;
+  border: 0;
 }
 
 h1,
@@ -222,7 +220,12 @@ h1 {
   -o-user-select: none;
   user-select: none;
 }
-
+.customButton {
+  animation-name: none;
+  animation-iteration-count: 3;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+}
 .customButton:hover {
   animation-name: wiggle;
 }
@@ -252,6 +255,14 @@ h1 {
     height: auto;
     margin-top: 20px;
   }
+
+  .desktop {
+    display: none;
+  }
+  .pageContainer {
+    height: auto;
+    overflow: unset;
+  }
 }
 
 /* Media Query for max-width: 600px */
@@ -260,15 +271,6 @@ h1 {
     --large-font-size: 17vw;
     --large-line-height: 14vw;
   }
-  .pageContainer {
-    height: auto;
-    overflow: unset;
-  }
-
-  /* h1 {
-    font-size: 17vw;
-    line-height: 14vw;
-  } */
 
   .carpetInfo .description,
   .carpetSpecifications {

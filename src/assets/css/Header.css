@@ -34,8 +34,6 @@ header {
 }
 
 header .logoContainer {
-  transform: scale(0.4);
-
   text-align: left;
   position: fixed;
   transform: translate(0%, 0%), scale(0.4);

@@ -61,7 +61,7 @@ export default function Carpet({ data }) {
   return (
     <AnimatedPage>
       <div className="pageContainer" ref={pageContainerRef}>
-        <Link to="/home" className="backButton">
+        <Link to="/home" className="backButton customButton">
           <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
         <div className="carpetContainer">
@@ -82,10 +82,10 @@ export default function Carpet({ data }) {
                 <li>{carpet.attributes.price}</li>
               </ul>
             </div>
-            <button className="buyButton customButton" onClick={handleBuyClick}>
-              <img src="/assets/img/buy.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
-            </button>
           </div>
+          <button className="buyButton customButton" onClick={handleBuyClick}>
+            <img src="/assets/img/buy.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
+          </button>
         </div>
       </div>
     </AnimatedPage>

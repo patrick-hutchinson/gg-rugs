@@ -10,7 +10,7 @@ export default function About({ data }) {
     const addWaterPistol = () => {
       let waterPistol = document.createElement("div");
       waterPistol.classList.add("waterPistol");
-      waterPistol.textContent = `${data ? data.attributes.emoji : null}`;
+      waterPistol.textContent = `${data ? data.attributes.emoji : " "}`;
 
       // Set random left position
       let randomLeft = Math.floor(Math.random() * window.innerWidth);

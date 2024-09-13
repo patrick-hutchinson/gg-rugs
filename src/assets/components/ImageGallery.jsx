@@ -26,7 +26,7 @@ export default function ImageGallery({ imageData }) {
         ))}
       </div>
       {/* Generate the Image Navigation */}
-      <div className="imageNavigation">
+      <div className="imageNavigation desktop">
         {imageData.map((image, i) => (
           <div className="imageButton" key={image.id} onClick={() => handleClick(i)}></div>
         ))}

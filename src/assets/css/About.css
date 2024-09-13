@@ -30,7 +30,7 @@
 
 @media only screen and (max-width: 600px) {
   .waterPistol {
-    font-size: 200px;
+    font-size: 120px;
   }
   .pistolContainer {
     z-index: 9;

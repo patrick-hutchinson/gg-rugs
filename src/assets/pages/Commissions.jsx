@@ -72,19 +72,21 @@ export default function Commissions({ data }) {
       <main className="pageContainer" ref={pageContainerRef}>
         <div className="commissions">
           <ImageGallery imageData={imageData} />
-          <div className="rugForm">
+          <div className="formWrapper">
             <h1>CREATE YOUR GGRUG</h1>
             <form onSubmit={handleSubmit}>
-              <input type="text" name="size" placeholder="SIZE" value={formData.size} onChange={handleChange} />
-              <input type="text" name="colors" placeholder="COLORS" value={formData.colors} onChange={handleChange} />
-              <input
-                type="text"
-                name="theme"
-                placeholder="SUBJECT/THEME"
-                value={formData.theme}
-                onChange={handleChange}
-              />
-              <div>
+              <div className="alignTop">
+                <input type="text" name="size" placeholder="SIZE" value={formData.size} onChange={handleChange} />
+                <input type="text" name="colors" placeholder="COLORS" value={formData.colors} onChange={handleChange} />
+                <input
+                  type="text"
+                  name="theme"
+                  placeholder="SUBJECT/THEME"
+                  value={formData.theme}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="alignBottom">
                 <div className="checkBoxContainer">
                   <label>I DESIGN MY RUG</label>
                   <input
@@ -95,7 +97,7 @@ export default function Commissions({ data }) {
                     onChange={handleChange}
                   />
                 </div>
-                <button className="submitButton" type="submit">
+                <button className="submitButton customButton" type="submit">
                   <img src="/assets/img/send.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
                 </button>
               </div>

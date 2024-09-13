@@ -6,14 +6,14 @@ import Logo from "../components/Logo";
 import "../css/OpeningPage.css";
 
 export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
+  const openingPageRef = React.useRef(null);
+
   window.addEventListener("click", () => {
     handleOpeningPageClose();
   });
 
-  const openingPageRef = React.useRef(null);
-
   const handleOpeningPageClose = () => {
-    openingPageRef.current.style.top = "-100vh";
+    openingPageRef.current.classList.add("close");
 
     setTimeout(() => {
       localStorage.setItem("hasSeenOpeningPage", "true");
@@ -39,7 +39,7 @@ export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
         scaleFactor = 1.5;
       }
     } else {
-      scaleFactor = 0.4;
+      scaleFactor = 1;
     }
 
     document.querySelector(`.${CSS.logoContainer}`).style.transform = `translate(-50%, -50%) scale(${scaleFactor}) `;
