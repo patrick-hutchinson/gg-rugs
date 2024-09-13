@@ -109,6 +109,9 @@ header .logoContainer {
 }
 
 @media only screen and (max-width: 600px) {
+  .logo {
+    height: 30px;
+  }
   .mobileMenu img,
   .closeMenu {
     height: 40px;
