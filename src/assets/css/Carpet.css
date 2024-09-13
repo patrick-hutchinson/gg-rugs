@@ -17,7 +17,7 @@
   position: relative;
   display: flex;
   position: absolute;
-  bottom: 0;
+  bottom: -14px;
   column-gap: 10px;
 }
 .carpetSpecifications > ul:first-child {
@@ -77,8 +77,5 @@
     position: fixed;
     bottom: 15px;
     right: 50px;
-  }
-  .carpetContainer {
-    margin-bottom: 10px;
   }
 }

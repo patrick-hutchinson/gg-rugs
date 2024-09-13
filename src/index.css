@@ -260,7 +260,7 @@ h1 {
     display: none;
   }
   .pageContainer {
-    height: auto;
+    /* height: auto; */
     overflow: unset;
   }
 }

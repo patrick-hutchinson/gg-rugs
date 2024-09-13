@@ -85,6 +85,11 @@ header .logoContainer {
   margin: 10px;
 }
 
+.logo {
+  height: 45px;
+  width: auto;
+}
+
 @media only screen and (max-width: 1180px) {
   .header {
     text-align: right;

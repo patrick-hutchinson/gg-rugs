@@ -61,7 +61,7 @@ export default function Carpet({ data }) {
   return (
     <AnimatedPage>
       <div className="pageContainer" ref={pageContainerRef}>
-        <Link to="/home" className="backButton customButton">
+        <Link to="/" className="backButton customButton">
           <img src="/assets/img/backarrow.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}></img>
         </Link>
         <div className="carpetContainer">
