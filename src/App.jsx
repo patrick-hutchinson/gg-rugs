@@ -68,23 +68,21 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<CursorLayout />}>
-          <Route path="/" element={<OpeningPage isDesktop={isDesktop} />} />
+          <Route index element={<OpeningPage isDesktop={isDesktop} />} />
           <Route element={<HeaderLayout isDesktop={isDesktop} />}>
             <Route
-              path="/home"
+              path="home"
               element={<Home strapiBaseURL={strapiBaseURL} isDesktop={isDesktop} data={data.carpets} />}
             />
-            <Route path="/about" element={<About strapiBaseURL={strapiBaseURL} data={data.about} />} />
+            <Route path="about" element={<About strapiBaseURL={strapiBaseURL} data={data.about} />} />
+            <Route path="commissions" element={<Commissions strapiBaseURL={strapiBaseURL} data={data.commissions} />} />
+            <Route path="contact" element={<Contact strapiBaseURL={strapiBaseURL} data={data.contact} />} />
+            <Route path="*" element={<NotFound />} />
+            {/* Dynamic route moved below */}
             <Route
-              path="/commissions"
-              element={<Commissions strapiBaseURL={strapiBaseURL} data={data.commissions} />}
-            />
-            <Route path="/contact" element={<Contact strapiBaseURL={strapiBaseURL} data={data.contact} />} />
-            <Route
-              path="/:id"
+              path=":id"
               element={<Carpet data={data.carpets} strapiBaseURL={strapiBaseURL} isDesktop={isDesktop} />}
             />
-            <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
       </Routes>

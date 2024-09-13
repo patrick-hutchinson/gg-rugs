@@ -26,7 +26,7 @@ export default function Header({ isDesktop }) {
     document.querySelector(".mobileMenu").classList.remove("visible");
   }
 
-  let mobileHeader = (
+  let MobileHeader = () => (
     <ul className="header">
       <li className="customButton">
         <img onMouseDown={handleOpenMenu} src="/assets/img/menu.svg" />
@@ -34,7 +34,7 @@ export default function Header({ isDesktop }) {
     </ul>
   );
 
-  let mobileMenu = (
+  let MobileMenu = () => (
     <div className="mobileMenu">
       <span className="closeMenu customButton">
         <img onMouseDown={handleMenuClick} src="/assets/img/close.svg" />
@@ -64,7 +64,7 @@ export default function Header({ isDesktop }) {
     </div>
   );
 
-  let desktopHeader = (
+  let DesktopHeader = () => (
     <>
       <ul className="header">
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
@@ -99,8 +99,8 @@ export default function Header({ isDesktop }) {
           <Logo />
         </div>
       </Link>
-      {isDesktop ? desktopHeader : mobileHeader}
-      {mobileMenu}
+      {isDesktop ? <DesktopHeader /> : <MobileHeader />}
+      <MobileMenu />
     </header>
   );
 }
