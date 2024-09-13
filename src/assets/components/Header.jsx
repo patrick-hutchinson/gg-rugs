@@ -42,7 +42,7 @@ export default function Header({ isDesktop }) {
       </span>
       <ul>
         <li className="customButton">
-          <Link to="/home">
+          <Link to="/">
             <img onMouseDown={handleMenuClick} src="/assets/img/home.svg" />
           </Link>
         </li>
@@ -69,7 +69,7 @@ export default function Header({ isDesktop }) {
     <>
       <ul className="header">
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
-          <Link to="/home">
+          <Link to="/">
             <img src="assets/img/home.svg" />
           </Link>
         </li>
@@ -96,9 +96,7 @@ export default function Header({ isDesktop }) {
   return (
     <header>
       <Link to="/home">
-        <div className="logoContainer">
-          <Logo />
-        </div>
+        <div className="logoContainer">{/* <Logo /> */}</div>
       </Link>
       {isDesktop ? <DesktopHeader /> : <MobileHeader />}
       <MobileMenu />

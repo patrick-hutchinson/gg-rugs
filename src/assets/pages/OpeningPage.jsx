@@ -5,12 +5,21 @@ import CSS from "../css/logo.module.css";
 import Logo from "../components/Logo";
 import "../css/OpeningPage.css";
 
-export default function OpeningPage({ isDesktop }) {
-  let navigate = useNavigate();
-
+export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
   window.addEventListener("click", () => {
-    navigate("/home");
+    handleOpeningPageClose();
   });
+
+  const openingPageRef = React.useRef(null);
+
+  const handleOpeningPageClose = () => {
+    openingPageRef.current.style.top = "-100vh";
+
+    setTimeout(() => {
+      localStorage.setItem("hasSeenOpeningPage", "true");
+      setShowOpeningPage(false);
+    }, 1000);
+  };
 
   window.addEventListener("resize", () => {
     scaleLogo();
@@ -37,7 +46,7 @@ export default function OpeningPage({ isDesktop }) {
   }
 
   return (
-    <div className="openingPage">
+    <div className="openingPage" ref={openingPageRef}>
       <div className={CSS.logoContainer}>
         <Logo />
       </div>

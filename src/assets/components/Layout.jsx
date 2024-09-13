@@ -1,10 +1,25 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
-import "../css/CursorLayout.css";
+import "../css/Layout.css";
 
-export default function Layout() {
+import Header from "./Header";
+
+export default function Layout({ isDesktop, setShowOpeningPage }) {
   let lastMousePosition = 0;
+
+  const location = useLocation();
+
+  React.useEffect(() => {
+    // Only show the opening page if the user is on the home route
+    if (location.pathname === "/") {
+      const hasSeenOpeningPage = localStorage.getItem("hasSeenOpeningPage");
+      setShowOpeningPage(!hasSeenOpeningPage);
+    } else {
+      localStorage.setItem("hasSeenOpeningPage", true);
+      setShowOpeningPage(false);
+    }
+  }, [location.pathname]);
 
   window.addEventListener("mousemove", (e) => {
     // Handle the CursorImage
@@ -37,12 +52,28 @@ export default function Layout() {
     document.querySelector(".cursorImage img").setAttribute("src", "assets/img/eyes_reg.png");
   });
 
+  let copyrightNoticeRef = React.useRef(null);
+
+  React.useEffect(() => {
+    console.log(copyrightNoticeRef.current.getBoundingClientRect().height);
+    copyrightNoticeRef.current.style.right = `-${copyrightNoticeRef.current.getBoundingClientRect().height / 2 - 25}px`;
+
+    let catalogueImages = document.querySelectorAll(".catalogueImage");
+    catalogueImages.forEach((catalogueImage, index) => {
+      catalogueImage.style.animationDelay = `${index * 0.1}s`;
+    });
+  }, []);
+
   return (
     <>
+      <Header isDesktop={isDesktop} />
       <Outlet />
 
       <div className="cursorImage">
         <img src="/assets/img/eyes_reg.png" />
+      </div>
+      <div className="copyrightNotice" ref={copyrightNoticeRef}>
+        2024 © Copyright. All rights Reserved
       </div>
     </>
   );

@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import AnimatedPage from "../AnimatedPage";
 
 import "../css/Home.css";
+import OpeningPage from "./OpeningPage";
 
-export default function Home({ data, isDesktop }) {
+export default function Home({ data, isDesktop, showOpeningPage, setShowOpeningPage }) {
   let [carpetThumbnails, setCarpetThumbnails] = useState([]);
 
   // Generate each Carpet
@@ -104,6 +105,7 @@ export default function Home({ data, isDesktop }) {
 
   return (
     <>
+      {showOpeningPage && <OpeningPage setShowOpeningPage={setShowOpeningPage} />}
       <AnimatedPage>
         <main className="pageContainer">
           <div className="catalogue">{carpetThumbnails}</div>

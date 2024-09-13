@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
-import CursorLayout from "./assets/components/CursorLayout";
-import HeaderLayout from "./assets/components/HeaderLayout";
+import Layout from "./assets/components/Layout";
+
 import Home from "./assets/pages/Home";
 import About from "./assets/pages/About";
 import Commissions from "./assets/pages/Commissions";
 import Contact from "./assets/pages/Contact";
 import Carpet from "./assets/pages/Carpet";
 import NotFound from "./assets/pages/NotFound";
-import OpeningPage from "./assets/pages/OpeningPage";
 
 export default function App() {
-  let [isDesktop, setIsDesktop] = React.useState(window.innerWidth > 980);
+  const [showOpeningPage, setShowOpeningPage] = React.useState(() => {
+    const hasSeenOpeningPage = localStorage.getItem("hasSeenOpeningPage");
+    return !hasSeenOpeningPage;
+  });
+
+  let [isDesktop, setIsDesktop] = React.useState(window.innerWidth > 1180);
+
+  const [strapiBaseURL] = React.useState("https://strapi-production-7b09.up.railway.app");
 
   const [data, setData] = React.useState({
     carpets: null,
@@ -20,8 +26,12 @@ export default function App() {
     commissions: null,
     contact: null,
   });
-  const [strapiBaseURL] = React.useState("https://strapi-production-7b09.up.railway.app");
 
+  useEffect(() => {
+    console.log(showOpeningPage, "showOpeningPage");
+  }, [showOpeningPage]);
+
+  // Fetch and Initialize Data
   React.useEffect(() => {
     const endpoints = [
       { key: "carpets", url: `${strapiBaseURL}/api/carpets?populate=*` },
@@ -44,39 +54,44 @@ export default function App() {
       });
   }, [strapiBaseURL]);
 
+  // Initialize App
   React.useEffect(() => {
-    if (window.innerWidth > 1180) {
-      setIsDesktop(true);
-    } else {
-      setIsDesktop(false);
-    }
-  }, []);
-
-  window.addEventListener(
-    "resize",
-    () => {
+    // Update isDesktop on Window Resize
+    const handleResize = () => {
       if (window.innerWidth > 1180) {
         setIsDesktop(true);
       } else {
         setIsDesktop(false);
       }
-    },
-    []
-  );
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<CursorLayout />}>
-          <Route index element={<OpeningPage isDesktop={isDesktop} />} />
-          <Route element={<HeaderLayout isDesktop={isDesktop} />}>
-            <Route path="home" element={<Home isDesktop={isDesktop} data={data.carpets} />} />
-            <Route path="about" element={<About data={data.about} />} />
-            <Route path="commissions" element={<Commissions data={data.commissions} />} />
-            <Route path="contact" element={<Contact data={data.contact} />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path=":id" element={<Carpet data={data.carpets} isDesktop={isDesktop} />} />
-          </Route>
+        <Route element={<Layout isDesktop={isDesktop} setShowOpeningPage={setShowOpeningPage} />}>
+          <Route
+            index
+            element={
+              <Home
+                isDesktop={isDesktop}
+                data={data.carpets}
+                setShowOpeningPage={setShowOpeningPage}
+                showOpeningPage={showOpeningPage}
+              />
+            }
+          />
+          <Route path="about" element={<About data={data.about} />} />
+          <Route path="commissions" element={<Commissions data={data.commissions} />} />
+          <Route path="contact" element={<Contact data={data.contact} />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path=":id" element={<Carpet data={data.carpets} isDesktop={isDesktop} />} />
         </Route>
       </Routes>
     </BrowserRouter>
