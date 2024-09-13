@@ -70,7 +70,8 @@ export default function App() {
         <Route element={<CursorLayout />}>
           <Route index element={<OpeningPage isDesktop={isDesktop} />} />
           <Route element={<HeaderLayout isDesktop={isDesktop} />}>
-            <Route path="home" element={<Home isDesktop={isDesktop} data={data.carpets} />} />
+            <Route path="/" element={<Home isDesktop={isDesktop} data={data.carpets} />} />{" "}
+            {/* Changed 'home' to '/' */}
             <Route path="about" element={<About data={data.about} />} />
             <Route path="commissions" element={<Commissions data={data.commissions} />} />
             <Route path="contact" element={<Contact data={data.contact} />} />
