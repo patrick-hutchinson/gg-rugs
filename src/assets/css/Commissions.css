@@ -95,7 +95,7 @@
   .alignBottom {
     top: unset;
     align-items: unset;
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
 
   .formWrapper {
