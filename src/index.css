@@ -234,8 +234,14 @@ h1 {
   }
 
   .pageContainer {
-    height: auto;
-    overflow: auto;
+    /* height: auto;
+    overflow: unset; */
+
+    height: 100%;
+    overflow: scroll;
+    position: fixed;
+    border-radius: 50px;
+    top: 10px;
   }
   .carpetInfo {
     height: auto;
