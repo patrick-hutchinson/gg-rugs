@@ -44,7 +44,7 @@
   width: 100%;
 
   position: absolute;
-  bottom: 0;
+  bottom: calc(var(--textOffset) * -1);
 }
 .submitButton {
   top: 5px;

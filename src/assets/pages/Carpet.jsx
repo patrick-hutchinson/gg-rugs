@@ -67,8 +67,8 @@ export default function Carpet({ data }) {
         <div className="carpetContainer">
           <ImageGallery imageData={imageData} />
           <div className="carpetInfo">
-            <h1>{carpet.attributes.title}</h1>
-            <p className="description">{carpet.attributes.description}</p>
+            <h1 className="carpetTitle">{carpet.attributes.title}</h1>
+            <p className="carpetDescription">{carpet.attributes.description}</p>
 
             <div className="carpetSpecifications">
               <ul>

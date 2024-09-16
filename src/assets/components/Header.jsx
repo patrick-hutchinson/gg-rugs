@@ -95,8 +95,7 @@ export default function Header({ isDesktop }) {
 
   return (
     <header>
-      <Link to="/home">
-        {/* <div className="logoContainer"><Logo /></div> */}
+      <Link to="/">
         <img className="logo" src="/assets/img/gg-logo.svg" />
       </Link>
       {isDesktop ? <DesktopHeader /> : <MobileHeader />}

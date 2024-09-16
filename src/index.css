@@ -52,6 +52,8 @@
 
   --background-color: #fff;
   --font-color: #000;
+
+  --textOffset: calc(var(--medium-font-size) / 3);
 }
 
 *:hover {
@@ -72,12 +74,12 @@ body {
 }
 
 #root {
-  padding: 0;
+  /* padding: 0;
   margin: 0;
   width: 100%;
   height: 100%;
   top: 0;
-  position: absolute;
+  position: absolute; */
 }
 
 ul {
@@ -272,11 +274,11 @@ h1 {
     --large-line-height: 14vw;
   }
 
-  .carpetInfo .description,
+  /* .carpetInfo .description,
   .carpetSpecifications {
     font-size: 0.8em;
     line-height: 1em;
-  }
+  } */
 
   .copyrightNotice {
     z-index: 5;
