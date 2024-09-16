@@ -12,25 +12,3 @@
 .openingPage.close {
   top: -100vh;
 }
-
-#loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #fd2e00;
-  color: #000;
-  width: 100vw;
-  height: 100vh;
-  z-index: 30;
-  text-align: center;
-  text-transform: uppercase;
-  opacity: 1;
-}
-
-#loading > span {
-  display: inline-block;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}

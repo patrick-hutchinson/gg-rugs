@@ -184,8 +184,7 @@ h1 {
   left: 0px;
 }
 .commissions,
-.carpetContainer,
-.contact {
+.carpetContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 10px;
@@ -225,8 +224,8 @@ h1 {
     display: none;
   }
 
-  .commissions {
-    grid-template-columns: 1fr;
+  .desktop {
+    display: none;
   }
 
   .pageContainer {
@@ -237,13 +236,8 @@ h1 {
     margin-top: 20px;
   }
 
-  .desktop {
-    display: none;
-  }
-
   .commissions,
-  .carpetContainer,
-  .contact {
+  .carpetContainer {
     grid-template-columns: 1fr;
   }
 }
@@ -255,5 +249,9 @@ h1 {
     --large-line-height: 14vw;
 
     --medium-font-size: 32px;
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
   }
 }
