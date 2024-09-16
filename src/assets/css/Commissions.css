@@ -89,18 +89,13 @@
     top: unset;
     padding: unset;
   }
-}
-
-@media only screen and (max-width: 600px) {
   .alignBottom {
     top: unset;
     align-items: unset;
-    /* margin-top: 20px; */
   }
+}
 
-  .formWrapper {
-    margin-top: 20px;
-  }
+@media only screen and (max-width: 600px) {
   .checkboxContainer {
     line-height: 0.5;
   }

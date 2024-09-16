@@ -7,11 +7,16 @@ header {
   padding: 10px 20px;
   top: 6px;
   z-index: 15;
-  text-align: left;
   justify-content: space-between;
   column-gap: 20px;
   align-items: center;
   white-space: nowrap;
+  box-sizing: border-box;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .header > li {
@@ -91,6 +96,18 @@ header .logoContainer {
 }
 
 @media only screen and (max-width: 1180px) {
+  header {
+    /* background: #f00; */
+    margin: 10px 20px;
+    padding: unset;
+    width: -webkit-fill-available;
+    border-radius: 10px;
+    padding: 0px 10px;
+
+    top: 0;
+    padding-top: 16px;
+    z-index: 10;
+  }
   .header {
     text-align: right;
     display: block;
@@ -113,7 +130,7 @@ header .logoContainer {
 
 @media only screen and (max-width: 600px) {
   .logo {
-    height: 30px;
+    height: 35px;
   }
   .mobileMenu img,
   .closeMenu {
@@ -123,11 +140,5 @@ header .logoContainer {
 
   .mobileMenu ul {
     transform: translate(-50%, -60%);
-  }
-
-  header {
-    top: 0;
-    padding-top: 16px;
-    z-index: 10;
   }
 }
