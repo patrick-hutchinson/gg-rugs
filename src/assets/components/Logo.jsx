@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import letters from "../components/letters";
-import CSS from "../css/logo.module.css";
+import "../css/Logo.css";
 
 export default function Logo() {
   const letterPointsRef = useRef([]);
 
   useEffect(() => {
     // Get the height css height of any letter SVG for reference, here the first is chosen
-    const element = document.querySelector(`.${CSS.letter} > img`);
+    const element = document.querySelector(`.letter > img`);
     const elementHeight = parseInt(window.getComputedStyle(element).getPropertyValue("height"));
 
     // Calculate the distance between the highest and lowest point of a letter and determine scale
@@ -32,13 +32,14 @@ export default function Logo() {
 
       letter.letterPoints.forEach((point) => {
         //Select the correct lettercontainer to add the points into
-        const className = `letterContainer_${letter.character}`;
-        const classToSelect = CSS[className];
+        const className = `.letterContainer_${letter.character}`;
 
         // For each lettercontainer, create and append the points
-        document.querySelectorAll(`.${classToSelect}`).forEach((letterContainer) => {
+        document.querySelectorAll(className).forEach((letterContainer) => {
+          console.log(`${className}`, "className");
+
           const letterPoint = document.createElement("div");
-          letterPoint.classList.add(CSS.letter_point);
+          letterPoint.classList.add("letter_point");
 
           letterPoint.style.left = point.left * pointScale - translateX + "px";
           letterPoint.style.top = point.top * pointScale - translateY + "px";
@@ -93,37 +94,37 @@ export default function Logo() {
 
   return (
     <>
-      <div className={`${CSS.letterContainer} ${CSS.letterContainer_G}`}>
-        <div className={CSS.letter}>
+      <div className="letterContainer letterContainer_G">
+        <div className="letter">
           <img src="/assets/img/00-GG-Rugs_G.svg" alt="G" />
         </div>
       </div>
-      <div className={`${CSS.letterContainer} ${CSS.letterContainer_G}`}>
-        <div className={CSS.letter}>
+      <div className="letterContainer letterContainer_G">
+        <div className="letter">
           <img src="/assets/img/00-GG-Rugs_G.svg" alt="G" />
         </div>
       </div>
-      <div className={`${CSS.letterContainer} ${CSS.letterContainer_R}`}>
-        <div className={CSS.letter}>
+      <div className="letterContainer letterContainer_R">
+        <div className="letter">
           <img src="/assets/img/01-GG-Rugs_R.svg" alt="R" />
         </div>
       </div>
-      <div className={`${CSS.letterContainer} ${CSS.letterContainer_U}`}>
-        <div className={CSS.letter}>
+      <div className="letterContainer letterContainer_U">
+        <div className="letter">
           <img src="/assets/img/02-GG-Rugs_U.svg" alt="U" />
         </div>
       </div>
-      <div className={`${CSS.letterContainer} ${CSS.letterContainer_G}`}>
-        <div className={CSS.letter}>
+      <div className="letterContainer letterContainer_G">
+        <div className="letter">
           <img src="/assets/img/00-GG-Rugs_G.svg" alt="G" />
         </div>
       </div>
-      <div className={`${CSS.letterContainer} ${CSS.letterContainer_S}`}>
-        <div className={CSS.letter}>
+      <div className="letterContainer letterContainer_S">
+        <div className="letter">
           <img src="/assets/img/03-GG-Rugs_S.svg" alt="S" />
         </div>
       </div>
-      <span className={CSS.trademark}>®</span>
+      <span className="trademark">®</span>
     </>
   );
 }

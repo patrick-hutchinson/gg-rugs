@@ -1,7 +1,6 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import CSS from "../css/logo.module.css";
+import "../css/Logo.css";
 import Logo from "../components/Logo";
 import "../css/OpeningPage.css";
 
@@ -39,15 +38,15 @@ export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
         scaleFactor = 1.5;
       }
     } else {
-      scaleFactor = 1;
+      scaleFactor = 0.4;
     }
 
-    document.querySelector(`.${CSS.logoContainer}`).style.transform = `translate(-50%, -50%) scale(${scaleFactor}) `;
+    document.querySelector(".logoContainer").style.transform = `translate(-50%, -50%) scale(${scaleFactor}) `;
   }
 
   return (
     <div className="openingPage" ref={openingPageRef}>
-      <div className={CSS.logoContainer}>
+      <div className="logoContainer">
         <Logo />
       </div>
     </div>

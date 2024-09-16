@@ -105,7 +105,7 @@ export default function Home({ data, isDesktop, showOpeningPage, setShowOpeningP
 
   return (
     <>
-      {showOpeningPage && <OpeningPage setShowOpeningPage={setShowOpeningPage} />}
+      {showOpeningPage && <OpeningPage setShowOpeningPage={setShowOpeningPage} isDesktop={isDesktop} />}
       <AnimatedPage>
         <main className="pageContainer">
           <div className="catalogue">{carpetThumbnails}</div>
