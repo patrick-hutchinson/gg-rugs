@@ -17,6 +17,16 @@
   animation-name: pulseCursor;
 }
 
+.copyrightNotice {
+  transform: rotate(-90deg) translateX(50%);
+  display: inline-block;
+  position: fixed;
+  bottom: 10px;
+  z-index: 19;
+  font-size: var(--small-font-size);
+  line-height: var(--small-line-height);
+}
+
 @keyframes pulseCursor {
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -26,5 +36,11 @@
   }
   100% {
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media only screen and (max-width: 1180px) {
+  .copyrightNotice {
+    display: none;
   }
 }

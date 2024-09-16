@@ -72,7 +72,7 @@ export default function Layout({ isDesktop, setShowOpeningPage }) {
       <div className="cursorImage">
         <img src="/assets/img/eyes_reg.png" />
       </div>
-      <div className="copyrightNotice desktop" ref={copyrightNoticeRef}>
+      <div className="copyrightNotice" ref={copyrightNoticeRef}>
         2024 © Copyright. All rights Reserved
       </div>
     </>

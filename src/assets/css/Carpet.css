@@ -8,6 +8,7 @@
   height: 100%; /* This will make it take up 100% of the parent container's height */
   overflow: hidden; /* Prevent the parent container from scrolling */
   gap: 10px;
+  width: 95%;
 }
 
 .carpetTitle {
@@ -79,6 +80,6 @@
   .buyButton {
     position: fixed;
     bottom: 15px;
-    right: 20px;
+    right: 10px;
   }
 }

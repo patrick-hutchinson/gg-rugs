@@ -4,6 +4,29 @@
   pointer-events: all !important;
 }
 
+.videoContainer {
+  z-index: 0;
+}
+.videoContainer {
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.videoContainer video {
+  min-width: 100%;
+  min-height: 100%;
+
+  width: auto;
+  height: auto;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .socials {
   font-size: var(--large-font-size);
   line-height: var(--large-line-height);
@@ -26,13 +49,12 @@
 }
 
 @media only screen and (max-width: 1180px) {
+  .videoContainer {
+    pointer-events: all;
+  }
   .socials {
     display: flex;
   }
-  /* .contactPage {
-    height: calc(100% - 10vh) !important;
-  } */
-
   .contact {
     height: 100%;
   }
@@ -56,11 +78,9 @@
     height: 100%;
     width: auto;
   }
-
   .contactPage {
     height: 100% !important;
   }
-
   .contact {
     height: 100%;
   }
