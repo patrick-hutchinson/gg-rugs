@@ -83,6 +83,11 @@
 
   .formWrapper {
     margin-top: 20px;
+    width: unset;
+  }
+  .submitButton {
+    top: unset;
+    padding: unset;
   }
 }
 
@@ -90,9 +95,13 @@
   .alignBottom {
     top: unset;
     align-items: unset;
+    margin-top: 20px;
   }
 
   .formWrapper {
     margin-top: 20px;
+  }
+  .checkboxContainer {
+    line-height: 0.5;
   }
 }

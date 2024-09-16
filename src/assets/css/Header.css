@@ -106,6 +106,9 @@ header .logoContainer {
     text-align: left;
     pointer-events: none;
   }
+  .header > li {
+    margin-right: unset;
+  }
 }
 
 @media only screen and (max-width: 600px) {
