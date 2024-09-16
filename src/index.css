@@ -220,9 +220,11 @@ h1 {
   *:hover {
     cursor: default !important;
   }
+
   body {
     height: auto;
   }
+
   .cursorImage {
     display: none;
   }
@@ -232,6 +234,7 @@ h1 {
   }
 
   .pageContainer {
+    height: auto;
     overflow: auto;
   }
   .carpetInfo {
@@ -242,7 +245,7 @@ h1 {
   .commissions,
   .carpetContainer {
     grid-template-columns: 1fr;
-    overflow: auto;
+    /* overflow: auto; */
   }
 }
 
