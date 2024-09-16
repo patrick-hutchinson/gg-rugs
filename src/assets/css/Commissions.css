@@ -85,3 +85,14 @@
     margin-top: 20px;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .alignBottom {
+    top: unset;
+    align-items: unset;
+  }
+
+  .formWrapper {
+    margin-top: 20px;
+  }
+}

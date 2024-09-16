@@ -245,7 +245,8 @@ h1 {
   .commissions,
   .carpetContainer {
     grid-template-columns: 1fr;
-    /* overflow: auto; */
+    height: auto;
+    /* overflow: hidden; */
   }
 }
 
