@@ -203,7 +203,6 @@ h1 {
   left: 0px;
 }
 .commissions,
-.carpetContainer,
 .contact {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -244,8 +243,7 @@ h1 {
     display: none;
   }
 
-  .commissions,
-  .carpetContainer {
+  .commissions {
     grid-template-columns: 1fr;
   }
 
@@ -272,6 +270,8 @@ h1 {
   :root {
     --large-font-size: 17vw;
     --large-line-height: 14vw;
+
+    --medium-font-size: 32px;
   }
 
   /* .carpetInfo .description,

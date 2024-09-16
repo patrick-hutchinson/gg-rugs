@@ -12,6 +12,7 @@
 
 .carpetTitle {
   flex: 0 0 auto; /* Title will have a fixed height based on its content */
+  white-space: unset;
 }
 
 .carpetDescription {
