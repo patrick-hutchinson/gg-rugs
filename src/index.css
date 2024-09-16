@@ -220,6 +220,9 @@ h1 {
   *:hover {
     cursor: default !important;
   }
+  body {
+    height: auto;
+  }
   .cursorImage {
     display: none;
   }
