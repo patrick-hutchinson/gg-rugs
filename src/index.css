@@ -259,6 +259,10 @@ h1 {
     grid-template-columns: 1fr;
     height: auto;
   }
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -271,5 +275,9 @@ h1 {
 
   .contact {
     grid-template-columns: 1fr;
+  }
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
   }
 }
