@@ -3,16 +3,16 @@
 @font-face {
   font-family: "Founders";
   src: url("/assets/fonts/Founders-Grotesk-Regular.otf");
-  /* font-weight: normal; */
-  /* font-style: normal; */
-  /* font-display: block; */
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }
 @font-face {
   font-family: "FoundersMedium";
   src: url("/assets/fonts/Founders-Grotesk-Medium.otf");
-  /* font-weight: normal; */
-  /* font-style: normal; */
-  /* font-display: block; */
+  font-weight: bold;
+  font-style: normal;
+  font-display: block;
 }
 
 * {
