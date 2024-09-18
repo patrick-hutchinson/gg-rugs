@@ -1,10 +1,10 @@
 .waterPistol {
   position: absolute;
-  font-size: 230px;
+  font-size: 200px;
   animation-name: none;
   animation-iteration-count: 1;
   animation-duration: 3s;
-  bottom: -30px;
+  bottom: -50px;
   animation-fill-mode: forwards;
   transform-origin: center;
 

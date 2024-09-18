@@ -71,7 +71,7 @@ export default function Layout({ isDesktop, setShowOpeningPage }) {
     catalogueImages.forEach((catalogueImage, index) => {
       catalogueImage.style.animationDelay = `${index * 0.1}s`;
     });
-  }, []);
+  }, [isDesktop]);
 
   return (
     <>

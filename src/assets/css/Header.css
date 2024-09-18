@@ -27,6 +27,7 @@ header {
   right: 20px;
 }
 header.unblur {
+  backdrop-filter: unset;
   -webkit-backdrop-filter: unset;
   background: unset;
 }
@@ -125,6 +126,10 @@ header .logoContainer {
     top: 20px;
     right: 20px;
     margin: 10px;
+  }
+  .logo {
+    position: relative;
+    left: -5px;
   }
 }
 
