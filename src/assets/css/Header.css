@@ -26,6 +26,10 @@ header {
   top: 20px;
   right: 20px;
 }
+header.unblur {
+  -webkit-backdrop-filter: unset;
+  background: unset;
+}
 
 .header > li {
   display: inline-block;
@@ -115,8 +119,8 @@ header .logoContainer {
   }
   .closeMenu {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 20px;
+    right: 20px;
     margin: 10px;
   }
 }

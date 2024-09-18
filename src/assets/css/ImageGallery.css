@@ -31,14 +31,14 @@
 
 .imageButton {
   display: inline-block;
-  background: pink;
+  background: #999999;
   width: 15px;
   height: 15px;
   border-radius: 50%;
   transition: transform 0.1s ease-in-out;
 }
 .imageButton:hover {
-  background: red;
+  background: #fff;
   transform: scale(2);
   transform-origin: center;
 }

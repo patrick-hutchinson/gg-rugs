@@ -21,6 +21,15 @@ export default function Layout({ isDesktop, setShowOpeningPage }) {
     }
   }, [location.pathname]);
 
+  React.useEffect(() => {
+    // Only show the opening page if the user is on the home route
+    if (location.pathname === "/contact") {
+      document.querySelector("header").classList.add("unblur");
+    } else {
+      document.querySelector("header").classList.remove("unblur");
+    }
+  }, [location.pathname]);
+
   window.addEventListener("mousemove", (e) => {
     // Handle the CursorImage
     let cursorImage = document.querySelector(".cursorImage img");
