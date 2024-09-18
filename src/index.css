@@ -122,7 +122,14 @@ h1 {
   padding-top: 100px;
   padding-bottom: 20px;
 }
-
+.pageContainer::-webkit-scrollbar {
+  scrollbar-width: none;
+  -webkit-appearance: none;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  width: 0;
+  height: 0;
+}
 @keyframes wiggle {
   0% {
     transform: rotate(0deg);
