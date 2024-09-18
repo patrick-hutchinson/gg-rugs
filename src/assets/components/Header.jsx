@@ -93,12 +93,14 @@ export default function Header({ isDesktop }) {
   );
 
   return (
-    <header>
-      <Link to="/">
-        <img className="logo" src="/assets/img/gg-logo.svg" />
-      </Link>
-      {isDesktop ? <DesktopHeader /> : <MobileHeader />}
+    <>
+      <header>
+        <Link to="/">
+          <img className="logo" src="/assets/img/gg-logo.svg" />
+        </Link>
+        {isDesktop ? <DesktopHeader /> : <MobileHeader />}
+      </header>
       <MobileMenu />
-    </header>
+    </>
   );
 }
