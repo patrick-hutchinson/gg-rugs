@@ -50,7 +50,7 @@ export default function Contact({ data }) {
         <div className="contact">
           {/* <div className="desktop"></div> */}
           <div className="socials">
-            <div>
+            <h1>
               <a
                 href="mailto:ciao@gg-office.com"
                 target="blank"
@@ -59,8 +59,8 @@ export default function Contact({ data }) {
               >
                 SHOOT US AN EMAIL
               </a>
-            </div>
-            <div className="instagram">
+            </h1>
+            <h1 className="instagram">
               <a
                 href="https://www.instagram.com/gg__rugs/"
                 target="blank"
@@ -69,7 +69,7 @@ export default function Contact({ data }) {
               >
                 IG
               </a>
-            </div>
+            </h1>
           </div>
         </div>
       </main>

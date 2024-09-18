@@ -3,6 +3,7 @@
   z-index: 5;
   pointer-events: all !important;
   height: 100%;
+  overflow: hidden;
 }
 
 .videoContainer {
