@@ -3,27 +3,8 @@ import { Link } from "react-router-dom";
 import AnimatedPage from "../AnimatedPage";
 
 import "../css/Commissions.css";
-import ImageGallery from "../components/ImageGallery";
 
 export default function Commissions({ data }) {
-  //Declarations
-  let pageContainerRef = React.useRef(null);
-
-  // Scroll window to top on load
-  useEffect(() => {
-    if (pageContainerRef.current) {
-      pageContainerRef.current.scrollTo({ top: 0, left: 0 });
-      window.scrollTo({ top: 0, left: 0 });
-    }
-  }, []);
-
-  const [imageData, setImageData] = useState();
-  useEffect(() => {
-    if (data) {
-      setImageData(data.attributes.images.data);
-    }
-  }, [data]);
-
   // Initialize formData
   const [formData, setFormData] = useState({
     size: "",
@@ -46,8 +27,10 @@ export default function Commissions({ data }) {
     e.preventDefault();
     const { size, colors, theme, designOwnRug } = formData;
     const mailtoLink = `mailto:ciao@gg-office.com?subject=DESIGN ME A RUG!&body=${encodeURIComponent(
-      `I NEED A RUG FROM YOU! Please, it has to be:\n\n Size: ${size}\nColors: ${colors}\nTheme: ${theme}\nDesign Own Rug: ${
-        designOwnRug ? "Yes" : "No"
+      `I NEED A RUG FROM YOU! Please, it has to be:\n\n Size: ${size}\nColors: ${colors}\nTheme: ${theme}\n\n ${
+        designOwnRug
+          ? "Don't worry, I will design my own rug!"
+          : "I don't want to design my rug, please do it for me! Should we start talking about this sometime soon?"
       }`
     )}`;
     window.location.href = mailtoLink;
@@ -67,15 +50,58 @@ export default function Commissions({ data }) {
     e.target.setAttribute("src", splicedSource);
   }
 
+  const ImageGrid = () => {
+    return (
+      <div className="imagegrid">
+        {data.attributes.imagegrid.map((row) => {
+          let imageAmount = row.row.data.length;
+          return (
+            <div
+              className="imagegrid-row"
+              key={row.id}
+              style={{
+                gridTemplateColumns: `repeat(${imageAmount}, 1fr)`, // Dynamically set number of columns
+              }}
+            >
+              {row.row.data.map((media) => (
+                <div className="imagegrid-media" key={media.id}>
+                  {media.attributes.mime.includes("image") ? (
+                    <img src={media.attributes.url} alt={media.attributes.title} />
+                  ) : media.attributes.mime.includes("video") ? (
+                    <video autoPlay defaultMuted loop playsInline>
+                      <source src={media.attributes.url} type={media.attributes.mime} />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
   return (
     <AnimatedPage>
-      <main className="pageContainer" ref={pageContainerRef}>
-        <div className="commissions">
-          <ImageGallery imageData={imageData} />
-          <div className="formWrapper">
-            <h1>CREATE YOUR GGRUG</h1>
-            <form onSubmit={handleSubmit}>
-              <div className="alignTop">
+      <main className="pageContainer">
+        <Link to="/" className="backButton customButton desktop">
+          <img
+            src="/assets/img/buttons/backarrow.svg"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          ></img>
+        </Link>
+
+        <div className="carpetContainer">
+          {data && <ImageGrid />}
+
+          <div className="carpetInfo">
+            <h1 className="carpetTitle">CREATE YOUR GGRUG</h1>
+            <p className="carpetDescription">{data && data.attributes.description}</p>
+
+            <form className="commissioninfo-wrapper" onSubmit={handleSubmit}>
+              <div className="commissioninfo">
                 <input type="text" name="size" placeholder="SIZE" value={formData.size} onChange={handleChange} />
                 <input type="text" name="colors" placeholder="COLORS" value={formData.colors} onChange={handleChange} />
                 <input
@@ -86,8 +112,9 @@ export default function Commissions({ data }) {
                   onChange={handleChange}
                 />
               </div>
-              <div className="alignBottom">
-                <div className="checkBoxContainer">
+
+              <div className="submission-wrapper">
+                <div className="checkboxContainer">
                   <label>I DESIGN MY RUG</label>
                   <input
                     className="checkbox"
@@ -97,8 +124,13 @@ export default function Commissions({ data }) {
                     onChange={handleChange}
                   />
                 </div>
+
                 <button className="submitButton customButton" type="submit">
-                  <img src="/assets/img/send.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+                  <img
+                    src="/assets/img/buttons/send.svg"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  />
                 </button>
               </div>
             </form>

@@ -13,27 +13,16 @@ export default function Contact({ data }) {
   }, [data]);
 
   function handleMouseEnter(e) {
-    const cursorImage = document.querySelector(".cursorImage > img");
-    cursorImage.classList.remove("pulseCursor");
-    cursorImage.classList.add("pulseCursor");
+    let currentSource = e.target.getAttribute("src");
+    let splicedSource = currentSource.slice(0, -4) + "_focus.svg";
 
-    const handleAnimationEnd = () => {
-      cursorImage.classList.remove("pulseCursor");
-      cursorImage.removeEventListener("animationend", handleAnimationEnd);
-    };
-
-    cursorImage.addEventListener("animationend", handleAnimationEnd);
+    e.target.setAttribute("src", splicedSource);
   }
+  function handleMouseLeave(e) {
+    let currentSource = e.target.getAttribute("src");
+    let splicedSource = currentSource.slice(0, -10) + ".svg";
 
-  function handleSeeMoreMouseLeave(e) {
-    const cursorImage = document.querySelector(".cursorImage > img");
-
-    const handleAnimationEnd = () => {
-      cursorImage.classList.remove("pulseCursor");
-      cursorImage.removeEventListener("animationend", handleAnimationEnd);
-    };
-
-    cursorImage.addEventListener("animationend", handleAnimationEnd);
+    e.target.setAttribute("src", splicedSource);
   }
 
   return (
@@ -48,28 +37,16 @@ export default function Contact({ data }) {
         </div>
 
         <div className="contact">
-          {/* <div className="desktop"></div> */}
-          <div className="socials">
-            <h1>
-              <a
-                href="mailto:ciao@gg-office.com"
-                target="blank"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleSeeMoreMouseLeave}
-              >
-                SHOOT US AN EMAIL
-              </a>
-            </h1>
-            <h1 className="instagram">
-              <a
-                href="https://www.instagram.com/gg__rugs/"
-                target="blank"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleSeeMoreMouseLeave}
-              >
-                IG
-              </a>
-            </h1>
+          <div className="email">
+            <a href="mailto:ciao@gg-rugs.com" target="_blank">
+              <img
+                className="customButton"
+                src="/assets/img/buttons/shoot-us-an-email.svg"
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                alt=""
+              />
+            </a>
           </div>
         </div>
       </main>

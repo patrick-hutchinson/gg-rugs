@@ -51,13 +51,22 @@
   color: #fff;
 }
 
-@media only screen and (max-width: 1180px) {
+.contactPage {
+  display: flex;
+  justify-content: flex-end; /* Aligns content to the right horizontally */
+  align-items: center; /* Centers content vertically */
+  height: 100vh;
+}
+.contactPage .email {
+  height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 820px) {
   .videoContainer {
     pointer-events: all;
   }
-}
-
-@media only screen and (max-width: 600px) {
   .videoContainer video {
     height: 100%;
   }

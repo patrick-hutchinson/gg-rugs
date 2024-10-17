@@ -29,7 +29,7 @@ export default function Header({ isDesktop }) {
   let MobileHeader = () => (
     <ul className="header">
       <li className="customButton">
-        <img onMouseDown={handleOpenMenu} src="/assets/img/menu.svg" />
+        <img onMouseDown={handleOpenMenu} src="/assets/img/buttons/menu.svg" />
       </li>
     </ul>
   );
@@ -37,27 +37,27 @@ export default function Header({ isDesktop }) {
   let MobileMenu = () => (
     <div className="mobileMenu">
       <span className="closeMenu customButton">
-        <img onMouseDown={handleMenuClick} src="/assets/img/close.svg" />
+        <img onMouseDown={handleMenuClick} src="/assets/img/buttons/x.svg" />
       </span>
       <ul>
         <li className="customButton">
           <Link to="/">
-            <img onMouseDown={handleMenuClick} src="/assets/img/home.svg" />
+            <img onMouseDown={handleMenuClick} src="/assets/img/buttons/rugs_mobile.svg" />
           </Link>
         </li>
         <li className="customButton">
           <Link to="/about">
-            <img onMouseDown={handleMenuClick} src="/assets/img/about.svg" />
+            <img onMouseDown={handleMenuClick} src="/assets/img/buttons/about_mobile.svg" />
           </Link>
         </li>
         <li className="customButton">
           <Link to="/commissions">
-            <img onMouseDown={handleMenuClick} src="/assets/img/commission.svg" />
+            <img onMouseDown={handleMenuClick} src="/assets/img/buttons/commission_mobile.svg" />
           </Link>
         </li>
         <li className="customButton">
           <Link to="/contact">
-            <img onMouseDown={handleMenuClick} src="/assets/img/contact.svg" />
+            <img onMouseDown={handleMenuClick} src="/assets/img/buttons/contacts_mobile.svg" />
           </Link>
         </li>
       </ul>
@@ -69,23 +69,23 @@ export default function Header({ isDesktop }) {
       <ul className="header">
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
           <Link to="/">
-            <img src="assets/img/home.svg" />
+            <img src="assets/img/buttons/rugs.svg" />
           </Link>
         </li>
 
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
           <Link to="/about">
-            <img src="assets/img/about.svg" />
+            <img src="assets/img/buttons/about.svg" />
           </Link>
         </li>
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
           <Link to="/commissions">
-            <img src="assets/img/commission.svg" />
+            <img src="assets/img/buttons/commission.svg" />
           </Link>
         </li>
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
           <Link to="/contact">
-            <img src="assets/img/contact.svg" />
+            <img src="assets/img/buttons/contacts.svg" />
           </Link>
         </li>
       </ul>

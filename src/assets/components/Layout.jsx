@@ -4,6 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import "../css/Layout.css";
 
 import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Layout({ isDesktop, setShowOpeningPage }) {
   let lastMousePosition = 0;
@@ -64,8 +65,8 @@ export default function Layout({ isDesktop, setShowOpeningPage }) {
   let copyrightNoticeRef = React.useRef(null);
 
   React.useEffect(() => {
-    console.log(copyrightNoticeRef.current.getBoundingClientRect().height);
-    copyrightNoticeRef.current.style.right = `-${copyrightNoticeRef.current.getBoundingClientRect().height / 2 - 25}px`;
+    // console.log(copyrightNoticeRef.current.getBoundingClientRect().height);
+    // copyrightNoticeRef.current.style.right = `-${copyrightNoticeRef.current.getBoundingClientRect().height / 2 - 25}px`;
 
     let catalogueImages = document.querySelectorAll(".catalogueImage");
     catalogueImages.forEach((catalogueImage, index) => {
@@ -77,12 +78,10 @@ export default function Layout({ isDesktop, setShowOpeningPage }) {
     <>
       <Header isDesktop={isDesktop} />
       <Outlet />
+      <Footer isDesktop={isDesktop} />
 
       <div className="cursorImage">
         <img src="/assets/img/eyes_reg.png" />
-      </div>
-      <div className="copyrightNotice" ref={copyrightNoticeRef}>
-        2024 © Copyright. All rights Reserved
       </div>
     </>
   );

@@ -1,30 +1,24 @@
 header {
   position: fixed;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
   justify-content: space-between;
-
   align-items: center;
   white-space: nowrap;
-
   z-index: 15;
-
   box-sizing: border-box;
-
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.2);
-
   padding: 10px 0px;
   padding-bottom: 0px;
-
   border-radius: 10px;
-
-  left: 20px;
-  top: 20px;
-  right: 20px;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  padding: 20px;
+  padding-bottom: 10px;
 }
 header.unblur {
   backdrop-filter: unset;
@@ -47,8 +41,9 @@ header.unblur {
   user-select: none;
 }
 .header {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  text-align: right;
 }
 
 header .logoContainer {
@@ -69,27 +64,7 @@ header .logoContainer {
   width: auto;
 }
 
-@media only screen and (max-width: 1180px) {
-  header {
-    padding: 10px 20px;
-  }
-  .header {
-    text-align: right;
-    display: block;
-    justify-content: space-around;
-  }
-  header .logoContainer {
-    transform: scale(0.4) translate(0%, 0%);
-    position: fixed;
-    left: 15px;
-    top: 15px;
-    transform-origin: top left;
-    text-align: left;
-    pointer-events: none;
-  }
-  .header > li {
-    margin-right: unset;
-  }
+@media only screen and (max-width: 820px) {
   .mobileMenu {
     position: fixed;
     display: block;
@@ -102,7 +77,14 @@ header .logoContainer {
 
     z-index: 25;
 
-    background: #fd2e00;
+    background: linear-gradient(
+      0deg,
+      rgba(255, 212, 212, 1) 0.01%,
+      rgba(234, 188, 242, 1) 25%,
+      rgba(188, 235, 242, 1) 50%,
+      rgba(188, 242, 199, 1) 75%,
+      rgba(237, 242, 188, 1) 100%
+    );
   }
   .mobileMenu.visible {
     left: 0px;
@@ -113,6 +95,10 @@ header .logoContainer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .mobileMenu li {
+    margin-bottom: 20px;
   }
 
   .mobileMenu img,
@@ -127,13 +113,7 @@ header .logoContainer {
     right: 20px;
     margin: 10px;
   }
-  .logo {
-    position: relative;
-    left: -10px;
-  }
-}
 
-@media only screen and (max-width: 600px) {
   .logo {
     height: 30px;
   }

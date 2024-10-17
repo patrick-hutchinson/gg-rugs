@@ -8,6 +8,32 @@
   z-index: 20;
   top: 0;
   left: 0;
+
+  background: linear-gradient(
+    0deg,
+    rgba(255, 212, 212, 1) 0.01%,
+    rgba(234, 188, 242, 1) 25%,
+    rgba(188, 235, 242, 1) 50%,
+    rgba(188, 242, 199, 1) 75%,
+    rgba(237, 242, 188, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(255, 212, 212, 1) 0.01%,
+    rgba(234, 188, 242, 1) 25%,
+    rgba(188, 235, 242, 1) 50%,
+    rgba(188, 242, 199, 1) 75%,
+    rgba(237, 242, 188, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(255, 212, 212, 1) 0.01%,
+    rgba(234, 188, 242, 1) 25%,
+    rgba(188, 235, 242, 1) 50%,
+    rgba(188, 242, 199, 1) 75%,
+    rgba(237, 242, 188, 1) 100%
+  );
 }
 .openingPage.close {
   top: -100vh;

@@ -3,43 +3,36 @@
 }
 
 .carpetInfo {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.carpetSpecifications-wrapper {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  height: 100%; /* This will make it take up 100% of the parent container's height */
-  overflow: hidden; /* Prevent the parent container from scrolling */
-  gap: 10px;
-  width: 95%;
-}
-
-.carpetTitle {
-  flex: 0 0 auto; /* Title will have a fixed height based on its content */
-  white-space: unset;
-}
-
-.carpetDescription {
-  flex: 1 1 auto; /* The description takes up the remaining space */
-  overflow-y: auto; /* Enable scrolling if the content of the description overflows */
-  padding: 10px 0px;
+  flex-direction: row;
+  justify-content: space-between; /* Spaces items evenly across the available width */
+  align-items: center; /* Vertically centers the items */
 }
 
 .carpetSpecifications {
   display: flex;
-  column-gap: 10px;
-  flex: 0 0 auto; /* Specifications will also have a fixed height based on its content */
+  flex-direction: row;
+  gap: 10px;
+}
+
+.carpetSpecifications .key {
+  font-size: var(--small-font-size);
+  margin-right: 3px;
+
   position: relative;
-  top: 12px;
-}
-.carpetSpecifications > ul:first-child {
-  color: #000;
-}
-.carpetSpecifications > ul:first-child {
-  color: #999;
+  top: -6px;
 }
 
 .backButton {
-  position: fixed;
-  top: 100px;
-  left: 40px;
+  position: absolute;
+  top: 80px;
+  left: 10px;
 
   width: auto;
   height: 40px;
@@ -58,28 +51,122 @@
   display: inline-block;
 }
 
+.imagegrid-media img,
+.imagegrid-media video {
+  border-radius: 20px;
+  height: auto;
+  width: 100%;
+}
+
+.imagegrid-row {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
 .buyButton {
-  position: fixed;
-  bottom: 20px;
-  right: 100px;
+  position: relative;
+  top: -8px;
 }
 
-@media only screen and (max-width: 1180px) {
-  .carpetInfo {
-    overflow: unset;
+.navigation-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.noCarpet-wrapper {
+  margin-top: 50px;
+  /* background-color: #f7f7f7; */
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.noCarpet {
+  width: 100%;
+  /* background: green; */
+
+  display: flex;
+  align-items: center;
+}
+.yarn-emoji {
+  position: relative;
+  font-size: calc(var(--large-font-size) * 2);
+  width: auto;
+  height: 80px;
+
+  animation: roll 25s ease-in-out infinite;
+  line-height: 1.5;
+}
+.noCarpet-notice {
+  font-size: var(--small-font-size);
+  text-align: center;
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0deg);
+    left: 0%;
+  }
+  50% {
+    transform: rotate(1720deg);
+    left: 93%;
+  }
+  100% {
+    transform: rotate(0deg); /* Complete the full rotation */
+    left: 0%;
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .backButton {
-    bottom: 20px !important;
-    left: 8px !important;
-    display: none;
+@media only screen and (max-width: 820px) {
+  .imagegrid-row {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+  }
+  .imagegrid-media {
+    margin-bottom: 10px;
   }
 
-  .buyButton {
-    position: fixed;
-    bottom: 15px;
-    right: 10px;
+  .carpetSpecifications {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+  }
+  .carpetSpecifications div {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .carpetSpecifications .key {
+    /* top: 0; */
+    line-height: var(--medium-line-height);
+  }
+  .carpetSpecifications-wrapper {
+    align-items: end; /* Vertically centers the items */
+  }
+
+  .imagegrid-row {
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+
+  .yarn-emoji {
+    animation: roll 12s ease-in-out infinite;
+    line-height: 1.5;
+  }
+  @keyframes roll {
+    0% {
+      transform: rotate(0deg);
+      left: 0%;
+    }
+    50% {
+      transform: rotate(620deg);
+      left: 80%;
+    }
+    100% {
+      transform: rotate(0deg); /* Complete the full rotation */
+      left: 0%;
+    }
   }
 }

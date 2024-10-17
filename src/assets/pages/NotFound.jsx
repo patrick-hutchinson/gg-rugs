@@ -5,7 +5,8 @@ export default function NotFound() {
   return (
     <main className="pageContainer">
       <div>
-        Oops, we lost the thread. Find it by going <Link to="/">Home</Link>.
+        Please wait, knitting the last threads... 🧵🪡 . <br />
+        Nothing happening? If you're lost, find your way <Link to="/">Home</Link> here.
       </div>
     </main>
   );

@@ -6,79 +6,70 @@ import AnimatedPage from "../AnimatedPage";
 import "../css/Home.css";
 import OpeningPage from "./OpeningPage";
 
-export default function Home({ data, isDesktop, showOpeningPage, setShowOpeningPage }) {
+export default function Home({ data, positiondata, isDesktop, showOpeningPage, setShowOpeningPage }) {
   let [carpetThumbnails, setCarpetThumbnails] = useState([]);
 
-  // Generate each Carpet
   useEffect(() => {
-    if (data) {
-      let thumbnails = data.flatMap((carpet, index) => {
-        let carpetLink = carpet.attributes.title.toLowerCase().replace(/ /g, "-");
-        let carpetUrl = `${carpet.attributes.thumbnail.data.attributes.url}`;
+    if (positiondata) {
+      let rows = positiondata.attributes.ruggrid.flatMap((row, rowindex) => {
+        return (
+          <div className="row" key={`${rowindex}`}>
+            {row.carpets.data.flatMap((carpet, carpetindex) => {
+              let carpetLink = carpet.attributes.title.toLowerCase().replace(/ /g, "-");
+              let carpetURL = "";
 
-        let randomNumber = Math.floor(Math.random() * 10) + 1; // Between 1 and 10
+              data.flatMap((altcarpet, index) => {
+                if (altcarpet.attributes.title === carpet.attributes.title) {
+                  carpetURL = `${altcarpet.attributes.thumbnail.data.attributes.url}`;
+                }
+              });
 
-        return isDesktop ? (
-          <div
-            className="carpetWrapper"
-            onMouseEnter={handleCarpetMouseEnter}
-            onMouseLeave={handleCarpetMouseLeave}
-            key={`${index}`}
-          >
-            <div className="carpetTextContainer">
-              <div className="carpetTitle">{carpet.attributes.title}</div>
-              <Link className="carpetLink customButton" to={`/${carpetLink}`}>
-                <img
-                  onMouseEnter={handleSeeMoreMouseEnter}
-                  onMouseLeave={handleSeeMoreMouseLeave}
-                  src="/assets/img/take-a-look.svg"
-                />
-              </Link>
-            </div>
-            <img
-              className="catalogueImage"
-              src={carpetUrl}
-              alt={carpet.attributes.title}
-              style={{
-                animationDelay: `${randomNumber * 0.3}s`,
-              }}
-            />
+              return (
+                <>
+                  {isDesktop ? (
+                    // Desktop view: Only the button inside the carpet div triggers the link
+                    <div className="carpet" key={`${carpetindex}`}>
+                      <div className="carpet-inner">
+                        <img className="catalogueImage carpet-front" src={carpetURL} alt={carpet.attributes.title} />
+                        <div className="carpetTextContainer carpet-back">
+                          <div className="carpetTitle">{carpet.attributes.title}</div>
+                          <div className="">{carpet.attributes.price}</div>
+                          <Link className="carpetLink customButton" to={`/${carpetLink}`}>
+                            <img
+                              onMouseEnter={handleSeeMoreMouseEnter}
+                              onMouseLeave={handleSeeMoreMouseLeave}
+                              src="/assets/img/buttons/take-a-look.svg"
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="carpet" key={`${carpetindex}`} onClick={handleOpen}>
+                      <div className="carpet-inner">
+                        <img className="catalogueImage carpet-front" src={carpetURL} alt={carpet.attributes.title} />
+                        <div className="carpetTextContainer carpet-back">
+                          <div className="carpetTitle">{carpet.attributes.title}</div>
+                          <div className="carpet-price">{carpet.attributes.price}€</div>
+                          <Link className="carpetLink customButton" to={`/${carpetLink}`}>
+                            <img src="/assets/img/buttons/take-a-look.svg" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </>
+              );
+            })}
           </div>
-        ) : (
-          <Link key={`${index}`} to={`/${carpetLink}`}>
-            <img
-              className="catalogueImage"
-              src={carpetUrl}
-              alt={carpet.attributes.title}
-              style={{
-                animationDelay: `${randomNumber * 0.3}s`,
-              }}
-            />
-          </Link>
         );
       });
-      setCarpetThumbnails(thumbnails);
+      setCarpetThumbnails(rows);
     }
-  }, [data]);
-
-  function handleCarpetMouseEnter(e) {
-    const catalogueImage = e.currentTarget.querySelector(".catalogueImage");
-    catalogueImage.classList.add("hide");
-
-    let textContainer = e.currentTarget.querySelector(".carpetTextContainer");
-    textContainer.classList.add("visible");
-  }
-
-  function handleCarpetMouseLeave(e) {
-    const catalogueImage = e.currentTarget.querySelector(".catalogueImage");
-    catalogueImage.classList.remove("hide");
-
-    let textContainer = e.currentTarget.querySelector(".carpetTextContainer");
-    textContainer.classList.remove("visible");
-  }
+  }, [positiondata]);
 
   function handleSeeMoreMouseEnter(e) {
-    e.currentTarget.src = "/assets/img/take-a-look_focus.svg";
+    e.currentTarget.src = "/assets/img/buttons/take-a-look_focus.svg";
     const cursorImage = document.querySelector(".cursorImage > img");
     cursorImage.classList.remove("pulseCursor");
     cursorImage.classList.add("pulseCursor");
@@ -91,8 +82,12 @@ export default function Home({ data, isDesktop, showOpeningPage, setShowOpeningP
     cursorImage.addEventListener("animationend", handleAnimationEnd);
   }
 
+  function handleOpen(e) {
+    e.currentTarget.classList.toggle("flip");
+  }
+
   function handleSeeMoreMouseLeave(e) {
-    e.currentTarget.src = "/assets/img/take-a-look.svg";
+    e.currentTarget.src = "/assets/img/buttons/take-a-look.svg";
     const cursorImage = document.querySelector(".cursorImage > img");
 
     const handleAnimationEnd = () => {

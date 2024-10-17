@@ -16,7 +16,9 @@ export default function App() {
     return !hasSeenOpeningPage;
   });
 
-  let [isDesktop, setIsDesktop] = React.useState(window.innerWidth > 1180);
+  let mobileBreakpoint = 820;
+
+  let [isDesktop, setIsDesktop] = React.useState(window.innerWidth > mobileBreakpoint);
 
   const [strapiBaseURL] = React.useState("https://strapi-production-7b09.up.railway.app");
 
@@ -34,10 +36,14 @@ export default function App() {
   // Fetch and Initialize Data
   React.useEffect(() => {
     const endpoints = [
-      { key: "carpets", url: `${strapiBaseURL}/api/carpets?populate=*` },
+      {
+        key: "carpets",
+        url: `${strapiBaseURL}/api/carpets?populate[imagegrid][populate]=*&populate[images]=*&populate[thumbnail]=*`,
+      },
       { key: "about", url: `${strapiBaseURL}/api/about?populate=*` },
-      { key: "commissions", url: `${strapiBaseURL}/api/commission?populate=*` },
+      { key: "commissions", url: `${strapiBaseURL}/api/commission?populate[imagegrid][populate]=*` },
       { key: "contact", url: `${strapiBaseURL}/api/contact?populate=*` },
+      { key: "home", url: `${strapiBaseURL}/api/home?populate[ruggrid][populate]=*` },
     ];
 
     Promise.all(endpoints.map((endpoint) => fetch(endpoint.url).then((res) => res.json())))
@@ -58,7 +64,7 @@ export default function App() {
   React.useEffect(() => {
     // Update isDesktop on Window Resize
     const handleResize = () => {
-      if (window.innerWidth > 1180) {
+      if (window.innerWidth > mobileBreakpoint) {
         setIsDesktop(true);
       } else {
         setIsDesktop(false);
@@ -82,6 +88,7 @@ export default function App() {
               <Home
                 isDesktop={isDesktop}
                 data={data.carpets}
+                positiondata={data.home}
                 setShowOpeningPage={setShowOpeningPage}
                 showOpeningPage={showOpeningPage}
               />

@@ -1,103 +1,135 @@
+:root {
+  --perspectiveValue: 1400px;
+}
+
 .catalogue {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
   gap: 20px;
-  padding: 20px;
-  width: 95%;
+  width: 100%;
+
+  /* Move perspective to parent container */
+  perspective: var(--perspectiveValue);
 }
 
-.catalogue .catalogueImage {
-  max-width: 500px;
-  max-height: 200px;
-  width: auto;
-  height: auto;
-  flex: 1 1 calc(33.333% - 20px);
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust the 200px to suit your minimum width */
+  gap: 15px; /* Space between the grid items */
+  width: 100%;
+}
 
+.carpet {
+  perspective: var(--perspectiveValue);
+}
+
+.carpet-inner {
   position: relative;
-  margin: 10px;
-  transform: translateY(0) scale(1);
-  transition: transform 0.25s ease-in-out;
-  opacity: 1;
+  width: 100%;
+  height: 100%;
+
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: #c7e0f5;
+  border-radius: 20px;
+
+  display: flex;
 }
 
-.catalogue .catalogueImage.hide {
-  animation: unset;
-  transform: translateY(0) scale(0);
+.carpet:hover .carpet-inner {
+  transform: rotateY(180deg);
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-10px) scale(1);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
+.carpet-front,
+.carpet-back {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
 }
 
-.carpetWrapper {
-  position: relative;
-  animation: float 5s infinite ease-in-out;
-}
-
-.carpetWrapper .carpetTextContainer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10;
-  text-transform: uppercase;
-  transition: 0.2s;
-  opacity: 0;
-  transition-delay: 0.1s;
-}
-
-.carpetWrapper .carpetTextContainer.visible {
-  opacity: 1;
-}
-
-.carpetTitle {
+.carpet-back {
   font-family: FoundersMedium;
-  white-space: nowrap;
+  text-transform: uppercase;
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+
+  /* Flexbox properties for centering */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  text-align: left;
+
+  /* Optional: Set width and height for better alignment */
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 212, 212, 1) 0.01%,
+    rgba(234, 188, 242, 1) 25%,
+    rgba(188, 235, 242, 1) 50%,
+    rgba(188, 242, 199, 1) 75%,
+    rgba(237, 242, 188, 1) 100%
+  );
+  border-radius: 18px;
 }
 
-.carpetWrapper .carpetLink > img {
-  height: 42px;
-  width: auto;
+.carpet-front {
+  /* max-width: 500px; */
+  /* max-height: 200px; */
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  object-fit: contain;
+}
+.carpet-front img {
+  height: 100px;
+  width: 100%;
 }
 
+.carpet-bottom-menu {
+  width: 100%;
+  display: flex;
+
+  justify-content: space-between;
+}
+.carpet-price {
+  position: relative;
+  top: 7px;
+}
 .carpetLink {
-  position: relative;
-  top: 5px;
-}
-.carpetLink > img {
-  animation-name: none;
-  animation-iteration-count: 3;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-in-out;
-  position: relative;
-  user-select: none !important;
+  width: fit-content;
 }
 
-@media only screen and (max-width: 1180px) {
-  .catalogue .catalogueImage {
-    max-height: 200px;
-    max-width: 400px;
-    transform: translateX(-50%) !important;
-    position: relative;
-    left: 50%;
-    margin-bottom: 30px;
+/* @media only screen and (max-width: 801px) {
+} */
+
+@media only screen and (max-width: 820px) {
+  .row {
+    grid-template-columns: 1fr;
+    width: 80%;
   }
-}
+  .carpet {
+    margin-bottom: 20%;
+    min-height: 200px;
+  }
 
-@media only screen and (max-width: 600px) {
-  .catalogue .catalogueImage {
-    max-width: 90%;
-    max-height: 200px;
+  .carpet:hover .carpet-inner {
+    transform: unset;
+  }
+  .carpet.flip .carpet-inner {
+    transform: rotateY(180deg);
   }
 }
