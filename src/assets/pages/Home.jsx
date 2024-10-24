@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import sanityClient from "/src/client.js";
 
 import AnimatedPage from "../AnimatedPage";
 
@@ -8,6 +9,24 @@ import OpeningPage from "./OpeningPage";
 
 export default function Home({ data, positiondata, isDesktop, showOpeningPage, setShowOpeningPage }) {
   let [carpetThumbnails, setCarpetThumbnails] = useState([]);
+  //   let [work, setWork] = useState();
+  //   useEffect(() => {
+  //     sanityClient
+  //       .fetch(
+  //         `*[_type=="project"]{
+  //     name,
+  //     coverimage,
+  //     year,
+  //     description,
+  //     imagegallery,
+  //     categories,
+  //     credits,
+  //     slug
+  // }`
+  //       )
+  //       .then((data) => setWork(data))
+  //       .catch(console.error);
+  //   }, []);
 
   useEffect(() => {
     if (positiondata) {
@@ -33,7 +52,7 @@ export default function Home({ data, positiondata, isDesktop, showOpeningPage, s
                         <img className="catalogueImage carpet-front" src={carpetURL} alt={carpet.attributes.title} />
                         <div className="carpetTextContainer carpet-back">
                           <div className="carpetTitle">{carpet.attributes.title}</div>
-                          <div className="">{carpet.attributes.price}</div>
+                          <div className="">{carpet.attributes.price} EUR</div>
                           <Link className="carpetLink customButton" to={`/${carpetLink}`}>
                             <img
                               onMouseEnter={handleSeeMoreMouseEnter}
@@ -50,7 +69,7 @@ export default function Home({ data, positiondata, isDesktop, showOpeningPage, s
                         <img className="catalogueImage carpet-front" src={carpetURL} alt={carpet.attributes.title} />
                         <div className="carpetTextContainer carpet-back">
                           <div className="carpetTitle">{carpet.attributes.title}</div>
-                          <div className="carpet-price">{carpet.attributes.price}€</div>
+                          <div className="carpet-price">{carpet.attributes.price} EUR</div>
                           <Link className="carpetLink customButton" to={`/${carpetLink}`}>
                             <img src="/assets/img/buttons/take-a-look.svg" />
                           </Link>

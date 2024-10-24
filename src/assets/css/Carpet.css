@@ -1,5 +1,10 @@
 .carpetContainer {
   position: relative;
+  position: relative;
+  min-height: calc(100vh - 190px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .carpetInfo {
@@ -61,7 +66,7 @@
 .imagegrid-row {
   display: grid;
   gap: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .buyButton {

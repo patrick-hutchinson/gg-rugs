@@ -2,8 +2,24 @@ import React from "react";
 import AnimatedPage from "../AnimatedPage";
 
 import "../css/Contact.css";
+import sanityClient from "/src/client.js";
+
+import { getFileSource } from "../utils/getFileSource";
+import { renderFile } from "../utils/renderFile";
 
 export default function Contact({ data }) {
+  let [contactData, setContactData] = React.useState();
+  React.useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type=="contact"]{
+    backgroundmedia
+}`
+      )
+      .then((data) => setContactData(data))
+      .catch(console.error);
+  }, []);
+
   let [videoSource, setVideoSource] = React.useState();
 
   React.useEffect(() => {
@@ -25,15 +41,23 @@ export default function Contact({ data }) {
     e.target.setAttribute("src", splicedSource);
   }
 
+  if (!contactData || contactData.length === 0) {
+    return <p>Loading...</p>;
+  }
+
+  console.log(contactData[0], "cd");
+
+  let Media = ({ file }) => {
+    console.log(file, "file");
+    const fileInfo = getFileSource(file);
+    return renderFile(fileInfo);
+  };
+
   return (
     <AnimatedPage>
       <main className="pageContainer contactPage">
         <div className="videoContainer">
-          {videoSource && (
-            <video autoPlay muted loop playsInline>
-              <source src={videoSource} type="video/mp4" />
-            </video>
-          )}
+          <Media file={contactData[0].backgroundmedia} />
         </div>
 
         <div className="contact">

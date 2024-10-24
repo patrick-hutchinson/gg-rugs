@@ -85,7 +85,15 @@ header .logoContainer {
       rgba(188, 242, 199, 1) 75%,
       rgba(237, 242, 188, 1) 100%
     );
+    background: #fff;
   }
+
+  .mobileMenu .customButton img,
+  .mobileMenu .customButton {
+    height: 50px;
+    margin-bottom: 20px;
+  }
+
   .mobileMenu.visible {
     left: 0px;
   }
@@ -95,10 +103,6 @@ header .logoContainer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  .mobileMenu li {
-    margin-bottom: 20px;
   }
 
   .mobileMenu img,

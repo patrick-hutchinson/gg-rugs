@@ -15,13 +15,14 @@
 
 .row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust the 200px to suit your minimum width */
+  grid-template-columns: repeat(auto-fit, minmax(00px, 1fr)); /* Adjust the 200px to suit your minimum width */
   gap: 15px; /* Space between the grid items */
   width: 100%;
 }
 
 .carpet {
   perspective: var(--perspectiveValue);
+  min-height: 200px;
 }
 
 .carpet-inner {
@@ -31,9 +32,9 @@
 
   transition: transform 0.5s;
   transform-style: preserve-3d;
-
+  /* border: 3px solid black; */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background: #c7e0f5;
+  background: #f4f4f4;
   border-radius: 20px;
 
   display: flex;
@@ -72,12 +73,16 @@
 
   background: linear-gradient(
     90deg,
-    rgba(255, 212, 212, 1) 0.01%,
-    rgba(234, 188, 242, 1) 25%,
-    rgba(188, 235, 242, 1) 50%,
-    rgba(188, 242, 199, 1) 75%,
-    rgba(237, 242, 188, 1) 100%
+    rgba(242, 170, 170, 1) 0.01%,
+    rgba(230, 157, 242, 1) 25%,
+    rgba(157, 231, 242, 1) 50%,
+    rgba(157, 242, 175, 1) 75%,
+    rgba(234, 242, 157, 1) 100%
   );
+
+  background-size: 140% 140%; /* Increase size of gradient */
+  background-position: 50% 50%; /* Center it */
+
   border-radius: 18px;
 }
 
@@ -110,7 +115,7 @@
   top: 7px;
 }
 .carpetLink {
-  width: fit-content;
+  width: fit-content !important;
 }
 
 /* @media only screen and (max-width: 801px) {
@@ -123,7 +128,6 @@
   }
   .carpet {
     margin-bottom: 20%;
-    min-height: 200px;
   }
 
   .carpet:hover .carpet-inner {

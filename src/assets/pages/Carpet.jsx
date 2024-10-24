@@ -9,16 +9,16 @@ import "../css/Carpet.css";
 export default function Carpet({ data, isDesktop }) {
   const { id } = useParams();
 
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   // Find the carpet object that matches the ID
   const carpet = data?.find((carpet) => carpet.attributes.title.toLowerCase().replace(/ /g, "-") === id);
 
   if (!carpet) {
     return <NotFound />;
   }
-
-  React.useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   function handleMouseEnter(e) {
     let currentSource = e.target.getAttribute("src");
@@ -105,7 +105,7 @@ export default function Carpet({ data, isDesktop }) {
               </div>
               <div>
                 <span className="key">PRICE</span>
-                <span className="value">{carpet.attributes.price}</span>
+                <span className="value">{carpet.attributes.price} EUR</span>
               </div>
             </div>
             <button className="buyButton customButton" onClick={handleBuyClick}>
@@ -123,7 +123,7 @@ export default function Carpet({ data, isDesktop }) {
               <div>
                 <span className="value">{carpet.attributes.year}</span>
                 <span className="value">{carpet.attributes.dimensions}</span>
-                <span className="value">{carpet.attributes.price}</span>
+                <span className="value">{carpet.attributes.price} EUR</span>
               </div>
             </div>
             <button className="buyButton customButton" onClick={handleBuyClick}>
@@ -143,23 +143,23 @@ export default function Carpet({ data, isDesktop }) {
       <div className="navigation-container">
         <div className="navigation-button">
           {/* Previous button */}
-          <a href={prevCarpet ? `/${prevCarpet.attributes.title.toLowerCase().replace(/ /g, "-")}` : "#"}>
+          <Link to={prevCarpet ? `/${prevCarpet.attributes.title.toLowerCase().replace(/ /g, "-")}` : "#"}>
             <img className="customButton" src="/assets/img/buttons/prev.svg" alt="Previous" />
-          </a>
+          </Link>
         </div>
 
         <div className="navigation-button">
           {/* Home button */}
-          <a href="/home">
+          <Link to="/">
             <img className="customButton" src="/assets/img/buttons/all-rugs.svg" alt="All Rugs" />
-          </a>
+          </Link>
         </div>
 
         <div className="navigation-button">
           {/* Next button */}
-          <a href={nextCarpet ? `/${nextCarpet.attributes.title.toLowerCase().replace(/ /g, "-")}` : "#"}>
+          <Link to={nextCarpet ? `/${nextCarpet.attributes.title.toLowerCase().replace(/ /g, "-")}` : "#"}>
             <img className="customButton" src="/assets/img/buttons/next.svg" alt="Next" />
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -168,13 +168,13 @@ export default function Carpet({ data, isDesktop }) {
   return (
     <AnimatedPage>
       <main className="pageContainer">
-        <Link to="/" className="backButton customButton desktop">
+        {/* <Link to="/" className="backButton customButton desktop">
           <img
             src="/assets/img/buttons/backarrow.svg"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           ></img>
-        </Link>
+        </Link> */}
 
         <div className="carpetContainer">
           <div className="carpetInfo">

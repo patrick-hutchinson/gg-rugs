@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Layout from "./assets/components/Layout";
@@ -11,7 +11,7 @@ import Carpet from "./assets/pages/Carpet";
 import NotFound from "./assets/pages/NotFound";
 
 export default function App() {
-  const [showOpeningPage, setShowOpeningPage] = React.useState(() => {
+  const [showOpeningPage, setShowOpeningPage] = useState(() => {
     const hasSeenOpeningPage = localStorage.getItem("hasSeenOpeningPage");
     return !hasSeenOpeningPage;
   });
@@ -28,10 +28,6 @@ export default function App() {
     commissions: null,
     contact: null,
   });
-
-  useEffect(() => {
-    console.log(showOpeningPage, "showOpeningPage");
-  }, [showOpeningPage]);
 
   // Fetch and Initialize Data
   React.useEffect(() => {

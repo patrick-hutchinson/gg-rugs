@@ -21,7 +21,10 @@ export default function Footer({ isDesktop }) {
   let DesktopFooter = () => {
     return (
       <footer className="desktopFooter">
-        <div>{`© ${currentYear} GGRUGS. All rights reserved`}</div>
+        <div className="copyrightnotice">
+          {`© ${currentYear} GGRUGS.`}
+          <br /> All rights reserved
+        </div>
         {/* <br className="mobile" /> */}
         <div>
           <a

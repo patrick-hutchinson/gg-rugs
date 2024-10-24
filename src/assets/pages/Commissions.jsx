@@ -5,6 +5,24 @@ import AnimatedPage from "../AnimatedPage";
 import "../css/Commissions.css";
 
 export default function Commissions({ data }) {
+  //   let [commissionsData, setCommissionsData] = useState();
+  //   useEffect(() => {
+  //     sanityClient
+  //       .fetch(
+  //         `*[_type=="project"]{
+  //     name,
+  //     coverimage,
+  //     year,
+  //     description,
+  //     imagegallery,
+  //     categories,
+  //     credits,
+  //     slug
+  // }`
+  //       )
+  //       .then((data) => setCommissionsData(data))
+  //       .catch(console.error);
+  //   }, []);
   // Initialize formData
   const [formData, setFormData] = useState({
     size: "",
@@ -85,13 +103,13 @@ export default function Commissions({ data }) {
   return (
     <AnimatedPage>
       <main className="pageContainer">
-        <Link to="/" className="backButton customButton desktop">
+        {/* <Link to="/" className="backButton customButton desktop">
           <img
             src="/assets/img/buttons/backarrow.svg"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           ></img>
-        </Link>
+        </Link> */}
 
         <div className="carpetContainer">
           {data && <ImageGrid />}
