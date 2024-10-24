@@ -8,8 +8,8 @@ export const commissions = defineType({
     defineField({name: 'title', title: 'Title', type: 'string'}),
     defineField({name: 'description', title: 'Description', type: 'array', of: [{type: 'block'}]}),
     defineField({
-      name: 'imagegallery',
-      title: 'Image Gallery',
+      name: 'mediagallery',
+      title: 'Media Gallery',
       type: 'array',
       of: [
         {type: 'image'}, // Allows image uploads

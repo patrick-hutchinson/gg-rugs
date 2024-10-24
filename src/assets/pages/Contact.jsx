@@ -4,8 +4,7 @@ import AnimatedPage from "../AnimatedPage";
 import "../css/Contact.css";
 import sanityClient from "/src/client.js";
 
-import { getFileSource } from "../utils/getFileSource";
-import { renderFile } from "../utils/renderFile";
+import GetMedia from "../utils/getMedia";
 
 export default function Contact({ data }) {
   let [contactData, setContactData] = React.useState();
@@ -45,19 +44,11 @@ export default function Contact({ data }) {
     return <p>Loading...</p>;
   }
 
-  console.log(contactData[0], "cd");
-
-  let Media = ({ file }) => {
-    console.log(file, "file");
-    const fileInfo = getFileSource(file);
-    return renderFile(fileInfo);
-  };
-
   return (
     <AnimatedPage>
       <main className="pageContainer contactPage">
         <div className="videoContainer">
-          <Media file={contactData[0].backgroundmedia} />
+          <GetMedia file={contactData[0].backgroundmedia} />
         </div>
 
         <div className="contact">

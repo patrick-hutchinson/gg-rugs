@@ -1,28 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+import { PortableText } from "@portabletext/react";
+
 import AnimatedPage from "../AnimatedPage";
+
+import sanityClient from "/src/client.js";
+import GetMedia from "../utils/getMedia";
 
 import "../css/Commissions.css";
 
-export default function Commissions({ data }) {
-  //   let [commissionsData, setCommissionsData] = useState();
-  //   useEffect(() => {
-  //     sanityClient
-  //       .fetch(
-  //         `*[_type=="project"]{
-  //     name,
-  //     coverimage,
-  //     year,
-  //     description,
-  //     imagegallery,
-  //     categories,
-  //     credits,
-  //     slug
-  // }`
-  //       )
-  //       .then((data) => setCommissionsData(data))
-  //       .catch(console.error);
-  //   }, []);
+export default function Commissions() {
+  let [commissionsData, setCommissionsData] = React.useState();
+  React.useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type=="commissions"]{
+    description,
+    mediagallery,
+    gridstructure
+}`
+      )
+      .then((data) => setCommissionsData(data))
+      .catch(console.error);
+  }, []);
+
   // Initialize formData
   const [formData, setFormData] = useState({
     size: "",
@@ -68,55 +70,46 @@ export default function Commissions({ data }) {
     e.target.setAttribute("src", splicedSource);
   }
 
-  const ImageGrid = () => {
+  if (!commissionsData || commissionsData.length === 0) {
+    return <p>Loading...</p>;
+  }
+
+  let ImageGrid = () => {
+    let index = 0; // Initialize the index for slicing images
+
     return (
-      <div className="imagegrid">
-        {data.attributes.imagegrid.map((row) => {
-          let imageAmount = row.row.data.length;
-          return (
-            <div
-              className="imagegrid-row"
-              key={row.id}
-              style={{
-                gridTemplateColumns: `repeat(${imageAmount}, 1fr)`, // Dynamically set number of columns
-              }}
-            >
-              {row.row.data.map((media) => (
-                <div className="imagegrid-media" key={media.id}>
-                  {media.attributes.mime.includes("image") ? (
-                    <img src={media.attributes.url} alt={media.attributes.title} />
-                  ) : media.attributes.mime.includes("video") ? (
-                    <video autoPlay defaultMuted loop playsInline>
-                      <source src={media.attributes.url} type={media.attributes.mime} />
-                      Your browser does not support the video tag.
-                    </video>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          );
-        })}
-      </div>
+      commissionsData[0].gridstructure &&
+      commissionsData[0].gridstructure.map((columnsInRow, rowIndex) => {
+        const rowImages = commissionsData[0].mediagallery.slice(index, index + columnsInRow); // Slice the images for each row
+        index += columnsInRow; // Update the index for the next row
+
+        const rowStyles = {
+          gridTemplateColumns: `repeat(${columnsInRow}, 1fr)`, // Use the value from gridStructure for this row
+        };
+
+        return (
+          <div key={rowIndex} className="galleryRow" style={rowStyles}>
+            {rowImages.map((image, imgIndex) => {
+              return <GetMedia file={image} key={imgIndex} />;
+            })}
+          </div>
+        );
+      })
     );
   };
 
   return (
     <AnimatedPage>
       <main className="pageContainer">
-        {/* <Link to="/" className="backButton customButton desktop">
-          <img
-            src="/assets/img/buttons/backarrow.svg"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          ></img>
-        </Link> */}
-
         <div className="carpetContainer">
-          {data && <ImageGrid />}
+          <ImageGrid />
 
           <div className="carpetInfo">
             <h1 className="carpetTitle">CREATE YOUR GGRUG</h1>
-            <p className="carpetDescription">{data && data.attributes.description}</p>
+            <p className="carpetDescription">
+              {" "}
+              <PortableText value={commissionsData[0].description} />
+            </p>
 
             <form className="commissioninfo-wrapper" onSubmit={handleSubmit}>
               <div className="commissioninfo">
