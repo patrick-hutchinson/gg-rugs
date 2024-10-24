@@ -11,7 +11,7 @@ import GetMedia from "../utils/getMedia";
 
 import "../css/Carpet.css";
 
-export default function Carpet({ data, isDesktop }) {
+export default function Carpet({ isDesktop }) {
   let [carpetData, setCarpetData] = React.useState();
   React.useEffect(() => {
     sanityClient

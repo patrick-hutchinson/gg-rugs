@@ -20,42 +20,6 @@ export default function App() {
 
   let [isDesktop, setIsDesktop] = React.useState(window.innerWidth > mobileBreakpoint);
 
-  const [strapiBaseURL] = React.useState("https://strapi-production-7b09.up.railway.app");
-
-  const [data, setData] = React.useState({
-    carpets: null,
-    about: null,
-    commissions: null,
-    contact: null,
-  });
-
-  // Fetch and Initialize Data
-  React.useEffect(() => {
-    const endpoints = [
-      {
-        key: "carpets",
-        url: `${strapiBaseURL}/api/carpets?populate[imagegrid][populate]=*&populate[images]=*&populate[thumbnail]=*`,
-      },
-      { key: "about", url: `${strapiBaseURL}/api/about?populate=*` },
-      { key: "commissions", url: `${strapiBaseURL}/api/commission?populate[imagegrid][populate]=*` },
-      { key: "contact", url: `${strapiBaseURL}/api/contact?populate=*` },
-      { key: "home", url: `${strapiBaseURL}/api/home?populate[ruggrid][populate]=*` },
-    ];
-
-    Promise.all(endpoints.map((endpoint) => fetch(endpoint.url).then((res) => res.json())))
-      .then((results) => {
-        const newData = {};
-        results.forEach((result, index) => {
-          const key = endpoints[index].key;
-          newData[key] = result.data;
-        });
-        setData(newData);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [strapiBaseURL]);
-
   // Initialize App
   React.useEffect(() => {
     // Update isDesktop on Window Resize
@@ -81,20 +45,14 @@ export default function App() {
           <Route
             index
             element={
-              <Home
-                isDesktop={isDesktop}
-                data={data.carpets}
-                positiondata={data.home}
-                setShowOpeningPage={setShowOpeningPage}
-                showOpeningPage={showOpeningPage}
-              />
+              <Home isDesktop={isDesktop} setShowOpeningPage={setShowOpeningPage} showOpeningPage={showOpeningPage} />
             }
           />
-          <Route path="about" element={<About data={data.about} />} />
-          <Route path="commissions" element={<Commissions data={data.commissions} />} />
-          <Route path="contact" element={<Contact data={data.contact} />} />
+          <Route path="about" element={<About />} />
+          <Route path="commissions" element={<Commissions />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
-          <Route path=":id" element={<Carpet data={data.carpets} isDesktop={isDesktop} />} />
+          <Route path=":id" element={<Carpet isDesktop={isDesktop} />} />
         </Route>
       </Routes>
     </BrowserRouter>

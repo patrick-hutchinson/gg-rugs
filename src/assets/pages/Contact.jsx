@@ -6,7 +6,7 @@ import sanityClient from "/src/client.js";
 
 import GetMedia from "../utils/getMedia";
 
-export default function Contact({ data }) {
+export default function Contact() {
   let [contactData, setContactData] = React.useState();
   React.useEffect(() => {
     sanityClient
@@ -18,14 +18,6 @@ export default function Contact({ data }) {
       .then((data) => setContactData(data))
       .catch(console.error);
   }, []);
-
-  let [videoSource, setVideoSource] = React.useState();
-
-  React.useEffect(() => {
-    if (data) {
-      setVideoSource(`${data.attributes.video.data.attributes.url}`);
-    }
-  }, [data]);
 
   function handleMouseEnter(e) {
     let currentSource = e.target.getAttribute("src");

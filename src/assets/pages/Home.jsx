@@ -8,7 +8,7 @@ import GetMedia from "../utils/getMedia";
 import "../css/Home.css";
 import OpeningPage from "./OpeningPage";
 
-export default function Home({ data, positiondata, isDesktop, showOpeningPage, setShowOpeningPage }) {
+export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage }) {
   let [homeData, setHomeData] = React.useState();
   React.useEffect(() => {
     sanityClient
@@ -29,8 +29,6 @@ export default function Home({ data, positiondata, isDesktop, showOpeningPage, s
       .then((data) => setHomeData(data))
       .catch(console.error);
   }, []);
-
-  let [carpetThumbnails, setCarpetThumbnails] = useState([]);
 
   function handleSeeMoreMouseEnter(e) {
     e.currentTarget.src = "/assets/img/buttons/take-a-look_focus.svg";
@@ -124,11 +122,7 @@ export default function Home({ data, positiondata, isDesktop, showOpeningPage, s
     <>
       {showOpeningPage && <OpeningPage setShowOpeningPage={setShowOpeningPage} isDesktop={isDesktop} />}
       <AnimatedPage>
-        <main className="pageContainer">
-          <div className="catalogue">{carpetThumbnails}</div>
-
-          {rows}
-        </main>
+        <main className="pageContainer">{rows}</main>
       </AnimatedPage>
     </>
   );
