@@ -18,6 +18,7 @@
   grid-template-columns: repeat(auto-fit, minmax(00px, 1fr)); /* Adjust the 200px to suit your minimum width */
   gap: 15px; /* Space between the grid items */
   width: 100%;
+  margin-bottom: 15px;
 }
 
 .carpet {
@@ -101,7 +102,7 @@
 }
 .carpet-front img {
   height: 100px;
-  width: 100%;
+  /* width: 80%; */
 }
 
 .carpet-bottom-menu {

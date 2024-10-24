@@ -56,4 +56,10 @@ export const carpet = defineType({
       },
     }),
   ],
+  preview: {
+    select: {
+      title: 'name', // Display the name field as the title
+      media: 'coverimage', // Display the cover image as a preview thumbnail
+    },
+  },
 })
