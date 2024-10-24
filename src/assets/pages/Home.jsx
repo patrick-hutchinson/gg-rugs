@@ -9,24 +9,6 @@ import OpeningPage from "./OpeningPage";
 
 export default function Home({ data, positiondata, isDesktop, showOpeningPage, setShowOpeningPage }) {
   let [carpetThumbnails, setCarpetThumbnails] = useState([]);
-  //   let [work, setWork] = useState();
-  //   useEffect(() => {
-  //     sanityClient
-  //       .fetch(
-  //         `*[_type=="project"]{
-  //     name,
-  //     coverimage,
-  //     year,
-  //     description,
-  //     imagegallery,
-  //     categories,
-  //     credits,
-  //     slug
-  // }`
-  //       )
-  //       .then((data) => setWork(data))
-  //       .catch(console.error);
-  //   }, []);
 
   useEffect(() => {
     if (positiondata) {

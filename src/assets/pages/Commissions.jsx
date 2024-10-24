@@ -107,7 +107,6 @@ export default function Commissions() {
           <div className="carpetInfo">
             <h1 className="carpetTitle">CREATE YOUR GGRUG</h1>
             <p className="carpetDescription">
-              {" "}
               <PortableText value={commissionsData[0].description} />
             </p>
 

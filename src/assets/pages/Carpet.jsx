@@ -4,17 +4,38 @@ import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
 import AnimatedPage from "../AnimatedPage";
 
+import sanityClient from "/src/client.js";
+
+import { PortableText } from "@portabletext/react";
+import GetMedia from "../utils/getMedia";
+
 import "../css/Carpet.css";
 
 export default function Carpet({ data, isDesktop }) {
+  let [carpetData, setCarpetData] = React.useState();
+  React.useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type=="carpet"]{
+    name,
+    coverimage,
+    year,
+    price,
+    dimensions,
+    description,
+    mediagallery,
+    gridstructure,
+    slug
+}`
+      )
+      .then((data) => setCarpetData(data))
+      .catch(console.error);
+  }, []);
+
   const { id } = useParams();
 
-  React.useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   // Find the carpet object that matches the ID
-  const carpet = data?.find((carpet) => carpet.attributes.title.toLowerCase().replace(/ /g, "-") === id);
+  const carpet = carpetData?.find((carpet) => carpet.name.toLowerCase().replace(/ /g, "-") === id);
 
   if (!carpet) {
     return <NotFound />;
@@ -36,7 +57,7 @@ export default function Carpet({ data, isDesktop }) {
   // Compose Email when the user clicks "Buy"
   function handleBuyClick() {
     const subject = encodeURIComponent("I NEED IT!");
-    const body = encodeURIComponent(`THE ${carpet.attributes.title} CARPET NEEDS TO BE MINE!`);
+    const body = encodeURIComponent(`THE ${carpet.name} CARPET NEEDS TO BE MINE!`);
 
     const mailtoLink = `mailto:ciao@gg-office.com?subject=${subject}&body=${body}`;
 
@@ -44,32 +65,23 @@ export default function Carpet({ data, isDesktop }) {
   }
 
   const ImageGrid = () => {
+    let index = 0; // Initialize the index for slicing images
     return (
       <div className="imagegrid">
-        {carpet.attributes.imagegrid.length > 0 ? (
-          carpet.attributes.imagegrid.map((row) => {
-            let imageAmount = row.row.data.length;
+        {carpet.gridstructure ? (
+          carpet.gridstructure.map((columnsInRow, rowIndex) => {
+            const rowImages = carpet.mediagallery.slice(index, index + columnsInRow); // Slice the images for each row
+            index += columnsInRow; // Update the index for the next row
+
+            const rowStyles = {
+              gridTemplateColumns: `repeat(${columnsInRow}, 1fr)`, // Use the value from gridStructure for this row
+            };
 
             return (
-              <div
-                className="imagegrid-row"
-                key={row.id}
-                style={{
-                  gridTemplateColumns: `repeat(${imageAmount}, 1fr)`, // Dynamically set number of columns
-                }}
-              >
-                {row.row.data.map((media) => (
-                  <div className="imagegrid-media" key={media.id}>
-                    {media.attributes.mime.includes("image") ? (
-                      <img src={media.attributes.url} alt={media.attributes.title} />
-                    ) : media.attributes.mime.includes("video") ? (
-                      <video autoPlay defaultMuted loop playsInline>
-                        <source src={media.attributes.url} type={media.attributes.mime} />
-                        Your browser does not support the video tag.
-                      </video>
-                    ) : null}
-                  </div>
-                ))}
+              <div key={rowIndex} className="galleryRow" style={rowStyles}>
+                {rowImages.map((image, imgIndex) => {
+                  return <GetMedia file={image} key={imgIndex} />;
+                })}
               </div>
             );
           })
@@ -85,9 +97,7 @@ export default function Carpet({ data, isDesktop }) {
     );
   };
 
-  const currentCarpetIndex = data?.findIndex(
-    (carpet) => carpet.attributes.title.toLowerCase().replace(/ /g, "-") === id
-  );
+  const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.name.toLowerCase().replace(/ /g, "-") === id);
 
   let CarpetSpecifications = () => {
     return (
@@ -97,15 +107,15 @@ export default function Carpet({ data, isDesktop }) {
             <div className="carpetSpecifications">
               <div>
                 <span className="key">SIZE</span>
-                <span className="value">{carpet.attributes.dimensions}</span>
+                <span className="value">{`${carpet.dimensions.width} × ${carpet.dimensions.height} CM`}</span>
               </div>
               <div>
                 <span className="key">YEAR</span>
-                <span className="value">{carpet.attributes.year}</span>
+                <span className="value">{carpet.year}</span>
               </div>
               <div>
                 <span className="key">PRICE</span>
-                <span className="value">{carpet.attributes.price} EUR</span>
+                <span className="value">{carpet.price} EUR</span>
               </div>
             </div>
             <button className="buyButton customButton" onClick={handleBuyClick}>
@@ -121,9 +131,9 @@ export default function Carpet({ data, isDesktop }) {
                 <span className="key">PRICE</span>
               </div>
               <div>
-                <span className="value">{carpet.attributes.year}</span>
-                <span className="value">{carpet.attributes.dimensions}</span>
-                <span className="value">{carpet.attributes.price} EUR</span>
+                <span className="value">{carpet.year}</span>
+                <span className="value">{carpet.dimensions}</span>
+                <span className="value">{carpet.price} EUR</span>
               </div>
             </div>
             <button className="buyButton customButton" onClick={handleBuyClick}>
@@ -135,15 +145,15 @@ export default function Carpet({ data, isDesktop }) {
     );
   };
 
-  const prevCarpet = currentCarpetIndex > 0 ? data[currentCarpetIndex - 1] : null;
-  const nextCarpet = currentCarpetIndex < data.length - 1 ? data[currentCarpetIndex + 1] : null;
+  const prevCarpet = currentCarpetIndex > 0 ? carpetData[currentCarpetIndex - 1] : null;
+  const nextCarpet = currentCarpetIndex < carpetData.length - 1 ? carpetData[currentCarpetIndex + 1] : null;
 
   let ImageNavigation = () => {
     return (
       <div className="navigation-container">
         <div className="navigation-button">
           {/* Previous button */}
-          <Link to={prevCarpet ? `/${prevCarpet.attributes.title.toLowerCase().replace(/ /g, "-")}` : "#"}>
+          <Link to={prevCarpet ? `/${prevCarpet.name.toLowerCase().replace(/ /g, "-")}` : "#"}>
             <img className="customButton" src="/assets/img/buttons/prev.svg" alt="Previous" />
           </Link>
         </div>
@@ -157,7 +167,7 @@ export default function Carpet({ data, isDesktop }) {
 
         <div className="navigation-button">
           {/* Next button */}
-          <Link to={nextCarpet ? `/${nextCarpet.attributes.title.toLowerCase().replace(/ /g, "-")}` : "#"}>
+          <Link to={nextCarpet ? `/${nextCarpet.name.toLowerCase().replace(/ /g, "-")}` : "#"}>
             <img className="customButton" src="/assets/img/buttons/next.svg" alt="Next" />
           </Link>
         </div>
@@ -165,21 +175,21 @@ export default function Carpet({ data, isDesktop }) {
     );
   };
 
+  if (!carpetData || carpetData.length === 0) {
+    return <p>Loading...</p>;
+  }
+
+  console.log(carpetData, "carpet Data");
+
   return (
     <AnimatedPage>
       <main className="pageContainer">
-        {/* <Link to="/" className="backButton customButton desktop">
-          <img
-            src="/assets/img/buttons/backarrow.svg"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          ></img>
-        </Link> */}
-
         <div className="carpetContainer">
           <div className="carpetInfo">
-            <h1 className="carpetTitle">{carpet.attributes.title}</h1>
-            <p className="carpetDescription">{carpet.attributes.description}</p>
+            <h1 className="carpetTitle">{carpet.name}</h1>
+            <p className="carpetDescription">
+              <PortableText value={carpet.description} />
+            </p>
 
             <CarpetSpecifications />
           </div>
