@@ -28,29 +28,6 @@
   transform: translate(-50%, -50%);
 }
 
-.socials {
-  font-size: var(--large-font-size);
-  line-height: var(--large-line-height);
-  width: 50%;
-  color: #fff;
-  font-family: FoundersMedium;
-
-  /* Flexbox layout */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Ensures the top and bottom alignment */
-  height: 100%;
-  position: relative;
-  left: 50%;
-  margin-left: 10px;
-}
-.socials a {
-  color: #fff;
-}
-.socials a:visited {
-  color: #fff;
-}
-
 .contactPage {
   display: flex;
   justify-content: flex-end; /* Aligns content to the right horizontally */

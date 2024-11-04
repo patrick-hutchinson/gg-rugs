@@ -36,8 +36,6 @@ export default function Logo() {
 
         // For each lettercontainer, create and append the points
         document.querySelectorAll(className).forEach((letterContainer) => {
-          console.log(`${className}`, "className");
-
           const letterPoint = document.createElement("div");
           letterPoint.classList.add("letter_point");
 

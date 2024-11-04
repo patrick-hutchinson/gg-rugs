@@ -1,22 +1,11 @@
 import React from "react";
 import "../css/Footer.css";
 
+import { MouseEnterButton } from "../utils/MouseEnterButton";
+import { MouseLeaveButton } from "../utils/MouseLeaveButton";
+
 export default function Footer({ isDesktop }) {
   let currentYear = new Date().getFullYear();
-
-  function handleMouseEnter(e) {
-    let currentSource = e.currentTarget.querySelector("img").getAttribute("src");
-    let splicedSource = currentSource.slice(0, -4) + "_focus.svg";
-
-    e.currentTarget.querySelector("img").setAttribute("src", splicedSource);
-  }
-
-  function handleMouseLeave(e) {
-    let currentSource = e.currentTarget.querySelector("img").getAttribute("src");
-    let splicedSource = currentSource.slice(0, -10) + ".svg";
-
-    e.currentTarget.querySelector("img").setAttribute("src", splicedSource);
-  }
 
   let DesktopFooter = () => {
     return (
@@ -30,8 +19,8 @@ export default function Footer({ isDesktop }) {
           <a
             href="https://www.instagram.com/gg__rugs"
             target="_blank"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={(e) => MouseEnterButton(e)}
+            onMouseLeave={(e) => MouseLeaveButton(e)}
           >
             <img className="customButton" src="/assets/img/buttons/ig.svg" alt="" />
           </a>
@@ -41,9 +30,9 @@ export default function Footer({ isDesktop }) {
           For any information write to us at <br />
           <a
             href="mailto:ciao@gg-office.com"
+            onMouseEnter={(e) => MouseEnterButton(e)}
+            onMouseLeave={(e) => MouseLeaveButton(e)}
             target="blank"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
           >
             <img className="customButton" src="/assets/img/buttons/email.svg" />
           </a>

@@ -14,6 +14,40 @@
   font-style: normal;
   font-display: block;
 }
+@font-face {
+  font-family: "DiaTypeRegular";
+  src: url("/assets/fonts/ABCDiatype-Regular.otf");
+  font-weight: bold;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "DiaTypeMedium";
+  src: url("/assets/fonts/ABCDiatype-Medium.otf");
+  font-weight: bold;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --small-font-size: 14px;
+  --medium-font-size: 28px;
+  --large-font-size: 40px;
+
+  --small-line-height: 14px;
+  --medium-line-height: 28px;
+  --large-line-height: 35px;
+
+  --mobileBreakpoint: 1180px;
+
+  --background-color: #fff;
+  --font-color: #000;
+
+  --textFont: Founders;
+  --mediumFont: FoundersMedium;
+
+  --textOffset: calc(var(--medium-font-size) / 3);
+}
 
 * {
   scrollbar-width: none;
@@ -34,35 +68,39 @@
   height: 0;
 }
 
-:root {
-  --small-font-size: 14px;
-  --medium-font-size: 28px;
-  --large-font-size: 40px;
-
-  --small-line-height: 14px;
-  --medium-line-height: 28px;
-  --large-line-height: 35px;
-
-  --mobileBreakpoint: 1180px;
-
-  --background-color: #fff;
-  --font-color: #000;
-
-  --textOffset: calc(var(--medium-font-size) / 3);
-}
-
-*:hover {
-  cursor: none !important;
+* {
+  cursor: none;
 }
 
 body {
-  font-family: Founders;
+  font-family: var(--textFont);
 
   margin: 0;
   padding: 0;
   font-size: var(--medium-font-size);
   line-height: var(--medium-line-height);
   overflow-x: hidden;
+
+  background: linear-gradient(107deg, #ffd4d4, #eea6ff, #97faff, #99ffa7, #ffff85);
+  background-size: 300% 300%;
+  animation: gradient-animation 45s ease infinite;
+}
+
+::selection {
+  color: black;
+  background: white;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 ul {
@@ -101,7 +139,7 @@ h1 {
   font-size: var(--large-font-size);
   line-height: var(--large-line-height);
 
-  font-family: FoundersMedium;
+  font-family: var(--mediumFont);
   position: relative;
   top: 18px;
 }
@@ -209,6 +247,13 @@ h1 {
   display: none;
 }
 
+.carpetLink .larger-screen {
+  display: unset;
+}
+.carpetLink .smaller-screen {
+  display: none;
+}
+
 @media only screen and (max-width: 820px) {
   *:hover {
     cursor: default !important;
@@ -228,4 +273,25 @@ h1 {
   .pageContainer {
     padding-top: 80px;
   }
+}
+
+@media (max-width: 575.98px) {
+}
+
+/* Small Devices (Phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+/* Medium Devices (Tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .carpetLink .larger-screen {
+    display: none;
+  }
+  .carpetLink .smaller-screen {
+    display: unset;
+  }
+}
+
+/* Desktop */
+@media (min-width: 991.98px) {
 }

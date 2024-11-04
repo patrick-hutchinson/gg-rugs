@@ -14,7 +14,7 @@
 
 .about {
   padding-top: 10px;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 @keyframes floatUp {

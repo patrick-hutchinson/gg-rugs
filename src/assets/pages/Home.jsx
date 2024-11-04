@@ -31,7 +31,6 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
   }, []);
 
   function handleSeeMoreMouseEnter(e) {
-    e.currentTarget.src = "/assets/img/buttons/take-a-look_focus.svg";
     const cursorImage = document.querySelector(".cursorImage > img");
     cursorImage.classList.remove("pulseCursor");
     cursorImage.classList.add("pulseCursor");
@@ -49,7 +48,6 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
   }
 
   function handleSeeMoreMouseLeave(e) {
-    e.currentTarget.src = "/assets/img/buttons/take-a-look.svg";
     const cursorImage = document.querySelector(".cursorImage > img");
 
     const handleAnimationEnd = () => {
@@ -87,9 +85,16 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
                         <div className="">{carpet.price} EUR</div>
                         <Link className="carpetLink customButton" to={`/${carpet.slug.current}`}>
                           <img
+                            className="larger-screen"
                             onMouseEnter={handleSeeMoreMouseEnter}
                             onMouseLeave={handleSeeMoreMouseLeave}
                             src="/assets/img/buttons/take-a-look.svg"
+                          />
+                          <img
+                            className="smaller-screen"
+                            onMouseEnter={handleSeeMoreMouseEnter}
+                            onMouseLeave={handleSeeMoreMouseLeave}
+                            src="/assets/img/buttons/look.svg"
                           />
                         </Link>
                       </div>

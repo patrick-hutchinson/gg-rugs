@@ -5,7 +5,7 @@ import Layout from "./assets/components/Layout";
 
 import Home from "./assets/pages/Home";
 import About from "./assets/pages/About";
-import Commissions from "./assets/pages/Commissions";
+import Commissions from "./assets/pages/Commissions/Commissions";
 import Contact from "./assets/pages/Contact";
 import Carpet from "./assets/pages/Carpet";
 import NotFound from "./assets/pages/NotFound";

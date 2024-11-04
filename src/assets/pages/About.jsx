@@ -60,12 +60,10 @@ export default function About() {
     return <p>Loading...</p>;
   }
 
-  console.log(aboutData[0], "ad");
-
   return (
     <AnimatedPage>
-      <main className="pageContainer" ref={emojiContainerRef}>
-        <div className="pistolContainer"></div>
+      <main className="pageContainer">
+        <div className="pistolContainer" ref={emojiContainerRef}></div>
         <div className="about">
           <PortableText value={aboutData[0].biography} />
         </div>

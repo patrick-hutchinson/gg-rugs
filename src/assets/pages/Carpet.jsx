@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
 import AnimatedPage from "../AnimatedPage";
 
+import { MouseEnterButton } from "../utils/MouseEnterButton";
+import { MouseLeaveButton } from "../utils/MouseLeaveButton";
+
 import sanityClient from "/src/client.js";
 
 import { PortableText } from "@portabletext/react";
@@ -39,19 +42,6 @@ export default function Carpet({ isDesktop }) {
 
   if (!carpet) {
     return <NotFound />;
-  }
-
-  function handleMouseEnter(e) {
-    let currentSource = e.target.getAttribute("src");
-    let splicedSource = currentSource.slice(0, -4) + "_focus.svg";
-
-    e.target.setAttribute("src", splicedSource);
-  }
-  function handleMouseLeave(e) {
-    let currentSource = e.target.getAttribute("src");
-    let splicedSource = currentSource.slice(0, -10) + ".svg";
-
-    e.target.setAttribute("src", splicedSource);
   }
 
   // Compose Email when the user clicks "Buy"
@@ -118,8 +108,13 @@ export default function Carpet({ isDesktop }) {
                 <span className="value">{carpet.price} EUR</span>
               </div>
             </div>
-            <button className="buyButton customButton" onClick={handleBuyClick}>
-              <img src="/assets/img/buttons/buy.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+            <button
+              className="buyButton"
+              onClick={handleBuyClick}
+              onMouseEnter={(e) => MouseEnterButton(e)}
+              onMouseLeave={(e) => MouseLeaveButton(e)}
+            >
+              <img className="customButton" src="/assets/img/buttons/buy.svg" />
             </button>
           </>
         ) : (
@@ -132,12 +127,17 @@ export default function Carpet({ isDesktop }) {
               </div>
               <div>
                 <span className="value">{carpet.year}</span>
-                <span className="value">{carpet.dimensions}</span>
+                <span className="value">{`${carpet.dimensions.width} × ${carpet.dimensions.height} CM`}</span>
                 <span className="value">{carpet.price} EUR</span>
               </div>
             </div>
-            <button className="buyButton customButton" onClick={handleBuyClick}>
-              <img src="/assets/img/buttons/buy.svg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+            <button
+              className="buyButton"
+              onClick={handleBuyClick}
+              onMouseEnter={(e) => MouseEnterButton(e)}
+              onMouseLeave={(e) => MouseLeaveButton(e)}
+            >
+              <img class="customButton" src="/assets/img/buttons/buy.svg" />
             </button>
           </>
         )}
@@ -153,21 +153,29 @@ export default function Carpet({ isDesktop }) {
       <div className="navigation-container">
         <div className="navigation-button">
           {/* Previous button */}
-          <Link to={prevCarpet ? `/${prevCarpet.name.toLowerCase().replace(/ /g, "-")}` : "#"}>
+          <Link
+            to={prevCarpet ? `/${prevCarpet.name.toLowerCase().replace(/ /g, "-")}` : "#"}
+            onMouseEnter={(e) => MouseEnterButton(e)}
+            onMouseLeave={(e) => MouseLeaveButton(e)}
+          >
             <img className="customButton" src="/assets/img/buttons/prev.svg" alt="Previous" />
           </Link>
         </div>
 
         <div className="navigation-button">
           {/* Home button */}
-          <Link to="/">
+          <Link to="/" onMouseEnter={(e) => MouseEnterButton(e)} onMouseLeave={(e) => MouseLeaveButton(e)}>
             <img className="customButton" src="/assets/img/buttons/all-rugs.svg" alt="All Rugs" />
           </Link>
         </div>
 
         <div className="navigation-button">
           {/* Next button */}
-          <Link to={nextCarpet ? `/${nextCarpet.name.toLowerCase().replace(/ /g, "-")}` : "#"}>
+          <Link
+            to={nextCarpet ? `/${nextCarpet.name.toLowerCase().replace(/ /g, "-")}` : "#"}
+            onMouseEnter={(e) => MouseEnterButton(e)}
+            onMouseLeave={(e) => MouseLeaveButton(e)}
+          >
             <img className="customButton" src="/assets/img/buttons/next.svg" alt="Next" />
           </Link>
         </div>
@@ -179,17 +187,14 @@ export default function Carpet({ isDesktop }) {
     return <p>Loading...</p>;
   }
 
-  console.log(carpetData, "carpet Data");
-
   return (
     <AnimatedPage>
       <main className="pageContainer">
         <div className="carpetContainer">
           <div className="carpetInfo">
             <h1 className="carpetTitle">{carpet.name}</h1>
-            <p className="carpetDescription">
-              <PortableText value={carpet.description} />
-            </p>
+
+            <PortableText className="carpetDescription" value={carpet.description} />
 
             <CarpetSpecifications />
           </div>

@@ -6,6 +6,9 @@ import sanityClient from "/src/client.js";
 
 import GetMedia from "../utils/getMedia";
 
+import { MouseEnterButton } from "../utils/MouseEnterButton";
+import { MouseLeaveButton } from "../utils/MouseLeaveButton";
+
 export default function Contact() {
   let [contactData, setContactData] = React.useState();
   React.useEffect(() => {
@@ -18,19 +21,6 @@ export default function Contact() {
       .then((data) => setContactData(data))
       .catch(console.error);
   }, []);
-
-  function handleMouseEnter(e) {
-    let currentSource = e.target.getAttribute("src");
-    let splicedSource = currentSource.slice(0, -4) + "_focus.svg";
-
-    e.target.setAttribute("src", splicedSource);
-  }
-  function handleMouseLeave(e) {
-    let currentSource = e.target.getAttribute("src");
-    let splicedSource = currentSource.slice(0, -10) + ".svg";
-
-    e.target.setAttribute("src", splicedSource);
-  }
 
   if (!contactData || contactData.length === 0) {
     return <p>Loading...</p>;
@@ -45,14 +35,13 @@ export default function Contact() {
 
         <div className="contact">
           <div className="email">
-            <a href="mailto:ciao@gg-rugs.com" target="_blank">
-              <img
-                className="customButton"
-                src="/assets/img/buttons/shoot-us-an-email.svg"
-                handleMouseEnter={handleMouseEnter}
-                handleMouseLeave={handleMouseLeave}
-                alt=""
-              />
+            <a
+              href="mailto:ciao@gg-rugs.com"
+              target="_blank"
+              onMouseEnter={(e) => MouseEnterButton(e)}
+              onMouseLeave={(e) => MouseLeaveButton(e)}
+            >
+              <img className="customButton" src="/assets/img/buttons/shoot-us-an-email.svg" alt="" />
             </a>
           </div>
         </div>

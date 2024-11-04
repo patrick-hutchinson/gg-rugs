@@ -1,23 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { MouseEnterButton } from "../utils/MouseEnterButton";
+import { MouseLeaveButton } from "../utils/MouseLeaveButton";
+
 import "../css/Header.css";
 
 export default function Header({ isDesktop }) {
-  function handleMouseEnter(e) {
-    let currentSource = e.currentTarget.querySelector("img").getAttribute("src");
-    let splicedSource = currentSource.slice(0, -4) + "_focus.svg";
-
-    e.currentTarget.querySelector("img").setAttribute("src", splicedSource);
-  }
-
-  function handleMouseLeave(e) {
-    let currentSource = e.currentTarget.querySelector("img").getAttribute("src");
-    let splicedSource = currentSource.slice(0, -10) + ".svg";
-
-    e.currentTarget.querySelector("img").setAttribute("src", splicedSource);
-  }
-
   function handleOpenMenu() {
     document.querySelector(".mobileMenu").classList.add("visible");
   }
@@ -67,25 +56,25 @@ export default function Header({ isDesktop }) {
   let DesktopHeader = () => (
     <>
       <ul className="header">
-        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
+        <li onMouseEnter={(e) => MouseEnterButton(e)} onMouseLeave={(e) => MouseLeaveButton(e)}>
           <Link to="/">
-            <img src="assets/img/buttons/rugs.svg" />
+            <img src="assets/img/buttons/rugs.svg" className="customButton" />
           </Link>
         </li>
 
-        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
+        <li onMouseEnter={(e) => MouseEnterButton(e)} onMouseLeave={(e) => MouseLeaveButton(e)}>
           <Link to="/about">
-            <img src="assets/img/buttons/about.svg" />
+            <img src="assets/img/buttons/about.svg" className="customButton" />
           </Link>
         </li>
-        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
+        <li onMouseEnter={(e) => MouseEnterButton(e)} onMouseLeave={(e) => MouseLeaveButton(e)}>
           <Link to="/commissions">
-            <img src="assets/img/buttons/commission.svg" />
+            <img src="assets/img/buttons/commission.svg" className="customButton" />
           </Link>
         </li>
-        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="customButton">
+        <li onMouseEnter={(e) => MouseEnterButton(e)} onMouseLeave={(e) => MouseLeaveButton(e)}>
           <Link to="/contact">
-            <img src="assets/img/buttons/contacts.svg" />
+            <img src="assets/img/buttons/contacts.svg" className="customButton" />
           </Link>
         </li>
       </ul>

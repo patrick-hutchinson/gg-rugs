@@ -65,9 +65,6 @@ export default function Layout({ isDesktop, setShowOpeningPage }) {
   let copyrightNoticeRef = React.useRef(null);
 
   React.useEffect(() => {
-    // console.log(copyrightNoticeRef.current.getBoundingClientRect().height);
-    // copyrightNoticeRef.current.style.right = `-${copyrightNoticeRef.current.getBoundingClientRect().height / 2 - 25}px`;
-
     let catalogueImages = document.querySelectorAll(".catalogueImage");
     catalogueImages.forEach((catalogueImage, index) => {
       catalogueImage.style.animationDelay = `${index * 0.1}s`;

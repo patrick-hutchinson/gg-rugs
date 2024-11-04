@@ -18,6 +18,7 @@
   flex-direction: row;
   justify-content: space-between; /* Spaces items evenly across the available width */
   align-items: center; /* Vertically centers the items */
+  height: 80px;
 }
 
 .carpetSpecifications {
@@ -70,8 +71,9 @@
 }
 
 .buyButton {
-  position: relative;
-  top: -8px;
+  position: fixed;
+  top: 135px;
+  right: 20px;
 }
 
 .navigation-container {
@@ -149,6 +151,7 @@
   }
   .carpetSpecifications-wrapper {
     align-items: end; /* Vertically centers the items */
+    margin-bottom: 20px;
   }
 
   .imagegrid-row {
@@ -160,6 +163,13 @@
     animation: roll 12s ease-in-out infinite;
     line-height: 1.5;
   }
+
+  .buyButton {
+    position: fixed;
+    top: 115px;
+    right: 20px;
+  }
+
   @keyframes roll {
     0% {
       transform: rotate(0deg);

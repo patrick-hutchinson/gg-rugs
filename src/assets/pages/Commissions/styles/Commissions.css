@@ -13,6 +13,10 @@ form.commissioninfo-wrapper {
   width: 100%;
 }
 
+main.commissions .carpetInfo {
+  margin-bottom: 20px;
+}
+
 /* .backButton {
   position: absolute;
   top: 80px;
@@ -37,22 +41,29 @@ form.commissioninfo-wrapper {
 
 input,
 input:focus {
-  border-bottom: 1.5px solid #000 !important;
+  /* border-bottom: 1.5px solid #000 !important; */
   font-size: var(--medium-font-size);
   line-height: var(--medium-line-height);
-  text-transform: uppercase;
   width: 100%;
   color: #000;
+  font-family: inherit;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 1px solid;
+  border-bottom: 1.5px solid #000 !important;
 }
+
 input::placeholder {
   color: #999998;
   font-size: var(--medium-font-size);
   line-height: var(--medium-line-height);
+  font-family: inherit;
 }
 
 .checkboxContainer {
   display: flex;
   align-items: flex-end;
+  margin-top: 10px;
 }
 .checkbox {
   width: 20px !important;
@@ -60,7 +71,7 @@ input::placeholder {
   border: 2px solid #000 !important;
   margin-left: 10px;
   position: relative;
-  top: -5px;
+  top: -9px;
 }
 
 .checkbox:checked {
@@ -76,7 +87,7 @@ input::placeholder {
   bottom: 0;
   font-size: 30px;
   text-align: center;
-  transform: translate(-55%, -25%);
+  transform: translate(-45%, 20%);
   color: #fff;
   text-align: center;
   line-height: 25px;
