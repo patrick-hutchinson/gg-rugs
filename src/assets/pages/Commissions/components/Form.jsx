@@ -55,13 +55,14 @@ export default function Form() {
           />
         </div>
 
-        <button className="submitButton customButton" type="submit">
-          <img
-            src="/assets/img/buttons/send.svg"
-            onMouseEnter={(e) => MouseEnterButton(e)}
-            onMouseLeave={(e) => MouseLeaveButton(e)}
-          />
-        </button>
+        <div
+          className="submitButton customButton"
+          onMouseEnter={(e) => MouseEnterButton(e)}
+          onMouseLeave={(e) => MouseLeaveButton(e)}
+          type="submit"
+        >
+          <img src="/assets/img/buttons/send.svg" />
+        </div>
       </div>
     </form>
   );

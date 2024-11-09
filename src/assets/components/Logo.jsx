@@ -6,7 +6,7 @@ export default function Logo() {
   const letterPointsRef = useRef([]);
 
   useEffect(() => {
-    // Get the height css height of any letter SVG for reference, here the first is chosen
+    // Get the css height of any letter SVG for reference, here the first is chosen
     const element = document.querySelector(`.letter > img`);
     const elementHeight = parseInt(window.getComputedStyle(element).getPropertyValue("height"));
 
@@ -14,7 +14,9 @@ export default function Logo() {
     const smallestTop = Math.min(...letters.letterS.letterPoints.map((points) => points.top));
     const largestTop = Math.max(...letters.letterS.letterPoints.map((points) => points.top));
     const pointHeight = largestTop - smallestTop;
-    const pointScale = elementHeight / pointHeight;
+    // const pointScale = elementHeight / pointHeight;
+    const pointScale = 0.14;
+    const dashPointScale = 0.54;
 
     // Collect all letter point elements after they are created
     const letterPointElements = [];
@@ -41,6 +43,11 @@ export default function Logo() {
 
           letterPoint.style.left = point.left * pointScale - translateX + "px";
           letterPoint.style.top = point.top * pointScale - translateY + "px";
+
+          if (className.includes("Dash")) {
+            letterPoint.style.left = point.left * dashPointScale - 375 + "px";
+            letterPoint.style.top = point.top * dashPointScale - 230 + "px";
+          }
 
           letterContainer.append(letterPoint);
           letterPointElements.push(letterPoint); // Collect the created elements
@@ -100,6 +107,11 @@ export default function Logo() {
       <div className="letterContainer letterContainer_G">
         <div className="letter">
           <img src="/assets/img/00-GG-Rugs_G.svg" alt="G" />
+        </div>
+      </div>
+      <div className="letterContainer letterContainer_Dash">
+        <div className="letter">
+          <img src="/assets/img/04-GG-Rugs_Dash.svg" alt="G" />
         </div>
       </div>
       <div className="letterContainer letterContainer_R">
