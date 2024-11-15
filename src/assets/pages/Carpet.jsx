@@ -38,7 +38,7 @@ export default function Carpet({ isDesktop }) {
   const { id } = useParams();
 
   // Find the carpet object that matches the ID
-  const carpet = carpetData?.find((carpet) => carpet.name.toLowerCase().replace(/ /g, "-") === id);
+  const carpet = carpetData?.find((carpet) => carpet.slug.current.toLowerCase().replace(/ /g, "-") === id);
 
   if (!carpet) {
     return <NotFound />;

@@ -101,7 +101,7 @@
   position: relative;
   font-size: calc(var(--large-font-size) * 2);
   width: auto;
-  height: 80px;
+  height: 110px;
 
   animation: roll 25s ease-in-out infinite;
   line-height: 1.5;
