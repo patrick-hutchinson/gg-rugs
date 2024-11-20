@@ -32,7 +32,7 @@
   margin-right: 3px;
 
   position: relative;
-  top: -6px;
+  top: -9px;
 }
 
 .backButton {
@@ -148,6 +148,7 @@
   .carpetSpecifications .key {
     /* top: 0; */
     line-height: var(--medium-line-height);
+    top: -5px;
   }
   .carpetSpecifications-wrapper {
     align-items: end; /* Vertically centers the items */

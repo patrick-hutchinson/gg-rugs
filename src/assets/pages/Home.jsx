@@ -62,8 +62,6 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
     return <p>Loading...</p>;
   }
 
-  console.log(homeData, "hd");
-
   let rows =
     homeData[0].gridstructure &&
     homeData[0].gridstructure.map((row, rowindex) => {
@@ -82,7 +80,7 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
                       </div>
                       <div className="carpetTextContainer carpet-back">
                         <div className="carpetTitle">{carpet.name}</div>
-                        <div className="">{carpet.price} EUR</div>
+                        <div className="">{carpet.price.soldOut ? "Sold Out" : carpet.price.price + " EUR"}</div>
                         <Link className="carpetLink customButton" to={`/${carpet.slug.current}`}>
                           <img
                             className="larger-screen"
@@ -108,7 +106,9 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
                       </div>
                       <div className="carpetTextContainer carpet-back">
                         <div className="carpetTitle">{carpet.name}</div>
-                        <div className="carpet-price">{carpet.price} EUR</div>
+                        <div className="carpet-price">
+                          {carpet.price.soldOut ? "Sold Out" : carpet.price.price + " EUR"}
+                        </div>
                         <Link className="carpetLink customButton" to={`/${carpet.slug.current}`}>
                           <img src="/assets/img/buttons/take-a-look.svg" />
                         </Link>

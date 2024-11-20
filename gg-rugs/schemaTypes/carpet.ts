@@ -8,7 +8,15 @@ export const carpet = defineType({
     defineField({name: 'name', title: 'Name', type: 'string'}),
     defineField({name: 'coverimage', title: 'Cover Image', type: 'file'}),
     defineField({name: 'year', title: 'Year', type: 'number'}),
-    defineField({name: 'price', title: 'Price', type: 'number'}),
+    defineField({
+      name: 'price',
+      title: 'Price',
+      type: 'object',
+      fields: [
+        {name: 'price', title: 'Price', type: 'number'},
+        {name: 'soldOut', title: 'Sold Out?', type: 'boolean'},
+      ],
+    }),
     defineField({
       name: 'dimensions',
       title: 'Dimensions',

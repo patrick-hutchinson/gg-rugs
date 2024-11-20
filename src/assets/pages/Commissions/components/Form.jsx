@@ -6,6 +6,7 @@ import { MouseLeaveButton } from "../../../utils/MouseLeaveButton";
 export default function Form() {
   // Compose Email on Button Click
   const handleSubmit = (e) => {
+    console.log("submit");
     e.preventDefault();
     const { size, colors, theme, designOwnRug } = formData;
     const mailtoLink = `mailto:ciao@gg-office.com?subject=DESIGN ME A RUG!&body=${encodeURIComponent(
@@ -55,14 +56,14 @@ export default function Form() {
           />
         </div>
 
-        <div
+        <button
           className="submitButton customButton"
           onMouseEnter={(e) => MouseEnterButton(e)}
           onMouseLeave={(e) => MouseLeaveButton(e)}
           type="submit"
         >
-          <img src="/assets/img/buttons/send.svg" />
-        </div>
+          <img src="/assets/img/buttons/send.svg" alt="Send" />
+        </button>
       </div>
     </form>
   );

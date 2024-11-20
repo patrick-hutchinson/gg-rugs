@@ -35,10 +35,26 @@ export default function Carpet({ isDesktop }) {
       .catch(console.error);
   }, []);
 
+  let [homeData, setHomeData] = React.useState();
+  React.useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == "home"]{
+  gridstructure[]{
+    carpets[]->{
+      _id,
+      index
+    }
+  }
+}`
+      )
+      .then((data) => setHomeData(data))
+      .catch(console.error);
+  }, []);
+
   const { id } = useParams();
 
-  // Find the carpet object that matches the ID
-  const carpet = carpetData?.find((carpet) => carpet.slug.current.toLowerCase().replace(/ /g, "-") === id);
+  const carpet = carpetData?.find((carpet) => carpet.slug.current === id);
 
   if (!carpet) {
     return <NotFound />;
@@ -87,8 +103,6 @@ export default function Carpet({ isDesktop }) {
     );
   };
 
-  const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.name.toLowerCase().replace(/ /g, "-") === id);
-
   let CarpetSpecifications = () => {
     return (
       <div className="carpetSpecifications-wrapper">
@@ -105,7 +119,7 @@ export default function Carpet({ isDesktop }) {
               </div>
               <div>
                 <span className="key">PRICE</span>
-                <span className="value">{carpet.price} EUR</span>
+                <span className="value">{carpet.price.soldOut ? "Sold Out" : carpet.price.price + " EUR"}</span>
               </div>
             </div>
             <button
@@ -126,9 +140,9 @@ export default function Carpet({ isDesktop }) {
                 <span className="key">PRICE</span>
               </div>
               <div>
-                <span className="value">{carpet.year}</span>
                 <span className="value">{`${carpet.dimensions.width} × ${carpet.dimensions.height} CM`}</span>
-                <span className="value">{carpet.price} EUR</span>
+                <span className="value">{carpet.year}</span>
+                <span className="value">{carpet.price.soldOut ? "Sold Out" : carpet.price.price + " EUR"}</span>
               </div>
             </div>
             <button
@@ -145,8 +159,14 @@ export default function Carpet({ isDesktop }) {
     );
   };
 
+  const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.slug.current === id);
+
   const prevCarpet = currentCarpetIndex > 0 ? carpetData[currentCarpetIndex - 1] : null;
   const nextCarpet = currentCarpetIndex < carpetData.length - 1 ? carpetData[currentCarpetIndex + 1] : null;
+
+  console.log(homeData, "homeData");
+
+  // Log the homeData so each carpet is listed in order of it's position, merging rows. Then don't change the carpet index for navigation, but compare the current number with the order number (position in the new positionArray) and select the carpet based on that
 
   let ImageNavigation = () => {
     return (
