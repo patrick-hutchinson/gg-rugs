@@ -15,6 +15,7 @@ import GetMedia from "../utils/getMedia";
 import "../css/Carpet.css";
 
 export default function Carpet({ isDesktop }) {
+  let newCarpetOrder = [];
   let [carpetData, setCarpetData] = React.useState();
   React.useEffect(() => {
     sanityClient
@@ -42,8 +43,7 @@ export default function Carpet({ isDesktop }) {
         `*[_type == "home"]{
   gridstructure[]{
     carpets[]->{
-      _id,
-      index
+      _id
     }
   }
 }`
@@ -51,6 +51,10 @@ export default function Carpet({ isDesktop }) {
       .then((data) => setHomeData(data))
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    console.log(newCarpetOrder, "newCarpetOrder");
+  }, [newCarpetOrder]);
 
   const { id } = useParams();
 
@@ -164,7 +168,14 @@ export default function Carpet({ isDesktop }) {
   const prevCarpet = currentCarpetIndex > 0 ? carpetData[currentCarpetIndex - 1] : null;
   const nextCarpet = currentCarpetIndex < carpetData.length - 1 ? carpetData[currentCarpetIndex + 1] : null;
 
-  console.log(homeData, "homeData");
+  homeData &&
+    homeData[0] &&
+    homeData[0].gridstructure &&
+    homeData[0].gridstructure.forEach((row) => {
+      row.carpets.forEach((carpet) => {
+        newCarpetOrder.push(carpet);
+      });
+    });
 
   // Log the homeData so each carpet is listed in order of it's position, merging rows. Then don't change the carpet index for navigation, but compare the current number with the order number (position in the new positionArray) and select the carpet based on that
 
