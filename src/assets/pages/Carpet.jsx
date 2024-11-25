@@ -15,7 +15,7 @@ import GetMedia from "../utils/getMedia";
 import "../css/Carpet.css";
 
 export default function Carpet({ isDesktop }) {
-  let newCarpetOrder = [];
+  let updatedCarpetOrder = [];
   let [carpetData, setCarpetData] = React.useState();
   React.useEffect(() => {
     sanityClient
@@ -43,7 +43,9 @@ export default function Carpet({ isDesktop }) {
         `*[_type == "home"]{
   gridstructure[]{
     carpets[]->{
-      _id
+      _id,
+      name,
+      slug
     }
   }
 }`
@@ -53,8 +55,8 @@ export default function Carpet({ isDesktop }) {
   }, []);
 
   useEffect(() => {
-    console.log(newCarpetOrder, "newCarpetOrder");
-  }, [newCarpetOrder]);
+    console.log(updatedCarpetOrder, "updatedCarpetOrder");
+  }, [updatedCarpetOrder]);
 
   const { id } = useParams();
 
@@ -123,7 +125,13 @@ export default function Carpet({ isDesktop }) {
               </div>
               <div>
                 <span className="key">PRICE</span>
-                <span className="value">{carpet.price.soldOut ? "Sold Out" : carpet.price.price + " EUR"}</span>
+                <span className="value">
+                  {carpet?.price?.soldOut
+                    ? "Sold Out"
+                    : carpet?.price?.notForSale
+                    ? "Not for Sale"
+                    : `${carpet?.price?.price} EUR`}
+                </span>
               </div>
             </div>
             <button
@@ -146,7 +154,13 @@ export default function Carpet({ isDesktop }) {
               <div>
                 <span className="value">{`${carpet.dimensions.width} × ${carpet.dimensions.height} CM`}</span>
                 <span className="value">{carpet.year}</span>
-                <span className="value">{carpet.price.soldOut ? "Sold Out" : carpet.price.price + " EUR"}</span>
+                <span className="value">
+                  {carpet?.price?.soldOut
+                    ? "Sold Out"
+                    : carpet?.price?.notForSale
+                    ? "Not for Sale"
+                    : `${carpet?.price?.price} EUR`}
+                </span>
               </div>
             </div>
             <button
@@ -163,19 +177,22 @@ export default function Carpet({ isDesktop }) {
     );
   };
 
-  const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.slug.current === id);
+  // const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.slug.current === id);
 
-  const prevCarpet = currentCarpetIndex > 0 ? carpetData[currentCarpetIndex - 1] : null;
-  const nextCarpet = currentCarpetIndex < carpetData.length - 1 ? carpetData[currentCarpetIndex + 1] : null;
+  let currentIndex = updatedCarpetOrder?.findIndex(
+    (updatedCarpet) => carpet.slug.current === updatedCarpet.slug.current
+  );
 
-  homeData &&
-    homeData[0] &&
-    homeData[0].gridstructure &&
-    homeData[0].gridstructure.forEach((row) => {
-      row.carpets.forEach((carpet) => {
-        newCarpetOrder.push(carpet);
-      });
+  homeData[0]?.gridstructure?.forEach((row) => {
+    row.carpets.forEach((updatedCarpet) => {
+      updatedCarpetOrder.push(updatedCarpet);
     });
+  });
+
+  const prevCarpet = currentIndex > 0 ? updatedCarpetOrder[currentIndex - 1] : null;
+  const nextCarpet = currentIndex < updatedCarpetOrder.length - 1 ? updatedCarpetOrder[currentIndex + 1] : null;
+
+  console.log(currentIndex, "ci");
 
   // Log the homeData so each carpet is listed in order of it's position, merging rows. Then don't change the carpet index for navigation, but compare the current number with the order number (position in the new positionArray) and select the carpet based on that
 
@@ -185,7 +202,7 @@ export default function Carpet({ isDesktop }) {
         <div className="navigation-button">
           {/* Previous button */}
           <Link
-            to={prevCarpet ? `/${prevCarpet.name.toLowerCase().replace(/ /g, "-")}` : "#"}
+            to={prevCarpet ? `/${prevCarpet.slug.current}` : "#"}
             onMouseEnter={(e) => MouseEnterButton(e)}
             onMouseLeave={(e) => MouseLeaveButton(e)}
           >
@@ -203,7 +220,7 @@ export default function Carpet({ isDesktop }) {
         <div className="navigation-button">
           {/* Next button */}
           <Link
-            to={nextCarpet ? `/${nextCarpet.name.toLowerCase().replace(/ /g, "-")}` : "#"}
+            to={nextCarpet ? `/${nextCarpet.slug.current}` : "#"}
             onMouseEnter={(e) => MouseEnterButton(e)}
             onMouseLeave={(e) => MouseLeaveButton(e)}
           >

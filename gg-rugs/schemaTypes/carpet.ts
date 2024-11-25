@@ -15,6 +15,7 @@ export const carpet = defineType({
       fields: [
         {name: 'price', title: 'Price', type: 'number'},
         {name: 'soldOut', title: 'Sold Out?', type: 'boolean'},
+        {name: 'notForSale', title: 'Not for Sale?', type: 'boolean'},
       ],
     }),
     defineField({

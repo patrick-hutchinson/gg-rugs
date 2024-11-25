@@ -96,7 +96,7 @@
   object-fit: contain;
 }
 .carpet-front img {
-  max-height: 350px;
+  /* max-height: 350px; */
   max-width: 100%;
   padding: 10px;
 }
@@ -127,8 +127,6 @@
   .carpet {
     margin-bottom: 20px;
   }
-
-
 
   .carpet:hover .carpet-inner {
     transform: unset;

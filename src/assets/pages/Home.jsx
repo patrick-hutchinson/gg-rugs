@@ -80,7 +80,13 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
                       </div>
                       <div className="carpetTextContainer carpet-back">
                         <div className="carpetTitle">{carpet.name}</div>
-                        <div className="">{carpet.price.soldOut ? "Sold Out" : carpet.price.price + " EUR"}</div>
+                        <div>
+                          {carpet?.price?.soldOut
+                            ? "Sold Out"
+                            : carpet?.price?.notForSale
+                            ? "Not for Sale"
+                            : `${carpet?.price?.price} EUR`}
+                        </div>
                         <Link className="carpetLink customButton" to={`/${carpet.slug.current}`}>
                           <img
                             className="larger-screen"
@@ -107,7 +113,11 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
                       <div className="carpetTextContainer carpet-back">
                         <div className="carpetTitle">{carpet.name}</div>
                         <div className="carpet-price">
-                          {carpet.price.soldOut ? "Sold Out" : carpet.price.price + " EUR"}
+                          {carpet?.price?.soldOut
+                            ? "Sold Out"
+                            : carpet?.price?.notForSale
+                            ? "Not for Sale"
+                            : `${carpet?.price?.price} EUR`}
                         </div>
                         <Link className="carpetLink customButton" to={`/${carpet.slug.current}`}>
                           <img src="/assets/img/buttons/take-a-look.svg" />
