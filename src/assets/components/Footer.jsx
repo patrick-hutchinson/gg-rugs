@@ -10,7 +10,7 @@ export default function Footer({ isDesktop }) {
   let DesktopFooter = () => {
     return (
       <footer className="desktopFooter">
-        <div className="copyrightnotice">{`© ${currentYear} GG–RUGS`}</div>
+        <div className="copyrightnotice">{`© ${currentYear} GG−RUGS`}</div>
         <div>
           <a
             href="https://www.instagram.com/gg__rugs"
