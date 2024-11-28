@@ -189,8 +189,6 @@ export default function Carpet({ isDesktop }) {
   const prevCarpet = currentCarpetIndex > 0 ? carpetData[currentCarpetIndex - 1] : null;
   const nextCarpet = currentCarpetIndex < carpetData.length - 1 ? carpetData[currentCarpetIndex + 1] : null;
 
-  console.log(currentIndex, "ci");
-
   // Log the homeData so each carpet is listed in order of it's position, merging rows. Then don't change the carpet index for navigation, but compare the current number with the order number (position in the new positionArray) and select the carpet based on that
 
   let ImageNavigation = () => {
