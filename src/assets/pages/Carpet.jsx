@@ -15,7 +15,7 @@ import GetMedia from "../utils/getMedia";
 import "../css/Carpet.css";
 
 export default function Carpet({ isDesktop }) {
-  let updatedCarpetOrder = [];
+  // let updatedCarpetOrder = [];
   let [carpetData, setCarpetData] = React.useState();
   React.useEffect(() => {
     sanityClient
@@ -53,10 +53,6 @@ export default function Carpet({ isDesktop }) {
       .then((data) => setHomeData(data))
       .catch(console.error);
   }, []);
-
-  useEffect(() => {
-    console.log(updatedCarpetOrder, "updatedCarpetOrder");
-  }, [updatedCarpetOrder]);
 
   const { id } = useParams();
 
@@ -179,18 +175,15 @@ export default function Carpet({ isDesktop }) {
 
   // const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.slug.current === id);
 
-  let currentIndex = updatedCarpetOrder?.findIndex(
-    (updatedCarpet) => carpet.slug.current === updatedCarpet.slug.current
-  );
+  // let currentIndex = updatedCarpetOrder?.findIndex(
+  //   (updatedCarpet) => carpet.slug.current === updatedCarpet.slug.current
+  // );
 
-  homeData[0]?.gridstructure?.forEach((row) => {
-    row.carpets.forEach((updatedCarpet) => {
-      updatedCarpetOrder.push(updatedCarpet);
-    });
-  });
-
-  // const prevCarpet = currentIndex > 0 ? updatedCarpetOrder[currentIndex - 1] : null;
-  // const nextCarpet = currentIndex < updatedCarpetOrder.length - 1 ? updatedCarpetOrder[currentIndex + 1] : null;
+  // homeData[0]?.gridstructure?.forEach((row) => {
+  //   row.carpets.forEach((updatedCarpet) => {
+  //     updatedCarpetOrder.push(updatedCarpet);
+  //   });
+  // });
 
   const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.slug.current === id);
   const prevCarpet = currentCarpetIndex > 0 ? carpetData[currentCarpetIndex - 1] : null;
