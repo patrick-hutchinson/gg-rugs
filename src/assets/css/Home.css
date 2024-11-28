@@ -134,4 +134,8 @@
   .carpet.flip .carpet-inner {
     transform: rotateY(180deg);
   }
+
+  .carpet-inner{
+    pointer-events: none;
+  }
 }
