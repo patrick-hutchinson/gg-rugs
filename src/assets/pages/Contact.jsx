@@ -40,8 +40,9 @@ export default function Contact() {
               target="_blank"
               onMouseEnter={(e) => MouseEnterButton(e)}
               onMouseLeave={(e) => MouseLeaveButton(e)}
+              className="customButton"
             >
-              <img className="customButton" src="/assets/img/buttons/shoot-us-an-email.svg" alt="" />
+              <img src="/assets/img/buttons/shoot-us-an-email.svg" alt="" />
             </a>
           </div>
         </div>

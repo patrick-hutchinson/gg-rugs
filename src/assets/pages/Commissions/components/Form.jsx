@@ -9,7 +9,7 @@ export default function Form() {
     console.log("submit");
     e.preventDefault();
     const { size, colors, theme, designOwnRug } = formData;
-    const mailtoLink = `mailto:ciao@gg-office.com?subject=DESIGN ME A RUG!&body=${encodeURIComponent(
+    const mailtoLink = `mailto:ciao@gg-rugs.com?subject=DESIGN ME A RUG!&body=${encodeURIComponent(
       `I NEED A RUG FROM YOU! Please, it has to be:\n\n Size: ${size}\nColors: ${colors}\nTheme: ${theme}\n\n ${
         designOwnRug
           ? "Don't worry, I will design my own rug!"

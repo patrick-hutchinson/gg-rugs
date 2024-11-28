@@ -78,7 +78,7 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
                       <div className="carpet-front catalogueImage">
                         <GetMedia file={carpet.coverimage} />
                       </div>
-                      <div className="carpetTextContainer carpet-back">
+                      <Link className="carpetTextContainer carpet-back" to={`/${carpet.slug.current}`}>
                         <div className="carpetTitle">{carpet.name}</div>
                         <div>
                           {carpet?.price?.soldOut
@@ -87,7 +87,7 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
                             ? "Not for Sale"
                             : `${carpet?.price?.price} EUR`}
                         </div>
-                        <Link className="carpetLink customButton" to={`/${carpet.slug.current}`}>
+                        <div className="carpetLink customButton">
                           <img
                             className="larger-screen"
                             onMouseEnter={handleSeeMoreMouseEnter}
@@ -100,8 +100,8 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
                             onMouseLeave={handleSeeMoreMouseLeave}
                             src="/assets/img/buttons/look.svg"
                           />
-                        </Link>
-                      </div>
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 ) : (

@@ -18,7 +18,7 @@
   flex-direction: row;
   justify-content: space-between; /* Spaces items evenly across the available width */
   align-items: center; /* Vertically centers the items */
-  height: 80px;
+  /* height: 80px; */
 }
 
 .carpetSpecifications {
@@ -139,11 +139,13 @@
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 10px;
+    position: relative;
+    top: 5px;
   }
   .carpetSpecifications div {
     display: flex;
     flex-direction: column;
-    line-height: 1;
+    /* line-height: 1; */
   }
   .carpetSpecifications .key {
     /* top: 0; */

@@ -10,11 +10,7 @@ export default function Footer({ isDesktop }) {
   let DesktopFooter = () => {
     return (
       <footer className="desktopFooter">
-        <div className="copyrightnotice">
-          {`© ${currentYear} GGRUGS.`}
-          <br /> All rights reserved
-        </div>
-        {/* <br className="mobile" /> */}
+        <div className="copyrightnotice">{`© ${currentYear} GGRUGS`}</div>
         <div>
           <a
             href="https://www.instagram.com/gg__rugs"
@@ -29,7 +25,7 @@ export default function Footer({ isDesktop }) {
         <div>
           For any information write to us at <br />
           <a
-            href="mailto:ciao@gg-office.com"
+            href="mailto:ciao@gg-rugs.com"
             onMouseEnter={(e) => MouseEnterButton(e)}
             onMouseLeave={(e) => MouseLeaveButton(e)}
             target="blank"
@@ -51,7 +47,7 @@ export default function Footer({ isDesktop }) {
         </div>
         <div>
           <span className="desktop">For any information write to us at</span> <br />
-          <a href="mailto:ciao@gg-office.com" target="_blank">
+          <a href="mailto:ciao@gg-rugs.com" target="_blank">
             <img className="customButton" src="/assets/img/buttons/email.svg" />
           </a>
         </div>

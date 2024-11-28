@@ -8,7 +8,7 @@
       }
 
       .st1 {
-        fill: url(#Sfumatura_senza_nome_2);
+        fill: url(#Sfumatura_senza_nome_5);
       }
 
       .st2 {
@@ -18,12 +18,12 @@
     <clipPath id="clippath">
       <path class="st0" d="M11.1,5h-6.1v15.3h3.01v-5.27h3.08c3.91,0,6.15-1.85,6.15-5.03s-2.24-5-6.15-5ZM11,12.55h-2.99v-5.1h2.99c2.28,0,3.28.92,3.28,2.58s-1,2.53-3.28,2.53ZM28.3,13.55c1.87-.24,3.38-1.58,3.38-3.89,0-2.84-1.92-4.66-5.83-4.66h-6.92v15.3h2.99v-5.66h3.6c1.75,0,2.53.78,2.65,2.5.12,1.7.32,2.75.63,3.16h3.11c-.51-.56-.58-1.34-.78-3.6-.17-1.8-1.07-2.82-2.82-3.16ZM25.43,12.26h-3.52v-4.81h3.52c2.21,0,3.23.9,3.23,2.43,0,1.65-1.02,2.38-3.23,2.38ZM36.91,13.75h6.46v-2.5h-6.46v-3.72h8.24v-2.53h-11.22v15.3h11.44v-2.53h-8.45v-4.03ZM58.48,5l-4.47,11.61h-.1l-4.52-11.61h-3.18l6.05,15.3h3.23l6.02-15.3h-3.04Z"/>
     </clipPath>
-    <linearGradient id="Sfumatura_senza_nome_2" data-name="Sfumatura senza nome 2" x1="0" y1="12.65" x2="156.07" y2="12.65" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f2aaaa"/>
-      <stop offset=".25" stop-color="#e69df2"/>
-      <stop offset=".5" stop-color="#9de7f2"/>
-      <stop offset=".75" stop-color="#9df2af"/>
-      <stop offset="1" stop-color="#eaf29d"/>
+    <linearGradient id="Sfumatura_senza_nome_5" data-name="Sfumatura senza nome 5" x1="0" y1="12.65" x2="156.07" y2="12.65" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffd4d4"/>
+      <stop offset=".25" stop-color="#eea6ff"/>
+      <stop offset=".5" stop-color="#97faff"/>
+      <stop offset=".75" stop-color="#99ffa7"/>
+      <stop offset="1" stop-color="#ffff85"/>
     </linearGradient>
   </defs>
   <path d="M65.65,2.19c-.93-1.37-2.48-2.19-4.13-2.19h-3.04c-1.96,0-3.73,1.15-4.54,2.91-.81-1.77-2.58-2.91-4.54-2.91h-3.18c-.22,0-.43.02-.64.04-.14-.01-.28-.04-.43-.04h-11.22c-1.1,0-2.1.36-2.93.96-1.43-.61-3.13-.96-5.14-.96h-6.92c-1.05,0-2.01.32-2.82.87-1.41-.55-3.08-.87-5.01-.87h-6.1C2.24,0,0,2.24,0,5v15.3C0,23.07,2.24,25.3,5,25.3h3.01c2.76,0,5-2.24,5-5h.91c0,2.76,2.24,5,5,5h2.99c1.33,0,2.54-.52,3.44-1.37.92.87,2.15,1.37,3.44,1.37h16.57c1.34,0,2.55-.53,3.45-1.39.91.87,2.14,1.39,3.45,1.39h3.23c2.05,0,3.9-1.26,4.65-3.17l6.02-15.3c.61-1.54.41-3.28-.52-4.65Z"/>

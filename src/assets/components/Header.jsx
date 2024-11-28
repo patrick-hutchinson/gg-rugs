@@ -17,36 +17,40 @@ export default function Header({ isDesktop }) {
 
   let MobileHeader = () => (
     <ul className="header">
-      <li className="customButton">
-        <img onMouseDown={handleOpenMenu} src="/assets/img/buttons/menu.svg" />
+      <li>
+        <img className="customButton" onMouseDown={handleOpenMenu} src="/assets/img/buttons/menu.svg" />
       </li>
     </ul>
   );
 
   let MobileMenu = () => (
     <div className="mobileMenu">
-      <span className="closeMenu customButton">
-        <img onMouseDown={handleMenuClick} src="/assets/img/buttons/x.svg" />
+      <span className="closeMenu">
+        <img className="customButton" onMouseDown={handleMenuClick} src="/assets/img/buttons/x.svg" />
       </span>
       <ul>
-        <li className="customButton">
+        <li>
           <Link to="/">
-            <img onMouseDown={handleMenuClick} src="/assets/img/buttons/rugs_mobile.svg" />
+            <img className="customButton" onMouseDown={handleMenuClick} src="/assets/img/buttons/rugs_mobile.svg" />
           </Link>
         </li>
-        <li className="customButton">
+        <li>
           <Link to="/about">
-            <img onMouseDown={handleMenuClick} src="/assets/img/buttons/about_mobile.svg" />
+            <img className="customButton" onMouseDown={handleMenuClick} src="/assets/img/buttons/about_mobile.svg" />
           </Link>
         </li>
-        <li className="customButton">
+        <li>
           <Link to="/commissions">
-            <img onMouseDown={handleMenuClick} src="/assets/img/buttons/commission_mobile.svg" />
+            <img
+              className="customButton"
+              onMouseDown={handleMenuClick}
+              src="/assets/img/buttons/commission_mobile.svg"
+            />
           </Link>
         </li>
-        <li className="customButton">
+        <li>
           <Link to="/contact">
-            <img onMouseDown={handleMenuClick} src="/assets/img/buttons/contacts_mobile.svg" />
+            <img className="customButton" onMouseDown={handleMenuClick} src="/assets/img/buttons/contacts_mobile.svg" />
           </Link>
         </li>
       </ul>
@@ -56,25 +60,41 @@ export default function Header({ isDesktop }) {
   let DesktopHeader = () => (
     <>
       <ul className="header">
-        <li onMouseEnter={(e) => MouseEnterButton(e)} onMouseLeave={(e) => MouseLeaveButton(e)}>
+        <li
+          onMouseEnter={(e) => MouseEnterButton(e)}
+          onMouseLeave={(e) => MouseLeaveButton(e)}
+          className="customButton"
+        >
           <Link to="/">
-            <img src="assets/img/buttons/rugs.svg" className="customButton" />
+            <img src="assets/img/buttons/rugs.svg" />
           </Link>
         </li>
 
-        <li onMouseEnter={(e) => MouseEnterButton(e)} onMouseLeave={(e) => MouseLeaveButton(e)}>
+        <li
+          onMouseEnter={(e) => MouseEnterButton(e)}
+          onMouseLeave={(e) => MouseLeaveButton(e)}
+          className="customButton"
+        >
           <Link to="/about">
-            <img src="assets/img/buttons/about.svg" className="customButton" />
+            <img src="assets/img/buttons/about.svg" />
           </Link>
         </li>
-        <li onMouseEnter={(e) => MouseEnterButton(e)} onMouseLeave={(e) => MouseLeaveButton(e)}>
+        <li
+          onMouseEnter={(e) => MouseEnterButton(e)}
+          onMouseLeave={(e) => MouseLeaveButton(e)}
+          className="customButton"
+        >
           <Link to="/commissions">
-            <img src="assets/img/buttons/commission.svg" className="customButton" />
+            <img src="assets/img/buttons/commission.svg" />
           </Link>
         </li>
-        <li onMouseEnter={(e) => MouseEnterButton(e)} onMouseLeave={(e) => MouseLeaveButton(e)}>
+        <li
+          onMouseEnter={(e) => MouseEnterButton(e)}
+          onMouseLeave={(e) => MouseLeaveButton(e)}
+          className="customButton"
+        >
           <Link to="/contact">
-            <img src="assets/img/buttons/contacts.svg" className="customButton" />
+            <img src="assets/img/buttons/contacts.svg" />
           </Link>
         </li>
       </ul>

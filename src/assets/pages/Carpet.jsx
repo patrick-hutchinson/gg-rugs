@@ -71,7 +71,7 @@ export default function Carpet({ isDesktop }) {
     const subject = encodeURIComponent("I NEED IT!");
     const body = encodeURIComponent(`THE ${carpet.name} CARPET NEEDS TO BE MINE!`);
 
-    const mailtoLink = `mailto:ciao@gg-office.com?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:ciao@gg-rugs.com?subject=${subject}&body=${body}`;
 
     window.location.href = mailtoLink;
   }
@@ -135,12 +135,12 @@ export default function Carpet({ isDesktop }) {
               </div>
             </div>
             <button
-              className="buyButton"
+              className="buyButton customButton"
               onClick={handleBuyClick}
               onMouseEnter={(e) => MouseEnterButton(e)}
               onMouseLeave={(e) => MouseLeaveButton(e)}
             >
-              <img className="customButton" src="/assets/img/buttons/buy.svg" />
+              <img src="/assets/img/buttons/buy.svg" />
             </button>
           </>
         ) : (
@@ -164,12 +164,12 @@ export default function Carpet({ isDesktop }) {
               </div>
             </div>
             <button
-              className="buyButton"
               onClick={handleBuyClick}
               onMouseEnter={(e) => MouseEnterButton(e)}
               onMouseLeave={(e) => MouseLeaveButton(e)}
+              class="customButton"
             >
-              <img class="customButton" src="/assets/img/buttons/buy.svg" />
+              <img src="/assets/img/buttons/buy.svg" />
             </button>
           </>
         )}

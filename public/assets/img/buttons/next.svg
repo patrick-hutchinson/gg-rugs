@@ -4,15 +4,15 @@
   <defs>
     <style>
       .st0 {
-        fill: url(#Sfumatura_senza_nome_2);
+        fill: url(#Sfumatura_senza_nome_4);
       }
     </style>
-    <linearGradient id="Sfumatura_senza_nome_2" data-name="Sfumatura senza nome 2" x1="-56.68" y1="12.65" x2="74.64" y2="12.65" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f2aaaa"/>
-      <stop offset=".25" stop-color="#e69df2"/>
-      <stop offset=".5" stop-color="#9de7f2"/>
-      <stop offset=".75" stop-color="#9df2af"/>
-      <stop offset="1" stop-color="#eaf29d"/>
+    <linearGradient id="Sfumatura_senza_nome_4" data-name="Sfumatura senza nome 4" x1="-56.68" y1="12.65" x2="74.64" y2="12.65" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffd4d4"/>
+      <stop offset=".25" stop-color="#eea6ff"/>
+      <stop offset=".5" stop-color="#97faff"/>
+      <stop offset=".75" stop-color="#99ffa7"/>
+      <stop offset="1" stop-color="#ffff85"/>
     </linearGradient>
   </defs>
   <path class="st0" d="M62.73,0h-13.94c-.13,0-.25.03-.37.04-.18-.02-.35-.04-.53-.04h-3.38c-1.4,0-2.72.58-3.66,1.59-.94-1.01-2.26-1.59-3.66-1.59H15.25c-1.42,0-2.71.6-3.62,1.55-.94-.98-2.24-1.55-3.62-1.55h-3.01C2.24,0,0,2.24,0,5v15.3c0,2.76,2.24,5,5,5h2.82c1.58,0,3-.74,3.91-1.88.95,1.19,2.38,1.88,3.91,1.88h20.88c1.6,0,3.1-.76,4.04-2.05l.1-.14.11.15c.94,1.28,2.44,2.04,4.03,2.04h3.57c1.07,0,2.08-.35,2.92-.95.82.59,1.82.95,2.92.95h3.04c2.76,0,5-2.24,5-5v-7.78h.49c2.76,0,5-2.24,5-5v-2.53c0-2.76-2.24-5-5-5Z"/>
