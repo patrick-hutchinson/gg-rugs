@@ -189,8 +189,12 @@ export default function Carpet({ isDesktop }) {
     });
   });
 
-  const prevCarpet = currentIndex > 0 ? updatedCarpetOrder[currentIndex - 1] : null;
-  const nextCarpet = currentIndex < updatedCarpetOrder.length - 1 ? updatedCarpetOrder[currentIndex + 1] : null;
+  // const prevCarpet = currentIndex > 0 ? updatedCarpetOrder[currentIndex - 1] : null;
+  // const nextCarpet = currentIndex < updatedCarpetOrder.length - 1 ? updatedCarpetOrder[currentIndex + 1] : null;
+
+  const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.slug.current === id);
+  const prevCarpet = currentCarpetIndex > 0 ? carpetData[currentCarpetIndex - 1] : null;
+  const nextCarpet = currentCarpetIndex < carpetData.length - 1 ? carpetData[currentCarpetIndex + 1] : null;
 
   console.log(currentIndex, "ci");
 
