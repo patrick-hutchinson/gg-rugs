@@ -125,7 +125,7 @@
     padding: 0px 10px;
   }
   .carpet {
-    margin-bottom: 20px;
+    margin-bottom: var(--margin);
   }
 
   .carpet:hover .carpet-inner {
