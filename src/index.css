@@ -125,7 +125,9 @@ h1 {
   font-size: var(--large-font-size);
   line-height: var(--large-line-height);
 
-  font-family: var(--mediumFont);
+  /* font-family: var(--mediumFont); */
+  padding-bottom: 5px;
+  font-size: 33px;
   position: relative;
   top: 18px;
 }
