@@ -88,7 +88,7 @@ export default function Carpet({ isDesktop }) {
             return (
               <div key={rowIndex} className="galleryRow" style={rowStyles}>
                 {rowImages.map((image, imgIndex) => {
-                  return <GetMedia file={image} key={imgIndex} />;
+                  return <GetMedia file={image} key={imgIndex} isFullscreenable={true} isDesktop={isDesktop} />;
                 })}
               </div>
             );

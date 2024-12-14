@@ -263,6 +263,17 @@ h1 {
   .pageContainer {
     padding-top: 80px;
   }
+  img.fullscreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: auto;
+    height: auto;
+
+    transform: translate(-50%, -50%);
+  }
 }
 
 @media (max-width: 575.98px) {
