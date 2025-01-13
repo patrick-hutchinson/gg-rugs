@@ -69,7 +69,7 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
         <div className="row" key={`${rowindex}`}>
           {row.carpets.flatMap((carpet, carpetindex) => {
             return (
-              <>
+              <div key={carpetindex}>
                 {isDesktop ? (
                   // Desktop view: Only the button inside the carpet div triggers the link
                   <div className="carpet" key={`${carpetindex}`}>
@@ -126,7 +126,7 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
                     </div>
                   </div>
                 )}
-              </>
+              </div>
             );
           })}
         </div>
