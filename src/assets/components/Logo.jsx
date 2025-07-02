@@ -1,62 +1,44 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import letters from "../components/letters";
 import "../css/Logo.css";
 
+import Loading from "./Loading";
+
 export default function Logo() {
+  let wordArray = ["G", "G", "Dash", "R", "U", "G", "S"];
+  const totalImages = wordArray.length;
+  const [loadedCount, setLoadedCount] = useState(0);
+  const imagesLoaded = loadedCount === totalImages;
+
   const letterPointsRef = useRef([]);
+  let globalIndex = 0;
+
+  const pointScale = 0.14;
+  const dashPointScale = 0.54;
+
+  let [offsetX, setOffsetX] = useState(null);
+  let [offsetY, setOffsetY] = useState(null);
 
   useEffect(() => {
-    // Get the css height of any letter SVG for reference, here the first is chosen
-    const element = document.querySelector(`.letter > img`);
-    const elementHeight = parseInt(window.getComputedStyle(element).getPropertyValue("height"));
-
-    // Calculate the distance between the highest and lowest point of a letter and determine scale
-    const smallestTop = Math.min(...letters.letterS.letterPoints.map((points) => points.top));
-    const largestTop = Math.max(...letters.letterS.letterPoints.map((points) => points.top));
-    const pointHeight = largestTop - smallestTop;
-    // const pointScale = elementHeight / pointHeight;
-    const pointScale = 0.14;
-    const dashPointScale = 0.54;
-
-    // Collect all letter point elements after they are created
-    const letterPointElements = [];
-
     // Work with the data gotten from letters.js
+    const allLefts = [];
+    const allTops = [];
+
     Object.values(letters).forEach((letter) => {
-      const leftValues = letter.letterPoints.map((points) => points.left);
-      const topValues = letter.letterPoints.map((points) => points.top);
-      const smallestLeft = Math.min(...leftValues);
-      const smallestTop = Math.min(...topValues);
-
-      //Translation adjustments to make the letters fit onto the image
-      const translateX = smallestLeft * (pointScale * 1.2);
-      const translateY = smallestTop * (pointScale * 1.2);
-
       letter.letterPoints.forEach((point) => {
-        //Select the correct lettercontainer to add the points into
-        const className = `.letterContainer_${letter.character}`;
-
-        // For each lettercontainer, create and append the points
-        document.querySelectorAll(className).forEach((letterContainer) => {
-          const letterPoint = document.createElement("div");
-          letterPoint.classList.add("letter_point");
-
-          letterPoint.style.left = point.left * pointScale - translateX + "px";
-          letterPoint.style.top = point.top * pointScale - translateY + "px";
-
-          if (className.includes("Dash")) {
-            letterPoint.style.left = point.left * dashPointScale - 375 + "px";
-            letterPoint.style.top = point.top * dashPointScale - 230 + "px";
-          }
-
-          letterContainer.append(letterPoint);
-          letterPointElements.push(letterPoint); // Collect the created elements
-        });
+        allLefts.push(point.left);
+        allTops.push(point.top);
       });
     });
 
-    // Update the ref after elements are created
-    letterPointsRef.current = letterPointElements;
+    const smallestLeft = Math.min(...allLefts);
+    const smallestTop = Math.min(...allTops);
+
+    const translateX = smallestLeft * (pointScale * 1.2);
+    const translateY = smallestTop * (pointScale * 1.2);
+
+    setOffsetX(translateX);
+    setOffsetY(translateY);
 
     // Mouse Interaction
     const hoverInRadius = 40;
@@ -97,44 +79,70 @@ export default function Logo() {
     };
   }, []);
 
+  const handleImageLoad = () => {
+    setLoadedCount((count) => count + 1);
+    console.log("loaded image");
+    console.log(imagesLoaded, "images loaded?");
+  };
+
+  // if (!imagesLoaded) {
+  //   return <div>Loading images...</div>;
+  // }
+
+  const LetterPoints = ({ letter }) => {
+    const filteredArray = Object.values(letters).filter((item) => item.character === letter);
+    if (!filteredArray.length) return null;
+
+    return (
+      <>
+        {filteredArray[0].letterPoints.map((point) => {
+          const thisIndex = globalIndex++; // unique index per point
+
+          if (letter === "Dash") {
+            return (
+              <div
+                key={thisIndex}
+                className="letter_point"
+                style={{
+                  left: point.left * dashPointScale - 375 + "px",
+                  top: point.top * dashPointScale - 230 + "px",
+                }}
+                ref={(el) => {
+                  if (el) letterPointsRef.current[thisIndex] = el;
+                }}
+              ></div>
+            );
+          }
+
+          return (
+            <div
+              key={thisIndex}
+              className="letter_point"
+              style={{
+                left: point.left * pointScale - offsetX + "px",
+                top: point.top * pointScale - offsetY + "px",
+              }}
+              ref={(el) => {
+                if (el) letterPointsRef.current[thisIndex] = el;
+              }}
+            ></div>
+          );
+        })}
+      </>
+    );
+  };
+
   return (
     <>
-      <div className="letterContainer letterContainer_G">
-        <div className="letter">
-          <img src="/assets/img/00-GG-Rugs_G.svg" alt="G" />
+      {!imagesLoaded && <Loading />}
+      {wordArray.map((letter, index) => (
+        <div key={index} className="letterContainer" style={{ opacity: imagesLoaded ? 1 : 0 }}>
+          <div className="letter">
+            <img src={`/assets/img/GG-Rugs_${letter}.svg`} alt={letter} onLoad={handleImageLoad} />
+          </div>
+          <LetterPoints letter={letter} />
         </div>
-      </div>
-      <div className="letterContainer letterContainer_G">
-        <div className="letter">
-          <img src="/assets/img/00-GG-Rugs_G.svg" alt="G" />
-        </div>
-      </div>
-      <div className="letterContainer letterContainer_Dash">
-        <div className="letter">
-          <img src="/assets/img/04-GG-Rugs_Dash.svg" alt="G" />
-        </div>
-      </div>
-      <div className="letterContainer letterContainer_R">
-        <div className="letter">
-          <img src="/assets/img/01-GG-Rugs_R.svg" alt="R" />
-        </div>
-      </div>
-      <div className="letterContainer letterContainer_U">
-        <div className="letter">
-          <img src="/assets/img/02-GG-Rugs_U.svg" alt="U" />
-        </div>
-      </div>
-      <div className="letterContainer letterContainer_G">
-        <div className="letter">
-          <img src="/assets/img/00-GG-Rugs_G.svg" alt="G" />
-        </div>
-      </div>
-      <div className="letterContainer letterContainer_S">
-        <div className="letter">
-          <img src="/assets/img/03-GG-Rugs_S.svg" alt="S" />
-        </div>
-      </div>
-      <span className="trademark">®</span>
+      ))}
     </>
   );
 }

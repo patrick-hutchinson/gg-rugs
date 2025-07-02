@@ -24,15 +24,12 @@
   transform-origin: top left;
   display: inline-block;
   margin-left: 6px;
+  margin-right: 10px;
 }
 
 .letter > img {
   position: relative;
   height: 130px;
-}
-
-.letterContainer {
-  margin-right: 10px;
 }
 
 .letter_point {
@@ -51,7 +48,7 @@
 }
 
 /* Kerning */
-.letterContainer:nth-child(1) {
+/* .letterContainer:nth-child(1) {
   left: 0px;
   top: 0px;
 }
@@ -74,4 +71,4 @@
 .letterContainer:nth-child(7) {
   left: 1px;
   top: 0px;
-}
+} */
