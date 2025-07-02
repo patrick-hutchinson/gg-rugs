@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import "../css/Layout.css";
@@ -6,18 +6,20 @@ import "../css/Layout.css";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function Layout({ isDesktop, setShowOpeningPage }) {
+import OpeningPage from "../pages/OpeningPage";
+
+export default function Layout({ isDesktop, setShowOpeningPage, showOpeningPage }) {
   let lastMousePosition = 0;
+
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   const location = useLocation();
 
   React.useEffect(() => {
     // Only show the opening page if the user is on the home route
-    if (location.pathname === "/") {
-      const hasSeenOpeningPage = localStorage.getItem("hasSeenOpeningPage");
-      setShowOpeningPage(!hasSeenOpeningPage);
+    if (location.pathname === "/" && isInitialLoad) {
+      setShowOpeningPage(true);
     } else {
-      localStorage.setItem("hasSeenOpeningPage", true);
       setShowOpeningPage(false);
     }
   }, [location.pathname]);
@@ -30,6 +32,10 @@ export default function Layout({ isDesktop, setShowOpeningPage }) {
       document.querySelector("header").classList.remove("unblur");
     }
   }, [location.pathname]);
+
+  useEffect(() => {
+    setIsInitialLoad(false);
+  }, []);
 
   window.addEventListener("mousemove", (e) => {
     // Handle the CursorImage
@@ -73,6 +79,8 @@ export default function Layout({ isDesktop, setShowOpeningPage }) {
 
   return (
     <>
+      {showOpeningPage && <OpeningPage setShowOpeningPage={setShowOpeningPage} isDesktop={isDesktop} />}
+
       <Header isDesktop={isDesktop} />
       <Outlet />
       <Footer isDesktop={isDesktop} />

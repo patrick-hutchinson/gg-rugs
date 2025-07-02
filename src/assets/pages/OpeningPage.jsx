@@ -5,7 +5,7 @@ import Logo from "../components/Logo";
 import "../css/OpeningPage.css";
 
 export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
-  const openingPageRef = React.useRef(null);
+  const openingPageRef = React.useRef();
 
   window.addEventListener("click", () => {
     handleOpeningPageClose();
@@ -15,7 +15,6 @@ export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
     openingPageRef.current.classList.add("close");
 
     setTimeout(() => {
-      localStorage.setItem("hasSeenOpeningPage", "true");
       setShowOpeningPage(false);
     }, 1000);
   };

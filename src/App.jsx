@@ -11,10 +11,7 @@ import Carpet from "./assets/pages/Carpet";
 import NotFound from "./assets/pages/NotFound";
 
 export default function App() {
-  const [showOpeningPage, setShowOpeningPage] = useState(() => {
-    const hasSeenOpeningPage = localStorage.getItem("hasSeenOpeningPage");
-    return !hasSeenOpeningPage;
-  });
+  const [showOpeningPage, setShowOpeningPage] = useState(true);
 
   let mobileBreakpoint = 820;
 
@@ -41,7 +38,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout isDesktop={isDesktop} setShowOpeningPage={setShowOpeningPage} />}>
+        <Route
+          element={
+            <Layout isDesktop={isDesktop} setShowOpeningPage={setShowOpeningPage} showOpeningPage={showOpeningPage} />
+          }
+        >
           <Route
             index
             element={

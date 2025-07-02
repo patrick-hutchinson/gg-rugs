@@ -6,9 +6,8 @@ import AnimatedPage from "../AnimatedPage";
 import GetMedia from "../utils/getMedia";
 
 import "../css/Home.css";
-import OpeningPage from "./OpeningPage";
 
-export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage }) {
+export default function Home({ isDesktop }) {
   let [homeData, setHomeData] = React.useState();
   React.useEffect(() => {
     sanityClient
@@ -134,11 +133,8 @@ export default function Home({ isDesktop, showOpeningPage, setShowOpeningPage })
     });
 
   return (
-    <>
-      {showOpeningPage && <OpeningPage setShowOpeningPage={setShowOpeningPage} isDesktop={isDesktop} />}
-      <AnimatedPage>
-        <main className="pageContainer">{rows}</main>
-      </AnimatedPage>
-    </>
+    <AnimatedPage>
+      <main className="pageContainer">{rows}</main>
+    </AnimatedPage>
   );
 }
