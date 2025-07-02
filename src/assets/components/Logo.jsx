@@ -4,11 +4,17 @@ import "../css/Logo.css";
 
 import Loading from "./Loading";
 
-export default function Logo() {
+export default function Logo({ setImagesLoaded }) {
   let wordArray = ["G", "G", "Dash", "R", "U", "G", "S"];
   const totalImages = wordArray.length;
   const [loadedCount, setLoadedCount] = useState(0);
   const imagesLoaded = loadedCount === totalImages;
+
+  useEffect(() => {
+    if (loadedCount === totalImages) {
+      setImagesLoaded(true);
+    }
+  }, [loadedCount]);
 
   const letterPointsRef = useRef([]);
   let globalIndex = 0;
@@ -134,7 +140,7 @@ export default function Logo() {
 
   return (
     <>
-      {!imagesLoaded && <Loading />}
+      {/* {!imagesLoaded && <Loading />} */}
       {wordArray.map((letter, index) => (
         <div key={index} className="letterContainer" style={{ opacity: imagesLoaded ? 1 : 0 }}>
           <div className="letter">

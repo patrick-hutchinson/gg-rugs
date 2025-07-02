@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../css/Logo.css";
 import Logo from "../components/Logo";
+import Loading from "../components/Loading";
 import "../css/OpeningPage.css";
 
 export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
   const openingPageRef = React.useRef();
+
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   window.addEventListener("click", () => {
     handleOpeningPageClose();
@@ -45,8 +48,9 @@ export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
 
   return (
     <div className="openingPage" ref={openingPageRef}>
+      {!imagesLoaded && <Loading />}
       <div className="logoContainer">
-        <Logo />
+        <Logo setImagesLoaded={setImagesLoaded} />
       </div>
     </div>
   );
