@@ -1,8 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import letters from "../components/letters";
 import "../css/Logo.css";
-
-import Loading from "./Loading";
 
 export default function Logo({ setImagesLoaded }) {
   let wordArray = ["G", "G", "Dash", "R", "U", "G", "S"];
@@ -140,7 +138,6 @@ export default function Logo({ setImagesLoaded }) {
 
   return (
     <>
-      {/* {!imagesLoaded && <Loading />} */}
       {wordArray.map((letter, index) => (
         <div key={index} className="letterContainer" style={{ opacity: imagesLoaded ? 1 : 0 }}>
           <div className="letter">

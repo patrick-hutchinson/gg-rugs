@@ -48,8 +48,8 @@ export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
 
   return (
     <div className="openingPage" ref={openingPageRef}>
-      {!imagesLoaded && <Loading />}
-      <div className="logoContainer">
+      {/* {!imagesLoaded && <Loading />} */}
+      <div className="logoContainer" style={{ opacity: imagesLoaded ? 1 : 0 }}>
         <Logo setImagesLoaded={setImagesLoaded} />
       </div>
     </div>
