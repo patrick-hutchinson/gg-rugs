@@ -2,10 +2,12 @@ import React, { useState } from "react";
 
 import "../css/Logo.css";
 import Logo from "../components/Logo";
-import Loading from "../components/Loading";
+
 import "../css/OpeningPage.css";
 
-export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
+import { enableScroll, disableScroll } from "../utils/blockScrolling";
+
+export default function OpeningPage({ isDesktop, showOpeningPage, setShowOpeningPage }) {
   const openingPageRef = React.useRef();
 
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -14,11 +16,26 @@ export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
     handleOpeningPageClose();
   });
 
+  const handleOpening = () => {
+    if (showOpeningPage) {
+      openingPageRef.current.classList.add("close");
+      setTimeout(() => {
+        handleAnimationComplete();
+      }, 1000);
+    }
+  };
+
+  function handleAnimationComplete() {
+    enableScroll();
+    document.querySelector("main").classList.remove("no-scroll");
+  }
+
   const handleOpeningPageClose = () => {
     openingPageRef.current.classList.add("close");
 
     setTimeout(() => {
       setShowOpeningPage(false);
+      enableScroll();
     }, 1000);
   };
 
@@ -47,8 +64,12 @@ export default function OpeningPage({ isDesktop, setShowOpeningPage }) {
   }
 
   return (
-    <div className="openingPage" ref={openingPageRef}>
-      {/* {!imagesLoaded && <Loading />} */}
+    <div
+      onWheel={() => handleOpening()}
+      onTouchStart={() => handleOpening()}
+      className="openingPage"
+      ref={openingPageRef}
+    >
       <div className="logoContainer" style={{ opacity: imagesLoaded ? 1 : 0 }}>
         <Logo setImagesLoaded={setImagesLoaded} />
       </div>

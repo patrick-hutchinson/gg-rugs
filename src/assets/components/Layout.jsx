@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
+import { enableScroll, disableScroll } from "../utils/blockScrolling";
+
 import "../css/Layout.css";
 
 import Header from "./Header";
@@ -19,8 +21,10 @@ export default function Layout({ isDesktop, setShowOpeningPage, showOpeningPage 
     // Only show the opening page if the user is on the home route
     if (location.pathname === "/" && isInitialLoad) {
       setShowOpeningPage(true);
+      disableScroll();
     } else {
       setShowOpeningPage(false);
+      enableScroll();
     }
   }, [location.pathname]);
 
@@ -79,7 +83,9 @@ export default function Layout({ isDesktop, setShowOpeningPage, showOpeningPage 
 
   return (
     <>
-      {showOpeningPage && <OpeningPage setShowOpeningPage={setShowOpeningPage} isDesktop={isDesktop} />}
+      {showOpeningPage && (
+        <OpeningPage showOpeningPage={showOpeningPage} setShowOpeningPage={setShowOpeningPage} isDesktop={isDesktop} />
+      )}
 
       <Header isDesktop={isDesktop} />
       <Outlet />
