@@ -91,7 +91,7 @@ header .logoContainer {
   .mobileMenu .customButton img,
   .mobileMenu .customButton {
     height: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .mobileMenu.visible {
