@@ -173,23 +173,20 @@ export default function Carpet({ isDesktop }) {
     );
   };
 
-  // const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.slug.current === id);
+  console.log(carpetData, "carpet data");
+  console.log(homeData, "home data");
 
-  // let currentIndex = updatedCarpetOrder?.findIndex(
-  //   (updatedCarpet) => carpet.slug.current === updatedCarpet.slug.current
-  // );
+  const reorderedCarpets = homeData[0].gridstructure.flatMap((group) => group.carpets || []);
 
-  // homeData[0]?.gridstructure?.forEach((row) => {
-  //   row.carpets.forEach((updatedCarpet) => {
-  //     updatedCarpetOrder.push(updatedCarpet);
-  //   });
-  // });
+  console.log(reorderedCarpets, "reorderd carpts");
 
-  const currentCarpetIndex = carpetData?.findIndex((carpet) => carpet.slug.current === id);
-  const prevCarpet = currentCarpetIndex > 0 ? carpetData[currentCarpetIndex - 1] : null;
-  const nextCarpet = currentCarpetIndex < carpetData.length - 1 ? carpetData[currentCarpetIndex + 1] : null;
+  const currentCarpetIndex = reorderedCarpets?.findIndex((carpet) => carpet.slug.current === id);
 
-  // Log the homeData so each carpet is listed in order of it's position, merging rows. Then don't change the carpet index for navigation, but compare the current number with the order number (position in the new positionArray) and select the carpet based on that
+  const prevIndex = (currentCarpetIndex - 1 + reorderedCarpets.length) % reorderedCarpets.length;
+  const nextIndex = (currentCarpetIndex + 1) % reorderedCarpets.length;
+
+  const prevCarpet = reorderedCarpets[prevIndex];
+  const nextCarpet = reorderedCarpets[nextIndex];
 
   let ImageNavigation = () => {
     return (
