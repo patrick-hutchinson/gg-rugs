@@ -132,6 +132,12 @@ h1 {
   top: 18px;
 }
 
+.customLink {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.7px;
+}
+
 .pageContainer {
   position: relative;
 

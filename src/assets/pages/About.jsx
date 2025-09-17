@@ -65,7 +65,21 @@ export default function About() {
       <main className="pageContainer">
         <div className="pistolContainer" ref={emojiContainerRef}></div>
         <div className="about">
-          <PortableText value={aboutData[0].biography} />
+          <PortableText
+            value={aboutData[0].biography}
+            components={{
+              marks: {
+                link: ({ value, children }) => {
+                  const href = value?.href || value?.link; // depending on your schema
+                  return (
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="customLink">
+                      {children}
+                    </a>
+                  );
+                },
+              },
+            }}
+          />
         </div>
       </main>
     </AnimatedPage>
