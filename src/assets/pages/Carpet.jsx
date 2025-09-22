@@ -58,10 +58,6 @@ export default function Carpet({ isDesktop }) {
 
   const carpet = carpetData?.find((carpet) => carpet.slug.current === id);
 
-  if (!carpet) {
-    return <NotFound />;
-  }
-
   // Compose Email when the user clicks "Buy"
   function handleBuyClick() {
     const subject = encodeURIComponent("I NEED IT!");
@@ -172,6 +168,8 @@ export default function Carpet({ isDesktop }) {
       </div>
     );
   };
+
+  if (!homeData || !carpetData) return;
 
   console.log(carpetData, "carpet data");
   console.log(homeData, "home data");
