@@ -169,7 +169,7 @@ export default function Carpet({ isDesktop }) {
     );
   };
 
-  if (!homeData || !carpetData) return;
+  if (!homeData || !carpetData) return <p>Loading...</p>;
 
   console.log(carpetData, "carpet data");
   console.log(homeData, "home data");
